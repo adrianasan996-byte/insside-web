@@ -3,24 +3,28 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
+// Correct photo ↔ name mapping (verified against insside.co):
+// esp-1.jpg = Barbara Serrano  |  esp-2.png = Valentina Tello
+// esp-3.png = Luisa Reyes      |  esp-4.png = Blanca Vazquez
+// esp-5.jpg = Paty Romero      |  esp-6.png = Steph De Gregorio
 const ESPECIALISTAS = [
   {
     nombre: "Valentina Tello",
     especialidad: "Psicóloga",
     temas: ["Ansiedad sin causa aparente", "Relaciones que se repiten"],
-    foto: "/especialistas/esp-1.jpg",
+    foto: "/especialistas/esp-2.png",
   },
   {
     nombre: "Malena Lum",
     especialidad: "Health Coach",
     temas: ["Energía y cansancio crónico", "Hábitos que no duran"],
-    foto: "/especialistas/esp-2.png",
+    foto: "https://cdn.prod.website-files.com/67ee7a27c1f4ea3577ad0f2f/68271d14045e4a08ecb4b9d1_PHOTO-2025-05-14-09-46-31%20copy.png79.png",
   },
   {
     nombre: "Barbara Serrano",
     especialidad: "Life Coach",
     temas: ["Claridad sobre el siguiente paso", "Confianza y autosabotaje"],
-    foto: "/especialistas/esp-3.png",
+    foto: "/especialistas/esp-1.jpg",
   },
   {
     nombre: "Blanca Vazquez",
@@ -32,7 +36,7 @@ const ESPECIALISTAS = [
     nombre: "Luisa Reyes",
     especialidad: "Psicóloga",
     temas: ["Pareja y vínculos afectivos", "Ansiedad y estrés laboral"],
-    foto: "/especialistas/esp-5.jpg",
+    foto: "/especialistas/esp-3.png",
   },
   {
     nombre: "Steph De Gregorio",
