@@ -1,65 +1,86 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import MarketingNav from "@/components/marketing/MarketingNav";
+import HeroSection from "@/components/marketing/HeroSection";
+import MotivosSection from "@/components/marketing/MotivosSection";
+import ComoFuncionaSection from "@/components/marketing/ComoFuncionaSection";
+import PreciosSection from "@/components/marketing/PreciosSection";
+import EspecialistasSection from "@/components/marketing/EspecialistasSection";
+import TestimoniosSection from "@/components/marketing/TestimoniosSection";
+import CTAFinalSection from "@/components/marketing/CTAFinalSection";
+import FAQSection from "@/components/marketing/FAQSection";
+import MarketingFooter from "@/components/marketing/MarketingFooter";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Insside — Especialistas en Psicología, Coaching y Nutrición en Español",
+  description:
+    "Conecta con especialistas seleccionados en psicología, life coaching, health coaching y nutrición. En español, desde donde estés. Primera sesión exploratoria gratis.",
+  keywords: [
+    "psicología online en español",
+    "terapeuta en español",
+    "coach en español",
+    "nutrición online latina",
+    "bienestar integral",
+    "psicólogo para latinos",
+    "terapia online en español",
+    "health coaching en español",
+    "life coaching latino",
+    "salud mental hispana",
+  ],
+  openGraph: {
+    title: "Insside — No estás en crisis. Pero tampoco estás bien.",
+    description:
+      "Conecta con especialistas en psicología, coaching y nutrición. En español, desde donde estés.",
+    url: "https://www.insside.co",
+    siteName: "Insside",
+    locale: "es_LA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Insside — Especialistas de bienestar en español",
+    description:
+      "Psicología, coaching, nutrición y salud integral. En español, desde donde estés.",
+  },
+  alternates: { canonical: "https://www.insside.co" },
+  robots: { index: true, follow: true },
+};
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Insside",
+  url: "https://www.insside.co",
+  logo: "https://www.insside.co/logos/logo-principal-blanco.png",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+1-786-635-6816",
+    contactType: "customer service",
+    availableLanguage: "Spanish",
+  },
+  sameAs: ["https://www.instagram.com/byinsside/"],
+  description:
+    "Plataforma de bienestar integral que conecta personas con especialistas en psicología, coaching, nutrición y salud integral. En español.",
+};
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
+      <div className="min-h-screen overflow-x-hidden" style={{ background: "#FDFBF8" }}>
+        <MarketingNav />
+        <HeroSection />
+        <MotivosSection />
+        <ComoFuncionaSection />
+        <PreciosSection />
+        <EspecialistasSection />
+        <TestimoniosSection />
+        <CTAFinalSection />
+        <FAQSection />
+        <MarketingFooter />
+      </div>
+    </>
   );
 }
