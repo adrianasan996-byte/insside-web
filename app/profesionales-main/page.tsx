@@ -286,16 +286,6 @@ function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number 
             Próx. disponibilidad: <strong className="text-[#5A634F]">Esta semana</strong>
           </span>
         </div>
-        <div className="flex items-center gap-x-3 gap-y-1 flex-wrap">
-          {pro.calendars.exploratory && (
-            <span className="text-[10px] font-medium text-[#5A634F]">
-              Exploratoria: <strong>$25</strong>
-            </span>
-          )}
-          <span className="text-[10px] text-[#9a9a9a]">
-            Próx. disponibilidad: <strong className="text-[#5A634F]">Esta semana</strong>
-          </span>
-        </div>
         <div className="flex flex-wrap gap-1.5">
           {pro.specialties.slice(0, 3).map((tag) => (
             <span key={tag} className="text-[10px] font-medium px-2.5 py-1 rounded-full"
