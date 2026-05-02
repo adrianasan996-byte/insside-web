@@ -3,132 +3,11 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
+import Link from "next/link";
+import { SPECIALISTS, SpecialistProfile } from "@/lib/specialists";
 
 const WHATSAPP = "https://wa.me/17866356816";
 const STORAGE_KEY = "insside_directorio_access";
-
-/* ── Real specialists ─────────────────────────────────────── */
-const SPECIALISTS = [
-  {
-    id: "1",
-    name: "Luisa Reyes",
-    title: "Psicóloga & Life Coach",
-    category: "Psicología",
-    bio: "Acompaña procesos de autoconocimiento, ansiedad y propósito desde una mirada integradora que combina psicología y coaching.",
-    specialties: ["Autoconocimiento", "Ansiedad", "Propósito"],
-    modalities: ["online"],
-    languages: ["Español"],
-    rating: 4.9,
-    reviewCount: 102,
-    sessionPrice: 79,
-    city: "Caracas",
-    country: "Venezuela",
-    image: "/especialistas/luisa-reyes.png",
-    available: true,
-  },
-  {
-    id: "2",
-    name: "Blanca Vazquez",
-    title: "Nutricionista",
-    category: "Nutrición",
-    bio: "Acompaña procesos de relación con la comida desde un enfoque no restrictivo. Sin dietas, con conciencia y amor propio.",
-    specialties: ["Alimentación Consciente", "Relación con la Comida", "Bienestar"],
-    modalities: ["online"],
-    languages: ["Español"],
-    rating: 4.7,
-    reviewCount: 76,
-    sessionPrice: 65,
-    city: "México",
-    country: "",
-    image: "/especialistas/blanca-vazquez.png",
-    available: true,
-  },
-  {
-    id: "3",
-    name: "Valentina Tello",
-    title: "Psicóloga Clínica",
-    category: "Psicología",
-    bio: "Especialista en ansiedad, autoestima y relaciones. Acompaña procesos de transformación personal con un enfoque humanista e integrador.",
-    specialties: ["Ansiedad", "Autoestima", "Terapia de Parejas"],
-    modalities: ["online"],
-    languages: ["Español"],
-    rating: 4.9,
-    reviewCount: 118,
-    sessionPrice: 65,
-    city: "Valencia",
-    country: "Venezuela",
-    image: "/especialistas/valentina-tello.png",
-    available: true,
-  },
-  {
-    id: "4",
-    name: "Malena Lum",
-    title: "Health Coach",
-    category: "Health Coaching",
-    bio: "Trabaja con mujeres en procesos de bienestar integral, hábitos saludables y reconexión con el cuerpo desde un enfoque empático.",
-    specialties: ["Hábitos Saludables", "Bienestar Integral", "Reconexión"],
-    modalities: ["online"],
-    languages: ["Español"],
-    rating: 4.8,
-    reviewCount: 94,
-    sessionPrice: 57,
-    city: "Alemania",
-    country: "",
-    image: "/especialistas/malena-lum.png",
-    available: true,
-  },
-  {
-    id: "5",
-    name: "Barbara Serrano",
-    title: "Life Coach",
-    category: "Life Coaching",
-    bio: "Acompaña a mujeres en procesos de cambio, claridad de metas y construcción de una vida con propósito y dirección.",
-    specialties: ["Metas", "Claridad", "Transiciones"],
-    modalities: ["online"],
-    languages: ["Español"],
-    rating: 4.8,
-    reviewCount: 87,
-    sessionPrice: 57,
-    city: "Canadá",
-    country: "",
-    image: "/especialistas/barbara-serrano.jpg",
-    available: true,
-  },
-  {
-    id: "6",
-    name: "Steph De Gregorio",
-    title: "Life Coach & Mentora",
-    category: "Life Coaching",
-    bio: "Co-fundadora de Insside. Acompaña a mujeres en procesos de reconexión consigo mismas, límites y vida con propósito.",
-    specialties: ["Límites", "Reconexión", "Propósito"],
-    modalities: ["online"],
-    languages: ["Español"],
-    rating: 5.0,
-    reviewCount: 143,
-    sessionPrice: 57,
-    city: "Caracas",
-    country: "Venezuela",
-    image: "/especialistas/steph-de-gregorio.png",
-    available: true,
-  },
-  {
-    id: "7",
-    name: "Patricia Romero",
-    title: "Psicóloga Clínica",
-    category: "Psicología",
-    bio: "Especialista en procesos terapéuticos para adultos. Trabaja ansiedad, vínculos y crecimiento personal con calidez y profundidad.",
-    specialties: ["Ansiedad", "Vínculos", "Terapia de Parejas"],
-    modalities: ["online"],
-    languages: ["Español"],
-    rating: 4.8,
-    reviewCount: 89,
-    sessionPrice: 79,
-    city: "Bogotá",
-    country: "Colombia",
-    image: "/especialistas/patricia-romero.jpg",
-    available: true,
-  },
-];
 
 const CATEGORIES = ["Todos", "Psicología", "Terapia de Parejas", "Life Coaching", "Health Coaching", "Nutrición"];
 const MODALITIES = ["Todos", "Online", "Presencial"];
@@ -280,7 +159,7 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 /* ── Specialist card ──────────────────────────────────────── */
-function SpecialistCard({ pro, index }: { pro: typeof SPECIALISTS[0]; index: number }) {
+function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
 
@@ -294,9 +173,13 @@ function SpecialistCard({ pro, index }: { pro: typeof SPECIALISTS[0]; index: num
       style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}
       whileHover={{ y: -3, boxShadow: "0 16px 48px rgba(0,0,0,0.10)" }}
     >
-      <div className="flex flex-col sm:flex-row">
+      {/* Mobile: photo top-left + info, tags + CTA below | Desktop: wide sidebar photo */}
+
+      {/* Top row: photo + info */}
+      <div className="flex flex-row">
         {/* Photo */}
-        <div className="relative w-full sm:w-44 h-52 sm:h-auto shrink-0 overflow-hidden bg-gradient-to-br from-[#D9E5DB] to-[#EDE7E1]">
+        <div className="relative w-[120px] sm:w-44 flex-shrink-0 overflow-hidden bg-gradient-to-br from-[#D9E5DB] to-[#EDE7E1]"
+          style={{ minHeight: "160px" }}>
           {pro.image && (
             <img
               src={pro.image}
@@ -304,109 +187,168 @@ function SpecialistCard({ pro, index }: { pro: typeof SPECIALISTS[0]; index: num
               className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
             />
           )}
-          {/* Category badge */}
-          <div className="absolute top-3 left-3 z-10">
-            <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full"
+          {/* Category badge — desktop only */}
+          <div className="hidden sm:block absolute top-3 left-2 z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full"
               style={{ background: "rgba(255,255,255,0.22)", color: "#fff", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.35)" }}>
               {pro.category}
             </span>
           </div>
-          {/* Available dot */}
+          {/* Available indicator — glassmorphic pill on both mobile and desktop */}
           {pro.available && (
-            <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-              style={{ background: "rgba(255,255,255,0.92)", backdropFilter: "blur(8px)" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[10px] font-semibold text-[#262525]">Disponible</span>
+            <div className="absolute bottom-2 left-2 z-10 flex items-center gap-1 px-2 py-0.5 rounded-full"
+              style={{ background: "rgba(255,255,255,0.22)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.35)" }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-[10px] font-semibold text-white">Disponible</span>
             </div>
           )}
         </div>
 
-        {/* Info */}
-        <div className="flex-1 p-5 flex flex-col justify-between min-w-0">
-          <div>
-            {/* Name + price */}
-            <div className="flex items-start justify-between gap-3 mb-2">
-              <div>
-                <h3 className="font-bold text-[#262525] text-lg leading-tight">{pro.name}</h3>
-                <p className="text-[#5A634F] text-sm font-medium">{pro.title}</p>
-              </div>
-              <div className="text-right shrink-0">
-                <p className="text-xl font-bold text-[#262525]">${pro.sessionPrice}</p>
-                <p className="text-[#9a9a9a] text-[11px]">por sesión</p>
-              </div>
+        {/* Info — right of photo */}
+        <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center min-w-0">
+          {/* Category — mobile only */}
+          <div className="sm:hidden mb-2">
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+              style={{ background: "#D9E5DB", color: "#3D6B60" }}>
+              {pro.category}
+            </span>
+          </div>
+
+          {/* Name + price */}
+          <div className="flex items-start justify-between gap-2 mb-1.5">
+            <div className="min-w-0">
+              <h3 className="font-bold text-[#262525] text-base leading-tight">{pro.name}</h3>
+              <p className="text-[#5A634F] text-xs font-medium mt-0.5">{pro.title}</p>
             </div>
-
-            {/* Rating + meta */}
-            <div className="flex flex-wrap items-center gap-3 mb-3 text-xs text-[#6b6b6b]">
-              <StarRating rating={pro.rating} />
-              <span className="flex items-center gap-1">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-                </svg>
-                {pro.city}{pro.country ? `, ${pro.country}` : ""}
-              </span>
-              <span className="flex items-center gap-1">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-                </svg>
-                Próx. disponibilidad: Sábado
-              </span>
-            </div>
-
-            {/* Bio */}
-            <p className="text-[#6b6b6b] text-sm leading-relaxed mb-3 line-clamp-2">{pro.bio}</p>
-
-            {/* Specialty tags */}
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {pro.specialties.map((tag) => (
-                <span key={tag} className="text-[11px] font-medium px-2.5 py-1 rounded-full"
-                  style={{ background: "#D9E5DB", color: "#3D6B60" }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Sesión exploratoria */}
-            <div className="flex items-center gap-1.5 mt-2 mb-1">
-              <span className="text-[11px] text-[#9a9a9a]">Sesión exploratoria:</span>
-              <span className="text-[11px] font-bold text-[#5A634F]">$25</span>
-            </div>
-
-            {/* Modality + language */}
-            <div className="flex flex-wrap gap-3 text-[11px] text-[#9a9a9a]">
-              {pro.modalities.map((m) => (
-                <span key={m} className="flex items-center gap-1 capitalize">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B5BC8F" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                  {m}
-                </span>
-              ))}
-              {pro.languages.map((l) => (
-                <span key={l} className="flex items-center gap-1">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B5BC8F" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                  {l}
-                </span>
-              ))}
+            <div className="text-right shrink-0">
+              <p className="text-base font-bold text-[#262525]">${pro.sessionPrice}</p>
+              <p className="text-[#9a9a9a] text-[10px]">/ sesión</p>
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="flex gap-2 mt-4 pt-4 border-t border-[#F0EAE3]">
-            <button className="flex-1 text-sm font-semibold text-[#5A634F] border border-[#5A634F]/30 px-4 py-2.5 rounded-xl hover:bg-[#F5F9F5] transition-colors">
-              Ver perfil
-            </button>
-            <motion.a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 text-sm font-bold text-white px-4 py-2.5 rounded-xl text-center"
-              style={{ background: "#B5BC8F" }}
-              whileHover={{ scale: 1.02, opacity: 0.92 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Ver disponibilidad →
-            </motion.a>
+          {/* Rating + location */}
+          <div className="flex flex-wrap items-center gap-2 text-xs text-[#6b6b6b]">
+            <StarRating rating={pro.rating} />
+            <span className="flex items-center gap-0.5">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              {pro.city}{pro.country ? `, ${pro.country}` : ""}
+            </span>
+            <span className="hidden sm:flex items-center gap-1">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              Próx. disponibilidad: Sábado
+            </span>
+          </div>
+
+          {/* Bio + tags + extras — desktop only inside info column */}
+          <p className="hidden sm:block text-[#6b6b6b] text-sm leading-relaxed mt-3 mb-2 line-clamp-2">{pro.shortBio}</p>
+          <div className="hidden sm:flex flex-wrap gap-1.5 mb-2">
+            {pro.specialties.map((tag) => (
+              <span key={tag} className="text-[11px] font-medium px-2.5 py-1 rounded-full"
+                style={{ background: "#D9E5DB", color: "#3D6B60" }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div className="hidden sm:flex flex-wrap gap-3 text-[11px] text-[#9a9a9a]">
+            {pro.calendars.exploratory && (
+              <span>Exploratoria: <strong className="text-[#5A634F]">$25</strong></span>
+            )}
+            {pro.modalities.map((m) => (
+              <span key={m} className="flex items-center gap-1 capitalize">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B5BC8F" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                {m}
+              </span>
+            ))}
+            {pro.languages.map((l) => (
+              <span key={l} className="flex items-center gap-1">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B5BC8F" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                {l}
+              </span>
+            ))}
           </div>
         </div>
+      </div>
+
+      {/* Mobile-only: bio + tags + CTA below the photo row */}
+      <div className="sm:hidden px-4 pb-4 flex flex-col gap-2.5" style={{ borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+        <p className="text-[#6b6b6b] text-xs leading-relaxed line-clamp-2 pt-3">{pro.shortBio}</p>
+        <div className="flex items-center gap-x-3 gap-y-1 flex-wrap">
+          {pro.calendars.exploratory && (
+            <span className="text-[10px] font-medium text-[#5A634F]">
+              Exploratoria: <strong>$25</strong>
+            </span>
+          )}
+          <span className="text-[10px] text-[#9a9a9a]">
+            Próx. disponibilidad: <strong className="text-[#5A634F]">Esta semana</strong>
+          </span>
+        </div>
+        <div className="flex items-center gap-x-3 gap-y-1 flex-wrap">
+          {pro.calendars.exploratory && (
+            <span className="text-[10px] font-medium text-[#5A634F]">
+              Exploratoria: <strong>$25</strong>
+            </span>
+          )}
+          <span className="text-[10px] text-[#9a9a9a]">
+            Próx. disponibilidad: <strong className="text-[#5A634F]">Esta semana</strong>
+          </span>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {pro.specialties.slice(0, 3).map((tag) => (
+            <span key={tag} className="text-[10px] font-medium px-2.5 py-1 rounded-full"
+              style={{ background: "#D9E5DB", color: "#3D6B60" }}>
+              {tag}
+            </span>
+          ))}
+          {pro.specialties.length > 3 && (
+            <span className="text-[10px] font-medium px-2.5 py-1 rounded-full text-[#9a9a9a]">
+              +{pro.specialties.length - 3}
+            </span>
+          )}
+        </div>
+        <div className="flex gap-2 pt-1">
+          <Link
+            href={`/profesionales/${pro.slug}`}
+            className="flex-1 text-center text-sm font-semibold text-[#5A634F] border border-[#5A634F]/30 px-4 py-2.5 rounded-xl hover:bg-[#F5F9F5] transition-colors"
+          >
+            Ver perfil
+          </Link>
+          <motion.a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 text-sm font-bold text-white px-4 py-2.5 rounded-xl text-center"
+            style={{ background: "#B5BC8F" }}
+            whileHover={{ scale: 1.02, opacity: 0.92 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Agendar →
+          </motion.a>
+        </div>
+      </div>
+
+      {/* Desktop-only CTA */}
+      <div className="hidden sm:flex gap-2 px-5 pb-5 pt-3 border-t border-[#F0EAE3]">
+        <Link
+          href={`/profesionales/${pro.slug}`}
+          className="flex-1 text-center text-sm font-semibold text-[#5A634F] border border-[#5A634F]/30 px-4 py-2.5 rounded-xl hover:bg-[#F5F9F5] transition-colors"
+        >
+          Ver perfil
+        </Link>
+        <motion.a
+          href={WHATSAPP}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 text-sm font-bold text-white px-4 py-2.5 rounded-xl text-center"
+          style={{ background: "#B5BC8F" }}
+          whileHover={{ scale: 1.02, opacity: 0.92 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Ver disponibilidad →
+        </motion.a>
       </div>
     </motion.div>
   );
@@ -439,8 +381,7 @@ export default function ProfesionalesPage() {
         p.category.toLowerCase().includes(q)
       );
     }
-    if (category === "Terapia de Parejas") list = list.filter(p => p.specialties.includes("Terapia de Parejas"));
-    else if (category !== "Todos") list = list.filter(p => p.category === category);
+    if (category !== "Todos") list = list.filter(p => p.category === category);
     if (modality === "Online") list = list.filter(p => p.modalities.includes("online"));
     if (modality === "Presencial") list = list.filter(p => p.modalities.includes("presencial"));
     if (sort === "Precio: menor") list.sort((a, b) => a.sessionPrice - b.sessionPrice);
@@ -458,7 +399,7 @@ export default function ProfesionalesPage() {
         {/* Hero */}
         <section className="relative overflow-hidden pt-16 pb-10">
           <div className="absolute inset-0"
-            style={{ background: "radial-gradient(ellipse at 8% 85%, #AB6139 0%, transparent 38%), radial-gradient(ellipse at 2% 5%, #64C1C4 0%, transparent 42%), radial-gradient(ellipse at 98% 5%, #2D4A48 0%, transparent 38%), radial-gradient(ellipse at 55% 45%, #8B9970 0%, transparent 48%), radial-gradient(ellipse at 78% 65%, #C5C99A 0%, transparent 42%), #4A5E4A" }} />
+            style={{ background: "radial-gradient(ellipse 280px 220px at 8% 85%, #AB6139 0%, transparent 100%), radial-gradient(ellipse 320px 280px at 2% 5%, #64C1C4 0%, transparent 100%), radial-gradient(ellipse 280px 220px at 98% 5%, #2D4A48 0%, transparent 100%), radial-gradient(ellipse 460px 320px at 55% 45%, #8B9970 0%, transparent 100%), radial-gradient(ellipse 360px 280px at 78% 65%, #C5C99A 0%, transparent 100%), #4A5E4A" }} />
 
           <div className="max-w-5xl mx-auto px-6 sm:px-12 relative z-10">
             <motion.div
@@ -533,7 +474,6 @@ export default function ProfesionalesPage() {
           {/* Results count */}
           <div className="flex items-center justify-between mb-6">
             <p className="text-[#262525] font-semibold">{filtered.length} especialistas</p>
-            <p className="text-[#9a9a9a] text-sm">Sesión exploratoria: <strong className="text-[#5A634F]">$25</strong></p>
           </div>
 
           {/* Cards */}
