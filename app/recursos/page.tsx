@@ -29,10 +29,11 @@ const RECURSOS = [
     subtitle: "PDF descargable · Ejercicios prácticos",
     description: "Una guía diseñada por nuestras psicólogas para acompañarte en los momentos de ansiedad. Aprende a identificar tus patrones, regularte en crisis y construir una vida con menos tensión.",
     instructor: "Equipo Insside", instructorRole: "Psicólogas y coaches certificadas",
-    price: 0, originalPrice: 0, currency: "USD", duration: "PDF",
-    tag: "Gratis", color: "#2C4A3E", accent: "#B5BC8F",
+    price: 15, originalPrice: 15, currency: "USD", duration: "PDF",
+    tag: "Descargable", color: "#2C4A3E", accent: "#B5BC8F",
     image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80",
     features: ["PDF descargable al instante", "Ejercicios de regulación emocional", "Técnicas de respiración y grounding", "Acceso de por vida"],
+    formUrl: "https://link.insside.co/widget/form/FJTXL8sxoTkVkYiHH0YM",
     available: true,
   },
   {
@@ -68,7 +69,71 @@ const GLASS = {
   border: "1px solid rgba(255,255,255,0.30)",
 } as React.CSSProperties;
 
-function ResourceCard({ rec, index }: { rec: typeof RECURSOS[0]; index: number }) {
+
+function FormModal({ url, onClose }: { url: string; onClose: () => void }) {
+  // Load GHL embed script once
+  if (typeof document !== "undefined" && !document.getElementById("ghl-form-embed")) {
+    const s = document.createElement("script");
+    s.id = "ghl-form-embed";
+    s.src = "https://link.insside.co/js/form_embed.js";
+    s.type = "text/javascript";
+    document.body.appendChild(s);
+  }
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        key="form-backdrop"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-50"
+        style={{ background: "rgba(20,28,18,0.65)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
+        onClick={onClose}
+      />
+      <motion.div
+        key="form-panel"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 60 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-white rounded-t-3xl overflow-hidden"
+        style={{ maxHeight: "90vh", boxShadow: "0 -16px 60px rgba(0,0,0,0.20)" }}
+      >
+        {/* Top accent */}
+        <div className="h-1.5 w-full flex-shrink-0"
+          style={{ background: "linear-gradient(90deg, #B5BC8F, #8B9970)" }} />
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E8EDE4] flex-shrink-0">
+          <div>
+            <p className="text-xs font-medium text-[#8B9970] uppercase tracking-wider mb-0.5">Insside · Recursos</p>
+            <h3 className="text-base font-bold text-[#262525]">Guía de Ansiedad — $15 USD</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#F0F4EC] transition-colors"
+            aria-label="Cerrar"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A634F" strokeWidth="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        {/* Form iframe */}
+        <div className="flex-1 overflow-y-auto px-2 pb-4 pt-2">
+          <iframe
+            src={url}
+            className="w-full rounded-2xl border-0"
+            style={{ minHeight: "580px" }}
+            title="Obtener guía"
+          />
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+function ResourceCard({ rec, index, onOpenForm }: { rec: typeof RECURSOS[0]; index: number; onOpenForm?: (url: string) => void }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const [expanded, setExpanded] = useState(false);
@@ -185,6 +250,16 @@ function ResourceCard({ rec, index }: { rec: typeof RECURSOS[0]; index: number }
                 style={{ background: rec.color }}>
                 Ver más →
               </Link>
+            ) : rec.formUrl && onOpenForm ? (
+              <motion.button
+                onClick={() => onOpenForm(rec.formUrl!)}
+                className="text-[11px] font-bold px-4 py-2 rounded-xl text-white flex-shrink-0"
+                style={{ background: rec.color }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Obtener →
+              </motion.button>
             ) : (
             <motion.a
               href={WHATSAPP}
@@ -212,6 +287,7 @@ function ResourceCard({ rec, index }: { rec: typeof RECURSOS[0]; index: number }
 
 export default function RecursosPage() {
   const [activeCategory, setActiveCategory] = useState("Todo");
+  const [formModalUrl, setFormModalUrl] = useState<string | null>(null);
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true });
 
@@ -281,7 +357,7 @@ export default function RecursosPage() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filtered.map((rec, i) => (
-              <ResourceCard key={rec.id} rec={rec} index={i} />
+              <ResourceCard key={rec.id} rec={rec} index={i} onOpenForm={(url) => setFormModalUrl(url)} />
             ))}
           </motion.div>
         </AnimatePresence>
@@ -320,6 +396,11 @@ export default function RecursosPage() {
       </div>
 
       <MarketingFooter />
+
+      {/* Form purchase modal */}
+      {formModalUrl && (
+        <FormModal url={formModalUrl} onClose={() => setFormModalUrl(null)} />
+      )}
     </div>
   );
 }
