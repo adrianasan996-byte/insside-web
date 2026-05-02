@@ -77,7 +77,7 @@ export default function HumanDesignClient() {
       <MarketingNav />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: "480px" }}>
+      <section className="relative overflow-hidden" style={{ minHeight: "380px" }}>
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1600&q=80"
@@ -88,7 +88,7 @@ export default function HumanDesignClient() {
             style={{ background: "linear-gradient(135deg, rgba(38,37,37,0.92) 0%, rgba(90,61,40,0.75) 60%, rgba(38,37,37,0.50) 100%)" }} />
         </div>
 
-        <div className="max-w-5xl mx-auto px-6 sm:px-12 pt-28 pb-20 relative z-10">
+        <div className="max-w-5xl mx-auto px-6 sm:px-12 pt-24 pb-14 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export default function HumanDesignClient() {
               Sesión 1:1 · Online
             </span>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-5">
               Descubre tu<br />
               <span style={{ color: "#E3812F" }}>Human Design</span>
             </h1>

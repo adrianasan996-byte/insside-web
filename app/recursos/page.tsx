@@ -298,7 +298,7 @@ export default function RecursosPage() {
       <MarketingNav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ minHeight: "340px" }}>
+      <section className="relative overflow-hidden" style={{ minHeight: "280px" }}>
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1600&q=80"
@@ -309,18 +309,18 @@ export default function RecursosPage() {
             style={{ background: "linear-gradient(to right, rgba(38,37,37,0.88) 0%, rgba(38,37,37,0.60) 55%, rgba(38,37,37,0.28) 100%)" }} />
         </div>
 
-        <div ref={heroRef} className="max-w-5xl mx-auto px-6 sm:px-12 pt-24 pb-16 relative z-10">
+        <div ref={heroRef} className="max-w-5xl mx-auto px-6 sm:px-12 pt-20 pb-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-[#B5BC8F] text-xs font-bold uppercase tracking-widest mb-3">Recursos</p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
               Más allá de la sesión.<br />
               <span style={{ color: "#B5BC8F" }}>Tu bienestar, siempre contigo.</span>
             </h1>
-            <p className="text-white/55 text-base sm:text-lg max-w-xl leading-relaxed">
+            <p className="text-white/55 text-sm sm:text-base max-w-xl leading-relaxed">
               Cursos, guías, meditaciones y eventos especiales para que tu crecimiento no tenga pausa.
             </p>
           </motion.div>
