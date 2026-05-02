@@ -164,13 +164,10 @@ function ResourceCard({ rec, index, onOpenForm }: { rec: typeof RECURSOS[0]; ind
         <div className="absolute inset-0"
           style={{ background: `linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.45) 100%)` }} />
 
-        {/* Top badges — both glassmorphic */}
-        <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
-          <span className="text-[10px] font-bold px-2.5 py-1 rounded-full text-white shrink-0" style={GLASS}>
+        {/* Tag badge */}
+        <div className="absolute top-3 left-3">
+          <span className="text-[10px] font-bold px-2.5 py-1 rounded-full text-white" style={GLASS}>
             {rec.tag}
-          </span>
-          <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full text-white" style={GLASS}>
-            {rec.type}
           </span>
         </div>
 
