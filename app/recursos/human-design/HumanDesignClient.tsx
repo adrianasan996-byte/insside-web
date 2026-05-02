@@ -180,7 +180,7 @@ export default function HumanDesignClient() {
         <div className="max-w-5xl mx-auto px-6 sm:px-12 py-20">
           <FadeIn>
             <p className="text-[#E3812F] text-xs font-bold uppercase tracking-widest mb-3">La sesión</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#262525] mb-4">¿Qué exploramos juntas?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#262525] mb-4">¿Qué exploramos en sesión?</h2>
             <p className="text-[#6b6b6b] text-base max-w-xl mb-12 leading-relaxed">
               Cada sesión es una lectura profunda y personalizada de tu carta. Elisabet traduce conceptos complejos en información clara y aplicable desde el primer día.
             </p>
