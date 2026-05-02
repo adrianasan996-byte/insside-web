@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
 
@@ -20,6 +21,7 @@ const RECURSOS = [
     image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=800&q=80",
     features: ["Lectura personalizada de tu carta", "Sesión de 2 horas por Zoom", "Grabación de la sesión", "Material complementario"],
     available: true,
+    landingUrl: "/recursos/human-design",
   },
   {
     id: "r2", type: "Guía descargable", category: "Guías",
@@ -177,6 +179,13 @@ function ResourceCard({ rec, index }: { rec: typeof RECURSOS[0]; index: number }
             )}
           </div>
           {rec.available ? (
+            rec.landingUrl ? (
+              <Link href={rec.landingUrl}
+                className="text-[11px] font-bold px-4 py-2 rounded-xl text-white flex-shrink-0 inline-block"
+                style={{ background: rec.color }}>
+                Ver más →
+              </Link>
+            ) : (
             <motion.a
               href={WHATSAPP}
               target="_blank"
@@ -188,6 +197,7 @@ function ResourceCard({ rec, index }: { rec: typeof RECURSOS[0]; index: number }
             >
               {rec.price === 0 ? "Obtener gratis →" : "Obtener →"}
             </motion.a>
+            )
           ) : (
             <span className="text-[10px] font-semibold px-3.5 py-2 rounded-xl text-white flex-shrink-0"
               style={{ background: "rgba(90,99,79,0.18)", color: "#5A634F", border: "1px solid rgba(90,99,79,0.20)" }}>
