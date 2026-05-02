@@ -1,11 +1,12 @@
 "use client";
+import React from "react";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
 
-const WHATSAPP = "https://wa.me/17866356816";
+const BOOKING_URL = "https://link.insside.co/widget/booking/MBLqp8oGuF6lEJGh8tpe";
 
 const WHAT_IS = [
   {
@@ -72,6 +73,8 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 }
 
 export default function HumanDesignClient() {
+  const [showBooking, setShowBooking] = React.useState(false);
+
   return (
     <div className="min-h-screen" style={{ background: "#FDFBF8" }}>
       <MarketingNav />
@@ -115,17 +118,15 @@ export default function HumanDesignClient() {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <motion.a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
+                onClick={() => setShowBooking(true)}
                 className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-xl text-sm text-white"
                 style={{ background: "#E3812F" }}
                 whileHover={{ scale: 1.04, opacity: 0.92 }}
                 whileTap={{ scale: 0.97 }}
               >
                 Reservar mi sesión →
-              </motion.a>
+              </motion.button>
               <a href="#que-es"
                 className="inline-flex items-center gap-2 font-semibold px-6 py-3.5 rounded-xl text-sm text-white/80 border border-white/20 hover:border-white/40 transition-colors">
                 Saber más ↓
@@ -221,17 +222,15 @@ export default function HumanDesignClient() {
                 <p className="text-white/50 text-xs mb-1">Inversión</p>
                 <p className="text-white text-4xl font-bold">$185</p>
                 <p className="text-white/50 text-xs mt-1">USD · pago único</p>
-                <motion.a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 font-bold px-6 py-2.5 rounded-xl text-sm"
+                <motion.button
+                  onClick={() => setShowBooking(true)}
+                  className="mt-4 inline-flex items-center gap-2 font-bold px-6 py-2.5 rounded-xl text-sm cursor-pointer"
                   style={{ background: "#E3812F", color: "#fff" }}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                 >
                   Reservar →
-                </motion.a>
+                </motion.button>
               </div>
             </div>
           </FadeIn>
@@ -338,17 +337,15 @@ export default function HumanDesignClient() {
                 Una sola sesión puede cambiar la forma en que te ves, te relacionas y tomas decisiones. Escríbenos para agendar tu fecha.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                <motion.a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.button
+                  onClick={() => setShowBooking(true)}
                   className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl text-sm"
                   style={{ background: "#E3812F", color: "#fff" }}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                 >
                   Reservar mi sesión ($185) →
-                </motion.a>
+                </motion.button>
                 <Link href="/profesionales"
                   className="text-white/60 text-sm hover:text-white/90 transition-colors">
                   Ver todas las especialistas →
@@ -360,6 +357,51 @@ export default function HumanDesignClient() {
       </section>
 
       <MarketingFooter />
+
+      {/* Booking modal */}
+      {showBooking && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50"
+            style={{ background: "rgba(20,28,18,0.65)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
+            onClick={() => setShowBooking(false)}
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 60 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-white rounded-t-3xl overflow-hidden"
+            style={{ maxHeight: "92vh", boxShadow: "0 -16px 60px rgba(0,0,0,0.20)" }}
+          >
+            <div className="h-1.5 w-full flex-shrink-0"
+              style={{ background: "linear-gradient(90deg, #E3812F, #C06820)" }} />
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[#F0EAE3] flex-shrink-0">
+              <div>
+                <p className="text-xs font-medium text-[#E3812F] uppercase tracking-wider mb-0.5">Reservar sesión</p>
+                <h3 className="text-base font-bold text-[#262525]">Human Design con Elisabet Martínez</h3>
+              </div>
+              <button onClick={() => setShowBooking(false)}
+                className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#FDF6EE] transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A3D28" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+            <div className="flex-1 overflow-hidden px-2 pb-4 pt-2">
+              <iframe
+                src={BOOKING_URL}
+                className="w-full h-full rounded-2xl border-0"
+                style={{ minHeight: "520px" }}
+                title="Reservar Human Design"
+              />
+            </div>
+          </motion.div>
+        </>
+      )}
     </div>
   );
 }
