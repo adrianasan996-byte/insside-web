@@ -7,16 +7,16 @@ import MarketingFooter from "@/components/marketing/MarketingFooter";
 const WHATSAPP = "https://wa.me/17866356816";
 
 const PAISES = [
-  { code: "US", dial: "+1", flag: "🇺🇸" },
-  { code: "MX", dial: "+52", flag: "🇲🇽" },
-  { code: "CO", dial: "+57", flag: "🇨🇴" },
-  { code: "AR", dial: "+54", flag: "🇦🇷" },
-  { code: "CL", dial: "+56", flag: "🇨🇱" },
-  { code: "PE", dial: "+51", flag: "🇵🇪" },
-  { code: "VE", dial: "+58", flag: "🇻🇪" },
-  { code: "ES", dial: "+34", flag: "🇪🇸" },
-  { code: "DO", dial: "+1", flag: "🇩🇴" },
-  { code: "GT", dial: "+502", flag: "🇬🇹" },
+  { code: "US", dial: "+1" },
+  { code: "MX", dial: "+52" },
+  { code: "CO", dial: "+57" },
+  { code: "AR", dial: "+54" },
+  { code: "CL", dial: "+56" },
+  { code: "PE", dial: "+51" },
+  { code: "VE", dial: "+58" },
+  { code: "ES", dial: "+34" },
+  { code: "DO", dial: "+1 DO" },
+  { code: "GT", dial: "+502" },
 ];
 
 const MOTIVOS = [
@@ -29,7 +29,11 @@ const MOTIVOS = [
 
 const CONTACT_INFO = [
   {
-    icon: "📱",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/>
+      </svg>
+    ),
     label: "WhatsApp",
     value: "+1 (786) 635-6816",
     href: WHATSAPP,
@@ -37,7 +41,12 @@ const CONTACT_INFO = [
     color: "#5A634F",
   },
   {
-    icon: "📧",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    ),
     label: "Correo",
     value: "hola@insside.co",
     href: "mailto:hola@insside.co",
@@ -45,7 +54,13 @@ const CONTACT_INFO = [
     color: "#8B9970",
   },
   {
-    icon: "📸",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    ),
     label: "Instagram",
     value: "@byinsside",
     href: "https://www.instagram.com/byinsside/",
@@ -181,10 +196,10 @@ export default function ContactPage() {
                           <select
                             value={paisCodigo}
                             onChange={(e) => setPaisCodigo(e.target.value)}
-                            className="border border-[#EDE7E1] rounded-xl px-3 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#5A634F]/20 shrink-0 w-28 cursor-pointer"
+                            className="border border-[#EDE7E1] rounded-xl px-3 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#5A634F]/20 shrink-0 w-24 cursor-pointer"
                           >
                             {PAISES.map((p) => (
-                              <option key={p.code + p.dial} value={p.dial}>{p.flag} {p.dial}</option>
+                              <option key={p.code} value={p.dial}>{p.dial}</option>
                             ))}
                           </select>
                           <input
@@ -261,13 +276,16 @@ export default function ContactPage() {
                     style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
                   >
                     <motion.div
-                      className="text-6xl mb-4"
-                      animate={{ scale: [0.5, 1.2, 1], rotate: [0, 10, -5, 0] }}
-                      transition={{ duration: 0.6 }}
+                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                      style={{ background: "#F0F4EC" }}
+                      animate={{ scale: [0.5, 1.15, 1] }}
+                      transition={{ duration: 0.5 }}
                     >
-                      ✅
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5A634F" strokeWidth="2.5">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-[#262525] mb-2">¡Mensaje recibido!</h3>
+                    <h3 className="text-2xl font-bold text-[#262525] mb-2">Mensaje recibido</h3>
                     <p className="text-[#6b6b6b] mb-6">Te escribimos en menos de 24 horas. Gracias por confiar en Insside.</p>
                     <motion.button
                       onClick={() => { setSent(false); setNombre(""); setCorreo(""); setTelefono(""); setMotivo(""); setMensaje(""); }}
@@ -294,8 +312,8 @@ export default function ContactPage() {
                   style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}
                   whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(0,0,0,0.08)" }}
                 >
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
-                    style={{ background: `${info.color}15` }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                    style={{ background: `${info.color}18`, color: info.color }}>
                     {info.icon}
                   </div>
                   <div className="min-w-0">
