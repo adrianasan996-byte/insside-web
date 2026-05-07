@@ -119,19 +119,19 @@ export default function SpecialistProfilePage({ params }: PageProps) {
           {/* ── Profile Card ─────────────────────────────────────── */}
           <section className="max-w-3xl mx-auto px-4 sm:px-6 pb-5">
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-3xl overflow-hidden"
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="rounded-3xl overflow-hidden relative"
               style={{
-                backgroundImage: "url('/fondo-lineas-claro.png')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
+                background: "white",
                 boxShadow: "0 4px 28px rgba(0,0,0,0.08)",
               }}
             >
+              {/* Background pattern — desktop only, lazy loaded */}
+              <div className="hidden sm:block absolute inset-0 rounded-3xl" style={{ backgroundImage: "url('/fondo-lineas-claro.png')", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.85 }} />
               {/* Horizontal: photo stretches to match info content height */}
-              <div className="flex gap-3 sm:gap-5 items-stretch p-4 sm:p-6">
+              <div className="relative flex gap-3 sm:gap-5 items-stretch p-4 sm:p-6">
                 {/* Photo — self-stretch so height = content height on both breakpoints */}
                 <div className="relative flex-shrink-0 w-[108px] sm:w-[220px] self-stretch rounded-2xl overflow-hidden min-h-[130px] sm:min-h-[200px]">
                   <Image
@@ -199,7 +199,7 @@ export default function SpecialistProfilePage({ params }: PageProps) {
 
               {/* Price + CTA */}
               <div
-                className="flex items-center gap-3 px-4 sm:px-5 pb-4 sm:pb-5 pt-3"
+                className="relative flex items-center gap-3 px-4 sm:px-5 pb-4 sm:pb-5 pt-3"
                 style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
               >
                 <div className="flex-1">

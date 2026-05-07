@@ -5,6 +5,7 @@ import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
 import Link from "next/link";
 import { SPECIALISTS, SpecialistProfile } from "@/lib/specialists";
+import BookingModal from "@/components/profile/BookingModal";
 
 const WHATSAPP = "https://wa.me/17866356816";
 const STORAGE_KEY = "insside_directorio_access";
@@ -159,7 +160,7 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 /* ── Specialist card ──────────────────────────────────────── */
-function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number }) {
+function SpecialistCard({ pro, index, onBook }: { pro: SpecialistProfile; index: number; onBook: (p: SpecialistProfile) => void }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
 
@@ -171,7 +172,7 @@ function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number 
       transition={{ duration: 0.55, delay: (index % 4) * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="group bg-white rounded-2xl overflow-hidden border border-[#EDE7E1] hover:border-[#B5BC8F]/50 transition-all duration-300"
       style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}
-      whileHover={{ y: -3, boxShadow: "0 16px 48px rgba(0,0,0,0.10)" }}
+      whileHover={{ boxShadow: "0 16px 48px rgba(0,0,0,0.10)" }}
     >
       {/* Mobile: photo top-left + info, tags + CTA below | Desktop: wide sidebar photo */}
 
@@ -227,7 +228,7 @@ function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number 
           </div>
 
           {/* Rating + location */}
-          <div className="flex flex-wrap items-center gap-2 text-xs text-[#6b6b6b]">
+          <div className="flex flex-col gap-1 text-xs text-[#6b6b6b]">
             <StarRating rating={pro.rating} />
             <span className="flex items-center gap-0.5">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -241,6 +242,7 @@ function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number 
               </svg>
               Próx. disponibilidad: Sábado
             </span>
+          </div>
           </div>
 
           {/* Bio + tags + extras — desktop only inside info column */}
@@ -306,17 +308,15 @@ function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number 
           >
             Ver perfil
           </Link>
-          <motion.a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={() => onBook(pro)}
             className="flex-1 text-sm font-bold text-white px-4 py-2.5 rounded-xl text-center"
             style={{ background: "#B5BC8F" }}
             whileHover={{ scale: 1.02, opacity: 0.92 }}
             whileTap={{ scale: 0.98 }}
           >
             Agendar →
-          </motion.a>
+          </motion.button>
         </div>
       </div>
 
@@ -328,17 +328,15 @@ function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number 
         >
           Ver perfil
         </Link>
-        <motion.a
-          href={WHATSAPP}
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.button
+          onClick={() => onBook(pro)}
           className="flex-1 text-sm font-bold text-white px-4 py-2.5 rounded-xl text-center"
           style={{ background: "#B5BC8F" }}
           whileHover={{ scale: 1.02, opacity: 0.92 }}
           whileTap={{ scale: 0.98 }}
         >
           Ver disponibilidad →
-        </motion.a>
+        </motion.button>
       </div>
     </motion.div>
   );
@@ -347,6 +345,7 @@ function SpecialistCard({ pro, index }: { pro: SpecialistProfile; index: number 
 /* ── Page ─────────────────────────────────────────────────── */
 export default function ProfesionalesPage() {
   const [unlocked, setUnlocked] = useState(false);
+  const [bookingPro, setBookingPro] = useState<SpecialistProfile | null>(null);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("Todos");
   const [modality, setModality] = useState("Todos");
@@ -471,7 +470,7 @@ export default function ProfesionalesPage() {
             {filtered.length > 0 ? (
               <div className="flex flex-col gap-5">
                 {filtered.map((pro, i) => (
-                  <SpecialistCard key={pro.id} pro={pro} index={i} />
+                  <SpecialistCard key={pro.id} pro={pro} index={i} onBook={setBookingPro} />
                 ))}
               </div>
             ) : (
@@ -528,6 +527,13 @@ export default function ProfesionalesPage() {
       </AnimatePresence>
 
       <MarketingFooter />
+
+      <BookingModal
+        isOpen={bookingPro !== null}
+        onClose={() => setBookingPro(null)}
+        specialistName={bookingPro?.name ?? ""}
+        calendars={bookingPro?.calendars ?? {}}
+      />
     </div>
   );
 }
