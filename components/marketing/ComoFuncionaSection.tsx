@@ -134,7 +134,7 @@ export default function ComoFuncionaSection() {
 
   return (
     <section ref={sectionRef} className="py-8 overflow-hidden relative" style={{ background: "transparent" }}>
-      <div className="max-w-screen-2xl mx-auto px-12">
+      <div className="max-w-screen-2xl mx-auto px-3 sm:px-12">
         <div className="relative rounded-3xl overflow-hidden" style={{ background: "#f2ede6" }}>
 
           {/* Uniform padding on all sides */}
@@ -144,7 +144,7 @@ export default function ComoFuncionaSection() {
               {/* ── LEFT — shifted right via pl ── */}
               <div className="sm:pl-6">
                 <motion.h2
-                  className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-3"
+                  className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-3 text-center lg:text-left"
                   initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}>
                   <span style={{ color: "#E3812F" }}>¿Cómo funciona </span>
@@ -152,7 +152,7 @@ export default function ComoFuncionaSection() {
                 </motion.h2>
 
                 <motion.p
-                  className="text-[#6b6b6b] text-base mb-8 leading-relaxed"
+                  className="text-[#6b6b6b] text-base mb-6 leading-relaxed text-center lg:text-left"
                   initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.09 }}>
                   No tienes que saber qué especialista necesitas.<br />
@@ -166,21 +166,21 @@ export default function ComoFuncionaSection() {
                       initial={{ opacity: 0, x: -18 }} animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.45, delay: 0.18 + i * 0.12 }}>
                       {/* Divider line — doesn't reach full width */}
-                      {i > 0 && <div className="border-t border-[#262525]/10 my-4 mr-12" />}
-                      <div className="flex gap-4 items-start">
-                        <span className="flex-shrink-0 bg-[#262525]/8 text-[#262525] text-xs font-bold px-3 py-1 rounded-full mt-0.5">{p.num}</span>
+                      {i > 0 && <div className="border-t border-[#262525]/10 my-2 sm:my-4" />}
+                      <div className="flex gap-2 sm:gap-4 items-center sm:items-start">
+                        <span className="flex-shrink-0 bg-[#262525]/8 text-[#262525] text-xs font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full sm:mt-0.5">{p.num}</span>
                         <div>
-                          <p className="text-[#262525] font-semibold text-base">
+                          <p className="text-[#262525] font-semibold text-sm sm:text-base">
                             {p.step}{" "}<span className="text-[#262525]/30 mx-1">•</span>{" "}<span style={{ color: "#AB6139" }}>{p.title}</span>
                           </p>
-                          <p className="text-[#6b6b6b] text-sm mt-1">{p.desc}</p>
+                          <p className="text-[#6b6b6b] text-xs sm:text-sm mt-0.5 sm:mt-1">{p.desc}</p>
                         </div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
 
-                <motion.div className="mt-8"
+                <motion.div className="mt-6 sm:mt-8 flex lg:block justify-center"
                   initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.6 }}>
                   <motion.a
@@ -202,8 +202,8 @@ export default function ComoFuncionaSection() {
                   <img
                     src="/equipo/DSC01121.jpg"
                     alt="Equipo Insside"
-                    className="absolute inset-0 w-full h-full object-contain sm:object-cover"
-                    style={{ objectPosition: "center" }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ objectPosition: "center 30%", transform: "scale(1.1)" }}
                   />
                   <ChatBubblesFloat active={inView} />
                 </div>
