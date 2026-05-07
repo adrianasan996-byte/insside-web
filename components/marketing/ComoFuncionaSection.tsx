@@ -138,11 +138,11 @@ export default function ComoFuncionaSection() {
         <div className="relative rounded-3xl overflow-hidden" style={{ background: "#f2ede6" }}>
 
           {/* Uniform padding on all sides */}
-          <div className="relative z-10 p-12">
+          <div className="relative z-10 p-6 sm:p-12">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_520px] gap-10 items-center">
 
               {/* ── LEFT — shifted right via pl ── */}
-              <div className="pl-6">
+              <div className="sm:pl-6">
                 <motion.h2
                   className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-3"
                   initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -198,11 +198,12 @@ export default function ComoFuncionaSection() {
               <motion.div className="relative"
                 initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>
-                <div className="relative rounded-2xl overflow-hidden w-full shadow-2xl" style={{ minHeight: "390px" }}>
+                <div className="relative rounded-2xl overflow-hidden w-full shadow-2xl aspect-[4/3] sm:aspect-auto sm:min-h-[390px]">
                   <img
                     src="/equipo/DSC01121.jpg"
                     alt="Equipo Insside"
-                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transform: "scale(1.04)" }}
+                    className="absolute inset-0 w-full h-full object-contain sm:object-cover"
+                    style={{ objectPosition: "center" }}
                   />
                   <ChatBubblesFloat active={inView} />
                 </div>

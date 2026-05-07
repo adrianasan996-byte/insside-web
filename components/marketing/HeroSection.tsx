@@ -136,7 +136,7 @@ export default function HeroSection() {
   const urgenciaResult = URGENCIA.find(u => u.label === urgencia2)?.result || "pronto";
 
   return (
-    <section className="relative overflow-hidden min-h-[92vh] flex items-center">
+    <section className="relative overflow-hidden min-h-[92vh] flex items-center" style={{ background: "#141C12" }}>
 
       {/* Background photo with brand treatment */}
       <div className="absolute inset-0">
@@ -152,7 +152,7 @@ export default function HeroSection() {
         }} />
       </div>
 
-      <div className="relative z-10 max-w-3xl mx-auto px-12 pt-28 pb-20 text-center w-full">
+      <div className="relative z-10 max-w-3xl mx-auto px-5 sm:px-12 pt-20 sm:pt-28 pb-20 text-center w-full">
 
         {/* Headline */}
         <motion.div
@@ -197,7 +197,7 @@ Pero tampoco estás bien.
 
         {/* Tabs — glassmorphic */}
         <motion.div
-          className="inline-flex rounded-xl p-1 mb-6"
+          className="flex sm:inline-flex w-full sm:w-auto rounded-xl p-1 mb-6"
           style={{
             background: "rgba(255,255,255,0.12)",
             backdropFilter: "blur(12px)",
@@ -215,7 +215,7 @@ Pero tampoco estás bien.
             <motion.button
               key={t.id}
               onClick={() => { setTab(t.id); setMatchState(false); }}
-              className={`relative px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
+              className={`relative flex-1 sm:flex-none px-3 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm font-semibold transition-colors ${
                 tab === t.id ? "text-white" : "text-white/60 hover:text-white/90"
               }`}
               whileTap={{ scale: 0.97 }}
@@ -247,7 +247,7 @@ Pero tampoco estás bien.
                 Para quien sabe que algo no está bien, pero no sabe por dónde empezar.
               </p>
               <motion.div
-                className="rounded-2xl flex items-stretch overflow-hidden"
+                className="rounded-2xl flex flex-col sm:flex-row items-stretch overflow-hidden"
                 style={{
                   background: "rgba(255,255,255,0.88)",
                   backdropFilter: "blur(16px)",
@@ -259,7 +259,7 @@ Pero tampoco estás bien.
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                <div className="flex-1 border-r border-[#EDE7E1] min-w-0">
+                <div className="flex-1 border-b sm:border-b-0 sm:border-r border-[#EDE7E1] min-w-0">
                   <select
                     value={situacion1}
                     onChange={(e) => setSituacion1(e.target.value)}
@@ -270,7 +270,7 @@ Pero tampoco estás bien.
                     {SITUACIONES.map((m) => <option key={m} value={m}>{m}</option>)}
                   </select>
                 </div>
-                <div className="flex-1 border-r border-[#EDE7E1] min-w-0">
+                <div className="flex-1 border-b sm:border-b-0 sm:border-r border-[#EDE7E1] min-w-0">
                   <select
                     value={urgencia1}
                     onChange={(e) => setUrgencia1(e.target.value)}
@@ -281,10 +281,10 @@ Pero tampoco estás bien.
                     {URGENCIA.map((u) => <option key={u.label} value={u.label}>{u.label}</option>)}
                   </select>
                 </div>
-                <div className="px-3 py-2.5 flex items-center shrink-0">
+                <div className="px-3 py-3 sm:py-2.5 flex items-center shrink-0">
                   <motion.button
                     onClick={() => setModal(true)}
-                    className="bg-[#5A634F] text-white font-semibold px-6 py-3 rounded-xl whitespace-nowrap text-sm"
+                    className="bg-[#5A634F] text-white font-semibold px-6 py-3 rounded-xl whitespace-nowrap text-sm w-full sm:w-auto"
                     whileHover={{ scale: 1.03, backgroundColor: "#4A5540" }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -307,7 +307,7 @@ Pero tampoco estás bien.
                 Tienes claridad. Elige directamente lo que necesitas.
               </p>
               <motion.div
-                className="rounded-2xl flex items-stretch overflow-hidden"
+                className="rounded-2xl flex flex-col sm:flex-row items-stretch overflow-hidden"
                 style={{
                   background: "rgba(255,255,255,0.88)",
                   backdropFilter: "blur(16px)",
@@ -319,7 +319,7 @@ Pero tampoco estás bien.
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                <div className="flex-1 border-r border-[#EDE7E1] min-w-0">
+                <div className="flex-1 border-b sm:border-b-0 sm:border-r border-[#EDE7E1] min-w-0">
                   <select
                     value={tipoApoyo}
                     onChange={(e) => setTipoApoyo(e.target.value)}
@@ -330,7 +330,7 @@ Pero tampoco estás bien.
                     {TIPO_APOYO.map((t) => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
-                <div className="flex-1 border-r border-[#EDE7E1] min-w-0">
+                <div className="flex-1 border-b sm:border-b-0 sm:border-r border-[#EDE7E1] min-w-0">
                   <select
                     value={situacion2}
                     onChange={(e) => setSituacion2(e.target.value)}
@@ -341,7 +341,7 @@ Pero tampoco estás bien.
                     {SITUACIONES.map((m) => <option key={m} value={m}>{m}</option>)}
                   </select>
                 </div>
-                <div className="flex-1 border-r border-[#EDE7E1] min-w-0">
+                <div className="flex-1 border-b sm:border-b-0 sm:border-r border-[#EDE7E1] min-w-0">
                   <select
                     value={urgencia2}
                     onChange={(e) => setUrgencia2(e.target.value)}
@@ -352,10 +352,10 @@ Pero tampoco estás bien.
                     {URGENCIA.map((u) => <option key={u.label} value={u.label}>{u.label}</option>)}
                   </select>
                 </div>
-                <div className="px-3 py-2.5 flex items-center shrink-0">
+                <div className="px-3 py-3 sm:py-2.5 flex items-center shrink-0">
                   <motion.button
                     onClick={() => setMatchState(true)}
-                    className="bg-[#5A634F] text-white font-semibold px-5 py-3 rounded-xl whitespace-nowrap text-sm"
+                    className="bg-[#5A634F] text-white font-semibold px-5 py-3 rounded-xl whitespace-nowrap text-sm w-full sm:w-auto"
                     whileHover={{ scale: 1.03, backgroundColor: "#4A5540" }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
