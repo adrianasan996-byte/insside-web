@@ -243,7 +243,6 @@ function SpecialistCard({ pro, index, onBook }: { pro: SpecialistProfile; index:
               Próx. disponibilidad: Sábado
             </span>
           </div>
-          </div>
 
           {/* Bio + tags + extras — desktop only inside info column */}
           <p className="hidden sm:block text-[#6b6b6b] text-sm leading-relaxed mt-3 mb-2 line-clamp-2">{pro.shortBio}</p>
