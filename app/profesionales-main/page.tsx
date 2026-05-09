@@ -23,7 +23,7 @@ function LeadGateModal({ onUnlock }: { onUnlock: () => void }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !phone.trim()) {
       setError("Por favor completa todos los campos.");
@@ -31,7 +31,7 @@ function LeadGateModal({ onUnlock }: { onUnlock: () => void }) {
     }
     setLoading(true);
     const nameParts = name.trim().split(" ");
-    sendToGHL({
+    await sendToGHL({
       firstName: nameParts[0] ?? "",
       lastName: nameParts.slice(1).join(" ") ?? "",
       email,

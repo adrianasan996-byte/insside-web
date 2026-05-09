@@ -15,10 +15,10 @@ export default function MarketingFooter() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
-    sendToGHL({
+    await sendToGHL({
       email,
       source: "newsletter-footer",
       tags: ["newsletter"],

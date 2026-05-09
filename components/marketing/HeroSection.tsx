@@ -110,10 +110,10 @@ export default function HeroSection() {
 
   const { display, phase } = useTypewriter(ROTATING_WORDS);
 
-  function handleContacto(e: React.FormEvent) {
+  async function handleContacto(e: React.FormEvent) {
     e.preventDefault();
     const nameParts = nombre.trim().split(" ");
-    sendToGHL({
+    await sendToGHL({
       firstName: nameParts[0] ?? "",
       lastName: nameParts.slice(1).join(" ") ?? "",
       email: correo,
@@ -133,9 +133,9 @@ export default function HeroSection() {
     setSent(true);
   }
 
-  function handleVerEspecialistas(e: React.FormEvent) {
+  async function handleVerEspecialistas(e: React.FormEvent) {
     e.preventDefault();
-    sendToGHL({
+    await sendToGHL({
       email,
       source: "hero-ver-especialistas",
       tags: ["hero-web", tipoApoyo].filter(Boolean),

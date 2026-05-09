@@ -53,12 +53,12 @@ function EspecialistaModal({ onClose }: { onClose: () => void }) {
     setForm(f => ({ ...f, [key]: val }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!confirmado) return;
     setLoading(true);
     const esp = form.especialidad === "Otra especialidad" ? form.otraEspecialidad : form.especialidad;
-    sendToGHL({
+    await sendToGHL({
       firstName: form.nombre,
       lastName: form.apellido,
       email: form.email,

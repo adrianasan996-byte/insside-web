@@ -96,11 +96,11 @@ export default function ContactPage() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     const nameParts = nombre.trim().split(" ");
-    sendToGHL({
+    await sendToGHL({
       firstName: nameParts[0] ?? "",
       lastName: nameParts.slice(1).join(" ") ?? "",
       email: correo,
