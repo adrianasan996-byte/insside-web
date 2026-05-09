@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
+import { sendToGHL } from "@/lib/ghl";
 
 const WHATSAPP = "https://wa.me/17866356816";
 
@@ -98,6 +99,15 @@ export default function ContactPage() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
+    const nameParts = nombre.trim().split(" ");
+    sendToGHL({
+      firstName: nameParts[0] ?? "",
+      lastName: nameParts.slice(1).join(" ") ?? "",
+      email: correo,
+      phone: `${paisCodigo} ${telefono}`,
+      source: "contacto",
+      tags: ["contacto-web", motivo].filter(Boolean),
+    });
     const msg = encodeURIComponent(
       `Hola Insside, soy ${nombre}.\n` +
       `Correo: ${correo}\n` +

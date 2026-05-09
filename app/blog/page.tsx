@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
+import { sendToGHL } from "@/lib/ghl";
 
 const CATEGORIES = ["Todo", "Psicología", "Bienestar", "Nutrición", "Coaching", "Mindfulness"];
 
@@ -290,8 +291,9 @@ export default function BlogPage() {
             <p className="text-[#6b6b6b] text-sm mb-6">
               Artículos de nuestros especialistas, recursos exclusivos y noticias de Insside. Sin spam, lo prometemos.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onSubmit={(e) => { e.preventDefault(); const inp = (e.currentTarget.elements.namedItem("newsletter-email") as HTMLInputElement); if (inp?.value) { sendToGHL({ email: inp.value, source: "newsletter-blog", tags: ["newsletter"] }); inp.value = ""; } }}>
               <input
+                name="newsletter-email"
                 type="email"
                 placeholder="Tu correo electrónico"
                 className="flex-1 border border-[#D9E5DB] bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#5A634F]/20"

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendToGHL } from "@/lib/ghl";
 
 const WHATSAPP_BASE = "https://wa.me/17866356816?text=";
 
@@ -111,6 +112,15 @@ export default function HeroSection() {
 
   function handleContacto(e: React.FormEvent) {
     e.preventDefault();
+    const nameParts = nombre.trim().split(" ");
+    sendToGHL({
+      firstName: nameParts[0] ?? "",
+      lastName: nameParts.slice(1).join(" ") ?? "",
+      email: correo,
+      phone: `${paisCodigo} ${telefono}`,
+      source: "hero-modal",
+      tags: ["hero-web", situacion1].filter(Boolean),
+    });
     const msg = encodeURIComponent(
       `Hola, soy ${nombre}.\n` +
       `Correo: ${correo}\n` +

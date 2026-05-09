@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { sendToGHL } from "@/lib/ghl";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 const WHATSAPP = "https://wa.me/17866356816";
@@ -57,6 +58,14 @@ function EspecialistaModal({ onClose }: { onClose: () => void }) {
     if (!confirmado) return;
     setLoading(true);
     const esp = form.especialidad === "Otra especialidad" ? form.otraEspecialidad : form.especialidad;
+    sendToGHL({
+      firstName: form.nombre,
+      lastName: form.apellido,
+      email: form.email,
+      phone: `${form.paisCodigo} ${form.telefono}`,
+      source: "aplicacion-especialista",
+      tags: ["especialista-web", esp, form.modalidad].filter(Boolean),
+    });
     const text = encodeURIComponent(
       `Hola, quiero aplicar como especialista en Insside.\n\n` +
       `Nombre: ${form.nombre} ${form.apellido}\n` +

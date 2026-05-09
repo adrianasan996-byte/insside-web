@@ -1,5 +1,6 @@
 "use client";
 import { useState, useMemo, useRef, useEffect } from "react";
+import { sendToGHL } from "@/lib/ghl";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
@@ -29,6 +30,15 @@ function LeadGateModal({ onUnlock }: { onUnlock: () => void }) {
       return;
     }
     setLoading(true);
+    const nameParts = name.trim().split(" ");
+    sendToGHL({
+      firstName: nameParts[0] ?? "",
+      lastName: nameParts.slice(1).join(" ") ?? "",
+      email,
+      phone,
+      source: "directorio-especialistas",
+      tags: ["directorio-web"],
+    });
     setTimeout(() => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ name, email, phone, ts: Date.now() }));
       onUnlock();

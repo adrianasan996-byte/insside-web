@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { sendToGHL } from "@/lib/ghl";
 
 const LINKS = [
   { label: "Especialistas", href: "/profesionales-main" },
@@ -17,6 +18,11 @@ export default function MarketingFooter() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
+    sendToGHL({
+      email,
+      source: "newsletter-footer",
+      tags: ["newsletter"],
+    });
     setSent(true);
   }
 
