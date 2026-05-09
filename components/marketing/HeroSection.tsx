@@ -135,6 +135,11 @@ export default function HeroSection() {
 
   function handleVerEspecialistas(e: React.FormEvent) {
     e.preventDefault();
+    sendToGHL({
+      email,
+      source: "hero-ver-especialistas",
+      tags: ["hero-web", tipoApoyo].filter(Boolean),
+    });
     const msg = encodeURIComponent(
       `Hola, busco ${tipoApoyo || "apoyo"} para: ${situacion2 || "una situación que quiero conversar"}.\n` +
       `Quiero empezar: ${urgencia2 || "pronto"}\n` +
