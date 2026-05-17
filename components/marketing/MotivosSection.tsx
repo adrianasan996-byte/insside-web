@@ -127,27 +127,27 @@ No siempre sabes qué tipo de ayuda necesitas, pero sí sabes cómo te has estad
                   ))}
                 </div>
               )}
-            </div>
 
-            {/* CTA button */}
-            <motion.div
-              className="mt-8"
-              initial={{ opacity: 0, y: 12 }}
-              animate={visible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.5 }}
-            >
-              <motion.a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#5A634F] text-white font-semibold px-7 py-3 rounded-xl text-sm"
-                whileHover={{ scale: 1.03, backgroundColor: "#4A5540" }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              {/* CTA button — inside left column, natural position on both mobile and desktop */}
+              <motion.div
+                className="mt-8"
+                initial={{ opacity: 0, y: 12 }}
+                animate={visible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.5 }}
               >
-                Hablar con un especialista →
-              </motion.a>
-            </motion.div>
+                <motion.a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#5A634F] text-white font-semibold px-7 py-3 rounded-xl text-sm"
+                  whileHover={{ scale: 1.03, backgroundColor: "#4A5540" }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                >
+                  Hablar con un especialista →
+                </motion.a>
+              </motion.div>
+            </div>
 
             {/* RIGHT — illustration (desktop only) */}
             <motion.div
