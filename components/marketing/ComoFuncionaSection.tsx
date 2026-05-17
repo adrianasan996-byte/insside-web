@@ -147,8 +147,7 @@ export default function ComoFuncionaSection() {
                   className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-3 text-center lg:text-left"
                   initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}>
-                  <span style={{ color: "#E3812F" }}>¿Cómo funciona </span>
-                  <span className="text-[#262525]">Insside?</span>
+                  <span className="gradient-heading">¿Cómo funciona Insside?</span>
                 </motion.h2>
 
                 <motion.p

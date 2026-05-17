@@ -45,8 +45,7 @@ export default function CTAFinalSection() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.55, delay: 0.1 }}
               >
-<span className="text-white">Cuéntanos qué estás viviendo.<br /></span>
-                <span style={{ color: "#B5BC8F" }}>Nosotros te guiamos.</span>
+<span className="gradient-heading">Cuéntanos qué estás viviendo.<br />Nosotros te guiamos.</span>
               </motion.h2>
 
               <motion.div className="flex flex-col items-center"

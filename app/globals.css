@@ -56,3 +56,11 @@ h1, h2, h3, h4 { line-height: 1.1; }
   animation: marquee-left 24s linear infinite;
 }
 .animate-marquee-left:hover { animation-play-state: paused; }
+
+/* Brand gradient text — mint to teal */
+.gradient-heading {
+  background: linear-gradient(to right, #8BBDB8, #4D8D9A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

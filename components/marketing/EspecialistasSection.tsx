@@ -149,7 +149,7 @@ export default function EspecialistasSection() {
         >
           <div className="flex flex-col items-center text-center gap-4">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#262525] mb-3 leading-tight text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3 leading-tight text-center gradient-heading">
                 Especialistas elegidos con criterio.
               </h2>
               <p className="text-[#6b6b6b] text-base max-w-lg">
