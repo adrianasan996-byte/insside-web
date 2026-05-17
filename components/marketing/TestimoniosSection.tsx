@@ -26,7 +26,7 @@ export default function TestimoniosSection() {
 
       {/* Header — centered */}
       <div className="max-w-screen-2xl mx-auto px-12 mb-8 text-center">
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-tight gradient-heading">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-tight" style={{ background: "linear-gradient(to right, #8BBDB8, #4D8D9A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
           Ellos también confiaron en Insside.
         </h2>
       </div>
