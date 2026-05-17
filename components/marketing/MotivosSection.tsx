@@ -29,9 +29,9 @@ const ROW3: TagItem[] = [
 ];
 
 function Tag({
-  label, href, delay, selected, onToggle, fullWidth,
+  label, href, delay, selected, onToggle,
 }: {
-  label: string; href: string; delay: number; selected: boolean; onToggle: () => void; fullWidth?: boolean;
+  label: string; href: string; delay: number; selected: boolean; onToggle: () => void;
 }) {
   const [hovered, setHovered] = useState(false);
   const active = selected || hovered;
@@ -45,11 +45,11 @@ function Tag({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={(e) => { e.preventDefault(); onToggle(); }}
+      className="w-full sm:w-auto"
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: fullWidth ? "100%" : undefined,
         padding: "9px 20px",
         borderRadius: "999px",
         border: `1.5px solid ${active ? "#5A634F" : "rgba(90,99,79,0.3)"}`,
@@ -74,15 +74,6 @@ export default function MotivosSection() {
   const ref = useRef(null);
   const visible = useInView(ref, { once: true, amount: 0.1 });
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Detect mobile for full-width tags
-  useState(() => {
-    const check = () => setIsMobile(window.innerWidth < 640);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  });
 
   function toggle(label: string) {
     setSelected((prev) => {
@@ -121,9 +112,9 @@ export default function MotivosSection() {
                 </p>
               </motion.div>
 
-              {/* Tags — 2-col grid on mobile, flex-wrap on sm+ */}
+              {/* Tags — 2-col grid on mobile (w-full tags), flex-wrap on sm+ */}
               {visible && (
-                <div className="grid grid-cols-2 gap-[10px] sm:flex sm:flex-wrap sm:gap-[10px]">
+                <div className="grid grid-cols-2 gap-[10px] sm:flex sm:flex-wrap">
                   {ALL_TAGS.map((tag, i) => (
                     <Tag
                       key={tag.label}
@@ -132,7 +123,6 @@ export default function MotivosSection() {
                       delay={0.1 + i * 0.035}
                       selected={selected.has(tag.label)}
                       onToggle={() => toggle(tag.label)}
-                      fullWidth={isMobile}
                     />
                   ))}
                 </div>
