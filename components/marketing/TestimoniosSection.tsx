@@ -26,7 +26,7 @@ export default function TestimoniosSection() {
 
       {/* Header — centered */}
       <div className="max-w-screen-2xl mx-auto px-12 mb-8 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight gradient-heading">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-tight gradient-heading">
           Ellos también confiaron en Insside.
         </h2>
       </div>

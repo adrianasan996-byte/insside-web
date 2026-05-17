@@ -19,7 +19,7 @@ export default function PreciosSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight gradient-heading">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-tight gradient-heading">
             Buscar ayuda ahora es más simple.
           </h2>
         </motion.div>

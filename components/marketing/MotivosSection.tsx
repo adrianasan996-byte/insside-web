@@ -103,7 +103,7 @@ export default function MotivosSection() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="mb-7"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight gradient-heading">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-tight gradient-heading">
                   ¿Qué se parece más a lo que estás viviendo?
                 </h2>
                 <p className="text-[#7a7a7a] text-base mt-3">

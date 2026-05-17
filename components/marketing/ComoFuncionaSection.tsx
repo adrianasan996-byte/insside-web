@@ -144,7 +144,7 @@ export default function ComoFuncionaSection() {
               {/* ── LEFT — shifted right via pl ── */}
               <div className="sm:pl-6">
                 <motion.h2
-                  className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-3 text-center lg:text-left"
+                  className="text-xl sm:text-2xl font-bold tracking-tight leading-tight mb-3 text-center lg:text-left gradient-heading"
                   initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}>
                   <span className="gradient-heading">¿Cómo funciona Insside?</span>
