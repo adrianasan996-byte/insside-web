@@ -178,11 +178,11 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="text-3xl lg:text-3xl font-bold text-white leading-[1.08] tracking-tight mb-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.08] tracking-tight mb-2">
             No necesitas tocar fondo
           </h1>
           <motion.h1
-            className="text-3xl lg:text-3xl font-bold text-[#D9E5DB] leading-[1.08] tracking-tight mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D9E5DB] leading-[1.08] tracking-tight mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
