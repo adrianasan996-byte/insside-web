@@ -67,6 +67,8 @@ function Tag({
   );
 }
 
+const WHATSAPP = "https://wa.me/17866356816";
+
 export default function MotivosSection() {
   const ref = useRef(null);
   const visible = useInView(ref, { once: true, amount: 0.1 });
@@ -104,8 +106,6 @@ export default function MotivosSection() {
               >
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#262525] leading-tight">
                   ¿Qué se parece más a lo que estás viviendo?
-                  <br />
-                  <span style={{ color: "#E3812F" }}>Porque sí sabes cómo te has sentido.</span>
                 </h2>
                 <p className="text-[#7a7a7a] text-base mt-3">
 No siempre sabes qué tipo de ayuda necesitas, pero sí sabes cómo te has estado sintiendo.
@@ -128,6 +128,26 @@ No siempre sabes qué tipo de ayuda necesitas, pero sí sabes cómo te has estad
                 </div>
               )}
             </div>
+
+            {/* CTA button */}
+            <motion.div
+              className="mt-8"
+              initial={{ opacity: 0, y: 12 }}
+              animate={visible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: 0.5 }}
+            >
+              <motion.a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#5A634F] text-white font-semibold px-7 py-3 rounded-xl text-sm"
+                whileHover={{ scale: 1.03, backgroundColor: "#4A5540" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              >
+                Hablar con un especialista →
+              </motion.a>
+            </motion.div>
 
             {/* RIGHT — illustration (desktop only) */}
             <motion.div

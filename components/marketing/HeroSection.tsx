@@ -51,12 +51,7 @@ const PAISES = [
 ];
 const ROTATING_WORDS = ["psicología.", "coaching.", "nutrición.", "ti."];
 
-const PARA_QUIENES = [
-  "Para quienes están cansados de intentar resolver todo solos.",
-  "Para quienes sienten agotamiento, confusión o ansiedad aunque su vida \"se vea bien\".",
-  "Para quienes llevan mucho tiempo sobreviviendo en automático.",
-  "Para quienes necesitan claridad, dirección y un espacio donde poder entender lo que les pasa.",
-];
+
 
 function useTypewriter(words: string[]) {
   const [display, setDisplay] = useState("");
@@ -97,12 +92,7 @@ const selectBase = "w-full h-full pl-4 pr-10 py-4 text-sm text-[#262525] bg-tran
 
 export default function HeroSection() {
   const [tab, setTab] = useState<1 | 2>(1);
-  const [paraquienIdx, setParaquienIdx] = useState(0);
 
-  useEffect(() => {
-    const t = setInterval(() => setParaquienIdx(i => (i + 1) % PARA_QUIENES.length), 3500);
-    return () => clearInterval(t);
-  }, []);
 
   // Tab 1
   const [situacion1, setSituacion1] = useState("");
@@ -188,11 +178,11 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.08] tracking-tight mb-2">
             Lo que ignoras de ti dirige tu vida,
           </h1>
           <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#D9E5DB] leading-[1.08] tracking-tight mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D9E5DB] leading-[1.08] tracking-tight mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
@@ -272,7 +262,7 @@ buscar ayuda te devuelve el control.
               className="space-y-3"
             >
               <p className="text-sm text-white/55">
-                {PARA_QUIENES[paraquienIdx]}
+                Para quienes llevan mucho tiempo sobreviviendo en automático.
               </p>
               <motion.div
                 className="rounded-2xl flex flex-col sm:flex-row items-stretch overflow-hidden"
@@ -294,7 +284,7 @@ buscar ayuda te devuelve el control.
                     className={selectBase}
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center" }}
                   >
-                    <option value="" disabled>¿Qué situación te describe mejor?</option>
+                    <option value="" disabled>¿Cómo te describes hoy?</option>
                     {SITUACIONES.map((m) => <option key={m} value={m}>{m}</option>)}
                   </select>
                 </div>
@@ -305,7 +295,7 @@ buscar ayuda te devuelve el control.
                     className={selectBase}
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center" }}
                   >
-                    <option value="" disabled>¿Qué tan pronto deseas ayuda?</option>
+                    <option value="" disabled>¿Cuándo empezar?</option>
                     {URGENCIA.map((u) => <option key={u.label} value={u.label}>{u.label}</option>)}
                   </select>
                 </div>
