@@ -147,7 +147,7 @@ export default function ComoFuncionaSection() {
                   className="text-xl sm:text-2xl font-bold tracking-tight leading-tight mb-3 text-center lg:text-left gradient-heading"
                   initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}>
-                  <span style={{ background: "linear-gradient(to right, #8BBDB8, #4D8D9A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>¿Cómo funciona Insside?</span>
+                  <span className="bg-gradient-to-r from-[#8BBDB8] to-[#4D8D9A] bg-clip-text text-transparent">¿Cómo funciona Insside?</span>
                 </motion.h2>
 
                 <motion.p

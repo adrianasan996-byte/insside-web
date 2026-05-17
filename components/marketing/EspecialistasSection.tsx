@@ -149,7 +149,7 @@ export default function EspecialistasSection() {
         >
           <div className="flex flex-col items-center text-center gap-4">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-3 leading-tight text-center" style={{ background: "linear-gradient(to right, #8BBDB8, #4D8D9A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-3 leading-tight text-center bg-gradient-to-r from-[#8BBDB8] to-[#4D8D9A] bg-clip-text text-transparent">
                 Especialistas elegidos con criterio.
               </h2>
               <p className="text-[#6b6b6b] text-base max-w-lg">
