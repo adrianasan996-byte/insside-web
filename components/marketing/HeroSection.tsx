@@ -51,6 +51,13 @@ const PAISES = [
 ];
 const ROTATING_WORDS = ["psicología.", "coaching.", "nutrición.", "ti."];
 
+const PARA_QUIENES = [
+  "Para quienes están cansados de intentar resolver todo solos.",
+  "Para quienes sienten agotamiento, confusión o ansiedad aunque su vida \"se vea bien\".",
+  "Para quienes llevan mucho tiempo sobreviviendo en automático.",
+  "Para quienes necesitan claridad, dirección y un espacio donde poder entender lo que les pasa.",
+];
+
 function useTypewriter(words: string[]) {
   const [display, setDisplay] = useState("");
   const [wordIdx, setWordIdx] = useState(0);
@@ -90,6 +97,12 @@ const selectBase = "w-full h-full pl-4 pr-10 py-4 text-sm text-[#262525] bg-tran
 
 export default function HeroSection() {
   const [tab, setTab] = useState<1 | 2>(1);
+  const [paraquienIdx, setParaquienIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setParaquienIdx(i => (i + 1) % PARA_QUIENES.length), 3500);
+    return () => clearInterval(t);
+  }, []);
 
   // Tab 1
   const [situacion1, setSituacion1] = useState("");
@@ -176,7 +189,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-2">
-            No estás en crisis.
+            Lo que ignoras de ti dirige tu vida,
           </h1>
           <motion.h1
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#D9E5DB] leading-[1.08] tracking-tight mb-6"
@@ -184,7 +197,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-Pero tampoco estás bien.
+buscar ayuda te devuelve el control.
           </motion.h1>
         </motion.div>
 
@@ -207,7 +220,7 @@ Pero tampoco estás bien.
               transition={{ duration: 0.55, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
             />
           </motion.span>
-          {" "}En español, desde donde estés.
+          {" "}En español y desde cualquier lugar.
         </motion.p>
 
         {/* Tabs — glassmorphic */}
@@ -259,7 +272,7 @@ Pero tampoco estás bien.
               className="space-y-3"
             >
               <p className="text-sm text-white/55">
-                Para quien sabe que algo no está bien, pero no sabe por dónde empezar.
+                {PARA_QUIENES[paraquienIdx]}
               </p>
               <motion.div
                 className="rounded-2xl flex flex-col sm:flex-row items-stretch overflow-hidden"

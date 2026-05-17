@@ -20,7 +20,7 @@ export default function PreciosSection() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#262525] leading-tight">
-            Simple y <span style={{ color: "#E3812F" }}>accesible.</span>
+            Buscar ayuda ahora <span style={{ color: "#E3812F" }}>es más simple.</span>
           </h2>
         </motion.div>
 
@@ -50,7 +50,7 @@ export default function PreciosSection() {
                 <span className="inline-block text-[#B5BC8F] text-xs font-bold uppercase tracking-widest mb-3">Más elegido</span>
                 <h3 className="text-white font-bold text-xl mb-2">Sesión individual</h3>
                 <p className="text-white/55 text-sm leading-relaxed max-w-xs">
-                  60 minutos con el especialista indicado para trabajar en tus objetivos.
+                  60 minutos para trabajar lo que hoy más te pesa, preocupa o bloquea.
                 </p>
               </div>
               <div>
@@ -82,7 +82,7 @@ export default function PreciosSection() {
             >
               <div>
                 <h3 className="font-bold text-[#262525] text-sm mb-1">Sesión exploratoria</h3>
-                <p className="text-[#6b6b6b] text-xs leading-relaxed">Esta sesión es para conocer al especialista y alinear expectativas.</p>
+<p className="text-[#6b6b6b] text-xs leading-relaxed">Si no sabes por dónde empezar, esta sesión te ayuda a entender qué necesitas y con quién trabajarlo.</p>
               </div>
               <div className="flex items-end justify-between mt-3">
                 <div>
@@ -107,7 +107,7 @@ export default function PreciosSection() {
             >
               <div>
                 <h3 className="font-bold text-[#262525] text-sm mb-1">Paquete de 4 sesiones</h3>
-                <p className="text-[#6b6b6b] text-xs leading-relaxed">Continuidad real. El precio varía según la especialidad.</p>
+<p className="text-[#6b6b6b] text-xs leading-relaxed">Para quienes no buscan motivación momentánea, sino una transformación sostenible.</p>
               </div>
               <div className="flex items-end justify-between mt-3">
                 <div>

@@ -5,16 +5,16 @@ import Image from "next/image";
 
 const PASOS = [
   {
-    num: "01", step: "Explora",  title: "¿Dónde está el ruido?",
-    desc: "Un diagnóstico breve que identifica en qué dimensión está tu desequilibrio.",
+    num: "01", step: "Explora",  title: "Entendemos lo que estás viviendo.",
+    desc: "No solo lo que buscas. También lo que te está agotando, confundiendo o frenando.",
   },
   {
-    num: "02", step: "Conecta",  title: "El especialista correcto.",
-    desc: "Sin búsqueda, sin confusión. Te conectamos con quien realmente necesitas.",
+    num: "02", step: "Conecta",  title: "Te conectamos con el especialista correcto.",
+    desc: "Sin perder semanas investigando perfiles que no sabes si encajan contigo.",
   },
   {
-    num: "03", step: "Avanza",   title: "Tu transformación, integrada.",
-    desc: "Seguimiento dentro de la plataforma con un enfoque holístico real.",
+    num: "03", step: "Avanza",   title: "Empiezas un proceso que sí puedas sostener.",
+    desc: "Con sesiones online, acompañamiento y herramientas aplicables a tu vida real.",
   },
 ];
 
@@ -155,8 +155,7 @@ export default function ComoFuncionaSection() {
                   className="text-[#6b6b6b] text-base mb-6 leading-relaxed text-center lg:text-left"
                   initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.09 }}>
-                  No tienes que saber qué especialista necesitas.<br />
-                  Nosotros te ayudamos a descubrirlo.
+                  Te guiamos a encontrar el tipo de acompañamiento que realmente tiene sentido para ti.
                 </motion.p>
 
                 {/* Steps */}
@@ -189,7 +188,7 @@ export default function ComoFuncionaSection() {
                     whileHover={{ scale: 1.03, backgroundColor: "#4A5540" }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 400, damping: 20 }}>
-                    Comienza Hoy
+                    Quiero empezar
                   </motion.a>
                 </motion.div>
               </div>

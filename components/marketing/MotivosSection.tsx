@@ -103,12 +103,12 @@ export default function MotivosSection() {
                 className="mb-7"
               >
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#262525] leading-tight">
-                  Por lo que sientes.
+                  ¿Qué se parece más a lo que estás viviendo?
                   <br />
-                  <span style={{ color: "#E3812F" }}>No por lo que crees que necesitas.</span>
+                  <span style={{ color: "#E3812F" }}>Porque sí sabes cómo te has sentido.</span>
                 </h2>
                 <p className="text-[#7a7a7a] text-base mt-3">
-                  Elige lo que más se acerca a tu momento actual.
+No siempre sabes qué tipo de ayuda necesitas, pero sí sabes cómo te has estado sintiendo.
                 </p>
               </motion.div>
 

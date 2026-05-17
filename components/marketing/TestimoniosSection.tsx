@@ -1,11 +1,11 @@
 "use client";
 
 const TESTIMONIOS = [
-  { texto: "Después de 3 meses soy yo misma otra vez. Encontré a alguien que realmente me entendió.", nombre: "María V.", ciudad: "Miami, FL", servicio: "Psicología", iniciales: "MV", color: "#D9E5DB" },
-  { texto: "No sabía que necesitaba un coach hasta que tuve una. Cambió completamente mi forma de tomar decisiones.", nombre: "Camila R.", ciudad: "Bogotá", servicio: "Life Coaching", iniciales: "CR", color: "#B5BC8F" },
-  { texto: "Llevaba años con una relación rara con la comida. Por fin entiendo qué estaba pasando.", nombre: "Andrea M.", ciudad: "Ciudad de México", servicio: "Nutrición", iniciales: "AM", color: "#EDE7E1" },
-  { texto: "Me conectaron con la especialista correcta en menos de 24 horas. No lo podía creer.", nombre: "Sofía L.", ciudad: "Buenos Aires", servicio: "Psicología", iniciales: "SL", color: "#D9E5DB" },
-  { texto: "La sesión exploratoria me bastó para saber que era el lugar correcto. Llevo 4 meses y no paro.", nombre: "Valentina C.", ciudad: "Santiago", servicio: "Health Coaching", iniciales: "VC", color: "#B5BC8F" },
+  { texto: "Por primera vez entendí por qué me sentía tan vacía. Hoy confío más en mí y me siento alineada a mi esencia.", nombre: "María V.", ciudad: "Miami, FL", servicio: "Psicología", iniciales: "MV", color: "#D9E5DB" },
+  { texto: "Dejé de culparme por no tener disciplina y entendí que solo necesitaba descansar mejor y enfocar mi energía en lo importante.", nombre: "Camila R.", ciudad: "Bogotá", servicio: "Life Coaching", iniciales: "CR", color: "#B5BC8F" },
+  { texto: "Llegué pensando que tenía que resolver toda mi vida pero primero empezamos entendiendo por qué me sentía tan perdida. Hoy siento más claridad.", nombre: "Andrea M.", ciudad: "Ciudad de México", servicio: "Nutrición", iniciales: "AM", color: "#EDE7E1" },
+  { texto: "Me ayudó a ordenar cosas que llevaba años evitando mirar y a soltar bloqueos que no me permitían avanzar.", nombre: "Sofía L.", ciudad: "Buenos Aires", servicio: "Psicología", iniciales: "SL", color: "#D9E5DB" },
+  { texto: "Me siento más capaz y mucho más coherente con mi propósito. La mejor inversión que he hecho.", nombre: "Valentina C.", ciudad: "Santiago", servicio: "Health Coaching", iniciales: "VC", color: "#B5BC8F" },
   { texto: "Por fin alguien que no me habla con términos raros ni me juzga. Directo al punto.", nombre: "Carlos D.", ciudad: "Caracas", servicio: "Life Coaching", iniciales: "CD", color: "#EDE7E1" },
 ];
 
