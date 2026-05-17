@@ -11,6 +11,7 @@ const ROW1: TagItem[] = [
   { label: "Depresión",          href: "/profesionales-main?area=depresion" },
   { label: "Cuerpo y nutrición", href: "/profesionales-main?area=nutricion" },
   { label: "Ciclo hormonal",     href: "/profesionales-main?area=ciclo" },
+  { label: "Burnout",            href: "/profesionales-main?area=burnout" },
 ];
 const ROW2: TagItem[] = [
   { label: "Hábitos",              href: "/profesionales-main?area=habitos" },
@@ -28,9 +29,9 @@ const ROW3: TagItem[] = [
 ];
 
 function Tag({
-  label, href, delay, selected, onToggle,
+  label, href, delay, selected, onToggle, fullWidth,
 }: {
-  label: string; href: string; delay: number; selected: boolean; onToggle: () => void;
+  label: string; href: string; delay: number; selected: boolean; onToggle: () => void; fullWidth?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const active = selected || hovered;
@@ -45,9 +46,10 @@ function Tag({
       onMouseLeave={() => setHovered(false)}
       onClick={(e) => { e.preventDefault(); onToggle(); }}
       style={{
-        display: "inline-flex",
+        display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        width: fullWidth ? "100%" : undefined,
         padding: "9px 20px",
         borderRadius: "999px",
         border: `1.5px solid ${active ? "#5A634F" : "rgba(90,99,79,0.3)"}`,
@@ -57,7 +59,6 @@ function Tag({
         fontWeight: 400,
         cursor: "pointer",
         textDecoration: "none",
-        whiteSpace: "nowrap",
         transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
         userSelect: "none",
       }}
@@ -73,6 +74,15 @@ export default function MotivosSection() {
   const ref = useRef(null);
   const visible = useInView(ref, { once: true, amount: 0.1 });
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile for full-width tags
+  useState(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  });
 
   function toggle(label: string) {
     setSelected((prev) => {
@@ -90,13 +100,11 @@ export default function MotivosSection() {
       className="py-12 relative overflow-hidden"
       style={{ background: "#FDFBF8" }}
     >
-      {/* Outer container matches other sections */}
       <div ref={ref} className="max-w-screen-2xl mx-auto px-12">
-        {/* Inner card-equivalent padding to align with ComoFuncionaSection text */}
         <div className="lg:px-12 lg:pl-[4.5rem]">
           <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
 
-            {/* LEFT — heading + tags */}
+            {/* LEFT — heading + tags + CTA */}
             <div className="flex-1 min-w-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -105,16 +113,17 @@ export default function MotivosSection() {
                 className="mb-7"
               >
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#262525] leading-tight">
-                  ¿Qué se parece más a lo que estás viviendo?
+                  ¿Qué se parece más a{" "}
+                  <span style={{ color: "#E3812F" }}>lo que estás viviendo?</span>
                 </h2>
                 <p className="text-[#7a7a7a] text-base mt-3">
-No siempre sabes qué tipo de ayuda necesitas, pero sí sabes cómo te has estado sintiendo.
+                  No siempre sabes qué tipo de ayuda necesitas, pero sí sabes cómo te has estado sintiendo.
                 </p>
               </motion.div>
 
-              {/* Tags — flex wrap, natural row breaks */}
+              {/* Tags — 2-col grid on mobile, flex-wrap on sm+ */}
               {visible && (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+                <div className="grid grid-cols-2 gap-[10px] sm:flex sm:flex-wrap sm:gap-[10px]">
                   {ALL_TAGS.map((tag, i) => (
                     <Tag
                       key={tag.label}
@@ -123,12 +132,13 @@ No siempre sabes qué tipo de ayuda necesitas, pero sí sabes cómo te has estad
                       delay={0.1 + i * 0.035}
                       selected={selected.has(tag.label)}
                       onToggle={() => toggle(tag.label)}
+                      fullWidth={isMobile}
                     />
                   ))}
                 </div>
               )}
 
-              {/* CTA button — inside left column, natural position on both mobile and desktop */}
+              {/* CTA button */}
               <motion.div
                 className="mt-8"
                 initial={{ opacity: 0, y: 12 }}
@@ -144,7 +154,7 @@ No siempre sabes qué tipo de ayuda necesitas, pero sí sabes cómo te has estad
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 >
-                  Hablar con un especialista →
+                  Escríbenos hoy →
                 </motion.a>
               </motion.div>
             </div>
