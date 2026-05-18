@@ -173,23 +173,14 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-3xl mx-auto px-5 sm:px-12 pt-20 sm:pt-28 pb-20 text-center w-full">
 
         {/* Headline */}
-        <motion.div
+        <motion.h1
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight mb-6 text-white"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight mb-0 text-white">
-            No necesitas tocar fondo
-          </h1>
-          <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight mb-6 text-white"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          >
-para buscar ayuda.
-          </motion.h1>
-        </motion.div>
+          No necesitas tocar fondo<br />para buscar ayuda.
+        </motion.h1>
 
         {/* Typewriter subheadline */}
         <motion.p
