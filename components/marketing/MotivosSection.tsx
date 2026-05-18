@@ -45,7 +45,7 @@ function Tag({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={(e) => { e.preventDefault(); onToggle(); }}
-      className="w-full sm:w-auto"
+      className="w-auto"
       style={{
         display: "flex",
         alignItems: "center",
@@ -103,7 +103,7 @@ export default function MotivosSection() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="mb-7"
               >
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight leading-tight bg-gradient-to-r from-[#8BBDB8] to-[#4D8D9A] bg-clip-text text-transparent">
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">
                   ¿Qué se parece más a lo que estás viviendo?
                 </h2>
                 <p className="text-[#7a7a7a] text-base mt-3">
@@ -113,7 +113,7 @@ export default function MotivosSection() {
 
               {/* Tags — 2-col grid on mobile (w-full tags), flex-wrap on sm+ */}
               {visible && (
-                <div className="grid grid-cols-2 gap-[10px] sm:flex sm:flex-wrap">
+                <div className="flex flex-wrap gap-[10px]">
                   {ALL_TAGS.map((tag, i) => (
                     <Tag
                       key={tag.label}
