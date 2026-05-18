@@ -179,7 +179,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          No necesitas tocar fondo<br />para buscar ayuda.
+          No necesitas tocar fondo para buscar ayuda.
         </motion.h1>
 
         {/* Typewriter subheadline */}
