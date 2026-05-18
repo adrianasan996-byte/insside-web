@@ -40,12 +40,13 @@ export default function CTAFinalSection() {
             {/* Center — text + button */}
             <div className="flex flex-col items-center text-center px-8 py-14">
               <motion.h2
-                className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-7 bg-gradient-to-r from-[#D9E5DB] to-[#64C1C4] bg-clip-text text-transparent"
+                className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.15] mb-7 text-white"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.55, delay: 0.1 }}
               >
-Cuéntanos qué estás viviendo.<br />Nosotros te guiamos.
+                Cuéntanos qué estás viviendo.<br />
+                <span className="bg-gradient-to-r from-[#FDDBA0] to-[#E3812F] bg-clip-text text-transparent">Nosotros te guiamos.</span>
               </motion.h2>
 
               <motion.div className="flex flex-col items-center"
