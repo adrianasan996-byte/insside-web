@@ -101,10 +101,12 @@ function SpecialistCard({ pro, index, onBook }: { pro: SpecialistProfile; index:
           <div className="flex flex-col gap-1 text-xs text-[#6b6b6b]">
             <StarRating rating={pro.rating} />
             <span className="flex items-center gap-0.5">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
-              {pro.city}{pro.country ? `, ${pro.country}` : ""}
+              {pro.modalities.includes("online") && (
+                <>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                  Online
+                </>
+              )}
             </span>
             <span className="hidden sm:flex items-center gap-1">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -128,12 +130,12 @@ function SpecialistCard({ pro, index, onBook }: { pro: SpecialistProfile; index:
             {pro.calendars.exploratory && (
               <span>Exploratoria: <strong className="text-[#5A634F]">$25</strong></span>
             )}
-            {pro.modalities.map((m) => (
-              <span key={m} className="flex items-center gap-1 capitalize">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B5BC8F" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                {m}
-              </span>
-            ))}
+            <span className="flex items-center gap-1">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#B5BC8F" strokeWidth="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              {pro.city}{pro.country ? `, ${pro.country}` : ""}
+            </span>
             {pro.languages.map((l) => (
               <span key={l} className="flex items-center gap-1">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B5BC8F" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
