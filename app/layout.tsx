@@ -9,7 +9,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://insside.co"),
+  metadataBase: new URL("https://insside-web.vercel.app"),
   title: "Insside | Especialistas en psicología, nutrición, coaching y más",
   description: "Una plataforma para conectar con especialistas que te entienden de verdad. En español y desde cualquier lugar.",
   openGraph: {
