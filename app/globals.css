@@ -52,6 +52,10 @@ h1, h2, h3, h4 { line-height: 1.1; }
   animation: marquee-right 32s linear infinite;
 }
 .animate-marquee-right:hover { animation-play-state: paused; }
+.animate-marquee-right-slow {
+  animation: marquee-right 60s linear infinite;
+}
+.animate-marquee-right-slow:hover { animation-play-state: paused; }
 .animate-marquee-left {
   animation: marquee-left 24s linear infinite;
 }

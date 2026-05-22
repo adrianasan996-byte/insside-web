@@ -9,8 +9,31 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Insside — Tu espacio de crecimiento",
-  description: "Conecta con especialistas en bienestar, psicología, coaching y más.",
+  metadataBase: new URL("https://insside.co"),
+  title: "Insside | Especialistas en psicología, nutrición, coaching y más",
+  description: "Una plataforma para conectar con especialistas que te entienden de verdad. En español y desde cualquier lugar.",
+  openGraph: {
+    title: "Insside | Especialistas que te entienden de verdad",
+    description: "Una plataforma para conectar con especialistas que te entienden de verdad. En español y desde cualquier lugar.",
+    url: "https://insside.co",
+    siteName: "Insside",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1920,
+        height: 1080,
+        alt: "Insside — Especialistas en psicología, nutrición, coaching y más",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Insside | Especialistas en psicología, nutrición, coaching y más",
+    description: "Una plataforma para conectar con especialistas que te entienden de verdad. En español y desde cualquier lugar.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

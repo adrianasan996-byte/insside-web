@@ -178,12 +178,12 @@ export default function HeroSection() {
 
         {/* Headline */}
         <motion.h1
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight mb-6 text-white"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-6 text-white"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          No necesitas tocar fondo para buscar ayuda.
+          La versión de ti que estabas buscando <span style={{ color: "#D9E5DB" }}>empieza aquí.</span>
         </motion.h1>
 
         {/* Typewriter subheadline */}
@@ -193,19 +193,21 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
         >
-          Especialistas en{" "}
-          <motion.span
-            className="font-bold text-white px-3 py-0.5 rounded-full inline-block"
-            style={{ background: "rgba(90,99,79,0.85)", backdropFilter: "blur(6px)", border: "1px solid rgba(181,188,143,0.35)" }}
-          >
-            {display}
+          <span className="block sm:inline">
+            Especialistas en{" "}
             <motion.span
-              className="inline-block w-[2px] h-[0.8em] bg-white/70 ml-[2px] align-middle rounded-sm"
-              animate={{ opacity: [1, 0] }}
-              transition={{ duration: 0.55, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-            />
-          </motion.span>
-          {" "}En español y desde cualquier lugar.
+              className="font-bold text-white px-3 py-0.5 rounded-full inline-block"
+              style={{ background: "rgba(90,99,79,0.85)", backdropFilter: "blur(6px)", border: "1px solid rgba(181,188,143,0.35)" }}
+            >
+              {display}
+              <motion.span
+                className="inline-block w-[2px] h-[0.8em] bg-white/70 ml-[2px] align-middle rounded-sm"
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.55, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+              />
+            </motion.span>
+          </span>
+          <span className="block sm:inline sm:before:content-['_']">En español y desde cualquier lugar.</span>
         </motion.p>
 
         {/* Tabs — glassmorphic */}
@@ -257,7 +259,7 @@ export default function HeroSection() {
               className="space-y-3"
             >
               <p className="text-xs sm:text-sm text-white/50">
-                Para quien sabe que algo tiene que cambiar, y está listo para hacerlo.
+                Hay un especialista para lo que estás viviendo.
               </p>
               <motion.div
                 className="rounded-2xl flex flex-col sm:flex-row items-stretch overflow-hidden"

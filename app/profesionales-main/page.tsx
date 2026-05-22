@@ -245,11 +245,11 @@ export default function ProfesionalesPage() {
 
       <div>
         {/* Hero */}
-        <section className="relative overflow-hidden pt-16 pb-10">
+        <section className="relative overflow-hidden flex items-end" style={{ minHeight: "280px" }}>
           <div className="absolute inset-0"
             style={{ background: "radial-gradient(ellipse 280px 220px at 8% 85%, #AB6139 0%, transparent 100%), radial-gradient(ellipse 320px 280px at 2% 5%, #64C1C4 0%, transparent 100%), radial-gradient(ellipse 280px 220px at 98% 5%, #2D4A48 0%, transparent 100%), radial-gradient(ellipse 460px 320px at 55% 45%, #8B9970 0%, transparent 100%), radial-gradient(ellipse 360px 280px at 78% 65%, #C5C99A 0%, transparent 100%), #4A5E4A" }} />
 
-          <div className="max-w-5xl mx-auto px-6 sm:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto px-6 sm:px-12 pt-20 pb-12 relative z-10 w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

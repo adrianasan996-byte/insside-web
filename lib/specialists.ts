@@ -69,7 +69,13 @@ export const SPECIALISTS: SpecialistProfile[] = [
     country: "Venezuela",
     youtubeId: "m0to1FJOEpU",
     registrationBadge: "FPV: #17.562",
-    testimonialImages: [],
+    testimonialImages: [
+      "/TESTIMONIOS/tw-valen-1.png",
+      "/TESTIMONIOS/VALENTINA/IMG_7282.PNG",
+      "/TESTIMONIOS/tw-valen-2.png",
+      "/TESTIMONIOS/VALENTINA/IMG_7284.PNG",
+      "/TESTIMONIOS/VALENTINA/Untitled-13.png",
+    ],
     calendars: {
       exploratory: "https://link.insside.co/widget/bookings/valentina-llamada-exploratoria",
       individual: "https://link.insside.co/widget/bookings/valentina-tello1",
