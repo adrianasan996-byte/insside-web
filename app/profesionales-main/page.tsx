@@ -230,7 +230,17 @@ export default function ProfesionalesPage() {
         p.category.toLowerCase().includes(q)
       );
     }
-    if (category !== "Todos") list = list.filter(p => p.category === category);
+    if (category !== "Todos") {
+      list = list.filter(p => {
+        const norm = (s: string) => s.toLowerCase().normalize("NFC");
+        if (norm(p.category) === norm(category)) return true;
+        // "Terapia de Parejas" chip → also match specialties containing "terapia de pareja"
+        if (norm(category).includes("terapia de pareja")) {
+          return p.specialties.some(s => norm(s).includes("terapia de pareja"));
+        }
+        return false;
+      });
+    }
     if (modality === "Online") list = list.filter(p => p.modalities.includes("online"));
     if (modality === "Presencial") list = list.filter(p => p.modalities.includes("presencial"));
     if (sort === "Precio: menor") list.sort((a, b) => a.sessionPrice - b.sessionPrice);
