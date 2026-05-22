@@ -1,20 +1,37 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 
 const PASOS = [
   {
-    num: "01", step: "Explora",  title: "Entendemos lo que estás viviendo.",
-    desc: "No solo lo que buscas. También lo que te está agotando, confundiendo o frenando.",
+    num: "01",
+    title: "Entender",
+    subtitle: "Antes de hablar de soluciones, entendemos qué estás atravesando realmente.",
+    desc: "No solo lo que sientes hoy, sino también cómo estás viviendo, qué te está agotando y qué patrones se vienen repitiendo en tu vida.",
   },
   {
-    num: "02", step: "Conecta",  title: "Te conectamos con el especialista correcto.",
-    desc: "Sin perder semanas investigando perfiles que no sabes si encajan contigo.",
+    num: "02",
+    title: "Identificar",
+    subtitle: "Muchas veces el problema no es solo el síntoma, es lo que lo sostiene.",
+    desc: "Aquí buscamos entender de dónde viene lo que estás viviendo y cómo eso impacta distintas áreas de tu vida.",
   },
   {
-    num: "03", step: "Avanza",   title: "Empiezas un proceso que sí puedas sostener.",
-    desc: "Con sesiones online, acompañamiento y herramientas aplicables a tu vida real.",
+    num: "03",
+    title: "Dar dirección",
+    subtitle: "No creemos en procesos genéricos.",
+    desc: "Junto a ti, construimos claridad sobre lo que necesitas, hacia dónde quieres ir y cómo se ve sentirte mejor en tu vida real.",
+  },
+  {
+    num: "04",
+    title: "Acompañar",
+    subtitle: "Empieza el trabajo real.",
+    desc: "Herramientas, conversaciones y acciones adaptadas a ti, a tu proceso y al momento que estás atravesando.",
+  },
+  {
+    num: "05",
+    title: "Integrar",
+    subtitle: "El objetivo no es sentir alivio solo durante una sesión.",
+    desc: "Es que lo que descubras y trabajes pueda sostenerse en tu día a día, en tus relaciones y en la forma en la que vives tu vida.",
   },
 ];
 
@@ -131,17 +148,17 @@ function ChatBubblesFloat({ active }: { active: boolean }) {
 export default function ComoFuncionaSection() {
   const sectionRef = useRef(null);
   const inView     = useInView(sectionRef, { once: false, margin: "-60px" });
+  const [open, setOpen] = useState(0);
 
   return (
     <section ref={sectionRef} className="py-8 overflow-hidden relative" style={{ background: "transparent" }}>
       <div className="max-w-screen-2xl mx-auto px-3 sm:px-12">
         <div className="relative rounded-3xl overflow-hidden" style={{ background: "#f2ede6" }}>
 
-          {/* Uniform padding on all sides */}
-          <div className="relative z-10 p-6 sm:p-12">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_520px] gap-10 items-center">
+          <div className="relative z-10 p-6 pt-10 sm:p-12 sm:pt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_520px] gap-10 items-start">
 
-              {/* ── LEFT — shifted right via pl ── */}
+              {/* ── LEFT ── */}
               <div className="sm:pl-6">
                 <motion.h2
                   className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.1] mb-3 text-center lg:text-left"
@@ -154,28 +171,89 @@ export default function ComoFuncionaSection() {
                   className="text-[#6b6b6b] text-base mb-6 leading-relaxed text-center lg:text-left"
                   initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.09 }}>
-                  Te guiamos a encontrar el tipo de acompañamiento que realmente tiene sentido para ti.
+                  Esto es lo que te espera en cada sesión.
                 </motion.p>
 
-                {/* Steps */}
+                {/* Accordion */}
                 <div className="flex flex-col">
-                  {PASOS.map((p, i) => (
-                    <motion.div key={p.num}
-                      initial={{ opacity: 0, x: -18 }} animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.45, delay: 0.18 + i * 0.12 }}>
-                      {/* Divider line — doesn't reach full width */}
-                      {i > 0 && <div className="border-t border-[#262525]/10 my-2 sm:my-4" />}
-                      <div className="flex gap-2 sm:gap-4 items-center sm:items-start">
-                        <span className="flex-shrink-0 bg-[#262525]/8 text-[#262525] text-xs font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full sm:mt-0.5">{p.num}</span>
-                        <div>
-                          <p className="text-[#262525] font-semibold text-sm sm:text-base">
-                            {p.step}{" "}<span className="text-[#262525]/30 mx-1">•</span>{" "}<span style={{ color: "#AB6139" }}>{p.title}</span>
-                          </p>
-                          <p className="text-[#6b6b6b] text-xs sm:text-sm mt-0.5 sm:mt-1">{p.desc}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                  {PASOS.map((p, i) => {
+                    const isOpen = open === i;
+                    return (
+                      <motion.div
+                        key={p.num}
+                        initial={{ opacity: 0, x: -18 }}
+                        animate={inView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.45, delay: 0.18 + i * 0.1 }}
+                      >
+                        {/* Divider */}
+                        {i > 0 && <div className="border-t border-[#262525]/10" />}
+
+                        {/* Header row — always visible, clickable */}
+                        <button
+                          onClick={() => setOpen(isOpen ? -1 : i)}
+                          className="w-full flex items-center gap-3 py-3.5 text-left group"
+                        >
+                          {/* Number badge */}
+                          <span
+                            className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold transition-all duration-300"
+                            style={{
+                              background: isOpen ? "#5A634F" : "rgba(38,37,37,0.08)",
+                              color: isOpen ? "#fff" : "rgba(38,37,37,0.45)",
+                            }}
+                          >
+                            {p.num}
+                          </span>
+
+                          {/* Title */}
+                          <span
+                            className="flex-1 font-semibold text-sm sm:text-base transition-colors duration-200"
+                            style={{ color: isOpen ? "#262525" : "rgba(38,37,37,0.6)" }}
+                          >
+                            {p.title}
+                          </span>
+
+                          {/* Chevron */}
+                          <motion.svg
+                            width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke={isOpen ? "#5A634F" : "#9a9a9a"} strokeWidth="2.5"
+                            animate={{ rotate: isOpen ? 180 : 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="flex-shrink-0"
+                          >
+                            <path d="m6 9 6 6 6-6" />
+                          </motion.svg>
+                        </button>
+
+                        {/* Expandable content */}
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              key="content"
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                              className="overflow-hidden"
+                            >
+                              <div
+                                className="ml-10 mb-4 pl-4 border-l-2"
+                                style={{ borderColor: "#B5BC8F" }}
+                              >
+                                <p className="text-[#262525] font-medium text-sm leading-relaxed mb-1">
+                                  {p.subtitle}
+                                </p>
+                                <p className="text-[#6b6b6b] text-sm leading-relaxed">
+                                  {p.desc}
+                                </p>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    );
+                  })}
+                  {/* Bottom divider */}
+                  <div className="border-t border-[#262525]/10" />
                 </div>
 
                 <motion.div className="mt-6 sm:mt-8 flex lg:block justify-center"
@@ -187,12 +265,12 @@ export default function ComoFuncionaSection() {
                     whileHover={{ scale: 1.03, backgroundColor: "#4A5540" }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 400, damping: 20 }}>
-                    Quiero empezar
+                    Quiero empezar →
                   </motion.a>
                 </motion.div>
               </div>
 
-              {/* ── RIGHT — photo, slight zoom (object-cover), full group visible ── */}
+              {/* ── RIGHT — photo + chat bubbles ── */}
               <motion.div className="relative"
                 initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>

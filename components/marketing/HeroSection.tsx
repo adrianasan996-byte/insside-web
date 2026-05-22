@@ -6,13 +6,12 @@ import { sendToGHL } from "@/lib/ghl";
 const WHATSAPP_BASE = "https://wa.me/17866356816?text=";
 
 const SITUACIONES = [
-  "Ansiedad, estrés o sobrecarga emocional",
-  "Problemas en mis relaciones o vínculos",
-  "No encuentro propósito ni dirección",
-  "Mi relación con la comida o mi cuerpo",
-  "No logro mantener hábitos ni constancia",
-  "Mi relación de pareja está en un momento difícil",
-  "No sé bien lo que me pasa",
+  "Ansiedad o estrés",
+  "Relaciones y vínculos",
+  "Propósito y dirección",
+  "Cuerpo y alimentación",
+  "Hábitos y bienestar",
+  "No sé por dónde empezar",
 ];
 
 const URGENCIA = [
@@ -110,6 +109,7 @@ export default function HeroSection() {
   const [urgencia2, setUrgencia2] = useState("");
   const [matchState, setMatchState] = useState(false);
   const [email, setEmail] = useState("");
+  const [nombre2, setNombre2] = useState("");
 
   const { display, phase } = useTypewriter(ROTATING_WORDS);
 
@@ -138,13 +138,17 @@ export default function HeroSection() {
 
   async function handleVerEspecialistas(e: React.FormEvent) {
     e.preventDefault();
+    const nameParts = nombre2.trim().split(" ");
     await sendToGHL({
+      firstName: nameParts[0] ?? "",
+      lastName: nameParts.slice(1).join(" ") ?? "",
       email,
       source: "hero-ver-especialistas",
       tags: ["hero-web", tipoApoyo].filter(Boolean),
     });
     const msg = encodeURIComponent(
-      `Hola, busco ${tipoApoyo || "apoyo"} para: ${situacion2 || "una situación que quiero conversar"}.\n` +
+      `Hola, soy ${nombre2}.\n` +
+      `Busco ${tipoApoyo || "apoyo"} para: ${situacion2 || "una situación que quiero conversar"}.\n` +
       `Quiero empezar: ${urgencia2 || "pronto"}\n` +
       `Email: ${email}`
     );
@@ -253,7 +257,7 @@ export default function HeroSection() {
               className="space-y-3"
             >
               <p className="text-xs sm:text-sm text-white/50">
-                Para quienes llevan mucho tiempo sobreviviendo en automático.
+                Para quien sabe que algo tiene que cambiar, y está listo para hacerlo.
               </p>
               <motion.div
                 className="rounded-2xl flex flex-col sm:flex-row items-stretch overflow-hidden"
@@ -275,7 +279,7 @@ export default function HeroSection() {
                     className={selectBase}
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center" }}
                   >
-                    <option value="" disabled>¿Cómo te describes hoy?</option>
+                    <option value="" disabled>¿Cómo te sientes hoy?</option>
                     {SITUACIONES.map((m) => <option key={m} value={m}>{m}</option>)}
                   </select>
                 </div>
@@ -346,7 +350,7 @@ export default function HeroSection() {
                     className={selectBase}
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}
                   >
-                    <option value="" disabled>¿Qué está pasando?</option>
+                    <option value="" disabled>¿Cómo te sientes hoy?</option>
                     {SITUACIONES.map((m) => <option key={m} value={m}>{m}</option>)}
                   </select>
                 </div>
@@ -449,6 +453,14 @@ export default function HeroSection() {
               </p>
 
               <form onSubmit={handleVerEspecialistas} className="space-y-3">
+                <input
+                  type="text"
+                  placeholder="Tu nombre"
+                  value={nombre2}
+                  onChange={(e) => setNombre2(e.target.value)}
+                  required
+                  className="w-full border border-[#D9E5DB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#5A634F]/30"
+                />
                 <input
                   type="email"
                   placeholder="Tu correo electrónico"

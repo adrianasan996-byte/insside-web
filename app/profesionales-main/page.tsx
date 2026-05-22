@@ -1,6 +1,5 @@
 "use client";
-import { useState, useMemo, useRef, useEffect } from "react";
-import { sendToGHL } from "@/lib/ghl";
+import { useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
@@ -9,148 +8,9 @@ import { SPECIALISTS, SpecialistProfile } from "@/lib/specialists";
 import BookingModal from "@/components/profile/BookingModal";
 
 const WHATSAPP = "https://wa.me/17866356816";
-const STORAGE_KEY = "insside_directorio_access";
-
 const CATEGORIES = ["Todos", "Psicología", "Terapia de Parejas", "Life Coaching", "Health Coaching", "Nutrición"];
 const MODALITIES = ["Todos", "Online", "Presencial"];
 const SORT_OPTIONS = ["Recomendadas", "Precio: menor", "Precio: mayor"];
-
-/* ── Lead Gate Modal ──────────────────────────────────────── */
-function LeadGateModal({ onUnlock }: { onUnlock: () => void }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name.trim() || !email.trim() || !phone.trim()) {
-      setError("Por favor completa todos los campos.");
-      return;
-    }
-    setLoading(true);
-    const nameParts = name.trim().split(" ");
-    await sendToGHL({
-      firstName: nameParts[0] ?? "",
-      lastName: nameParts.slice(1).join(" ") ?? "",
-      email,
-      phone,
-      source: "directorio-especialistas",
-      tags: ["directorio-web"],
-    });
-    setTimeout(() => {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ name, email, phone, ts: Date.now() }));
-      onUnlock();
-    }, 600);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{
-        background: "rgba(20,28,18,0.60)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.94, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.94, y: 20 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="w-full max-w-md bg-white rounded-3xl overflow-hidden relative"
-        style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.30)" }}
-      >
-        {/* Top accent */}
-        <div className="h-1.5 w-full" style={{ background: "linear-gradient(90deg, #B5BC8F, #8B9970)" }} />
-
-        <div className="p-8 sm:p-10">
-          {/* Icon */}
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 mx-auto"
-            style={{ background: "#F0F4EC" }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5A634F" strokeWidth="1.8">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
-
-          <h2 className="text-2xl font-bold text-[#262525] text-center mb-2">
-            Conoce a nuestras especialistas
-          </h2>
-          <p className="text-[#6b6b6b] text-sm text-center mb-7 leading-relaxed">
-            Déjanos tus datos para acceder al directorio completo y conectarte con la especialista ideal para ti.
-          </p>
-
-          {error && (
-            <p className="text-red-500 text-xs text-center mb-4 bg-red-50 rounded-xl py-2 px-3">{error}</p>
-          )}
-
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-            <div className="relative">
-              <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#B5BC8F]" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-              </svg>
-              <input
-                type="text"
-                placeholder="Nombre completo"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#EDE7E1] text-sm focus:outline-none focus:ring-2 focus:ring-[#B5BC8F]/30 focus:border-[#B5BC8F] transition-all"
-              />
-            </div>
-            <div className="relative">
-              <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#B5BC8F]" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-              </svg>
-              <input
-                type="email"
-                placeholder="Correo electrónico"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#EDE7E1] text-sm focus:outline-none focus:ring-2 focus:ring-[#B5BC8F]/30 focus:border-[#B5BC8F] transition-all"
-              />
-            </div>
-            <div className="relative">
-              <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#B5BC8F]" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18 2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/>
-              </svg>
-              <input
-                type="tel"
-                placeholder="Número de teléfono"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#EDE7E1] text-sm focus:outline-none focus:ring-2 focus:ring-[#B5BC8F]/30 focus:border-[#B5BC8F] transition-all"
-              />
-            </div>
-
-            <motion.button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3.5 rounded-xl text-sm font-bold text-white mt-1 disabled:opacity-60"
-              style={{ background: loading ? "#9a9a9a" : "#B5BC8F" }}
-              whileHover={!loading ? { scale: 1.02 } : {}}
-              whileTap={!loading ? { scale: 0.98 } : {}}
-            >
-              {loading ? "Accediendo…" : "Ver especialistas →"}
-            </motion.button>
-          </form>
-
-          <p className="text-[#9a9a9a] text-[11px] text-center mt-4 leading-relaxed">
-            Tus datos están protegidos. No enviamos spam. <br />Al continuar aceptas nuestra{" "}
-            <span className="underline cursor-pointer">Política de Privacidad</span>.
-          </p>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
 
 /* ── Star rating ──────────────────────────────────────────── */
 function StarRating({ rating }: { rating: number }) {
@@ -353,20 +213,11 @@ function SpecialistCard({ pro, index, onBook }: { pro: SpecialistProfile; index:
 
 /* ── Page ─────────────────────────────────────────────────── */
 export default function ProfesionalesPage() {
-  const [unlocked, setUnlocked] = useState(false);
   const [bookingPro, setBookingPro] = useState<SpecialistProfile | null>(null);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("Todos");
   const [modality, setModality] = useState("Todos");
   const [sort, setSort] = useState("Recomendadas");
-
-  /* Check localStorage on mount */
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) setUnlocked(true);
-    } catch {}
-  }, []);
 
   const filtered = useMemo(() => {
     let list = [...SPECIALISTS];
@@ -392,8 +243,7 @@ export default function ProfesionalesPage() {
     <div className="min-h-screen" style={{ background: "#FDFBF8" }}>
       <MarketingNav />
 
-      {/* Directory content — always rendered, blurred through modal backdrop */}
-      <div style={!unlocked ? { pointerEvents: "none", userSelect: "none" } : {}}>
+      <div>
         {/* Hero */}
         <section className="relative overflow-hidden pt-16 pb-10">
           <div className="absolute inset-0"
@@ -527,13 +377,6 @@ export default function ProfesionalesPage() {
           </motion.div>
         </div>
       </div>
-
-      {/* Lead gate modal — overlaid when not unlocked */}
-      <AnimatePresence>
-        {!unlocked && (
-          <LeadGateModal onUnlock={() => setUnlocked(true)} />
-        )}
-      </AnimatePresence>
 
       <MarketingFooter />
 
