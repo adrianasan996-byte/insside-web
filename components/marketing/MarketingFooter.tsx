@@ -75,7 +75,7 @@ export default function MarketingFooter() {
             <p className="text-white/40 text-sm mt-0.5">Recursos, novedades y promociones exclusivas.</p>
           </div>
           {sent ? (
-            <p className="text-[#B5BC8F] text-sm font-semibold">¡Listo! Te escribimos pronto 🌿</p>
+            <p className="text-[#B5BC8F] text-sm font-semibold">¡Listo! Bienvenid@ a Insside 🌿</p>
           ) : (
             <form onSubmit={handleSubmit} className="flex gap-2 w-full sm:w-auto">
               <input
