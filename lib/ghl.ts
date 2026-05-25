@@ -9,7 +9,7 @@ export interface GHLContactPayload {
 
 export async function sendToGHL(payload: GHLContactPayload): Promise<void> {
   try {
-    await fetch("/api/ghl-contact", {
+    await fetch("/api/leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
