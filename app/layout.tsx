@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import CookieBanner from "@/components/ui/CookieBanner";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es">
       <body className={`${montserrat.variable} antialiased font-sans`}>
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
