@@ -51,6 +51,23 @@ const PAISES = [
 ];
 const ROTATING_WORDS = ["psicología.", "coaching.", "nutrición.", "ti."];
 
+const SITUACION_TAGS: Record<string, string[]> = {
+  "Ansiedad o estrés":       ["psicologia", "coaching"],
+  "Relaciones y vínculos":   ["pareja"],
+  "Propósito y dirección":   ["coaching"],
+  "Cuerpo y alimentación":   ["nutricion"],
+  "Hábitos y bienestar":     ["psicologia", "coaching", "nutricion"],
+  "No sé por dónde empezar": [],
+};
+
+const TIPO_APOYO_TAGS: Record<string, string[]> = {
+  "Psicología individual":  ["psicologia"],
+  "Psicología de pareja":   ["pareja"],
+  "Life Coaching":          ["coaching"],
+  "Health Coaching":        ["nutricion"],
+  "Nutrición":              ["nutricion"],
+};
+
 
 
 function useTypewriter(words: string[]) {
@@ -122,8 +139,8 @@ export default function HeroSection() {
       lastName: nameParts.slice(1).join(" ") ?? "",
       email: correo,
       phone: `${paisCodigo} ${telefono}`,
-      source: "hero-modal",
-      tags: ["hero-web", situacion1].filter(Boolean),
+      source: "web",
+      tags: SITUACION_TAGS[situacion1] ?? [],
     });
     const msg = encodeURIComponent(
       `Hola, soy ${nombre}.\n` +
@@ -144,8 +161,8 @@ export default function HeroSection() {
       firstName: nameParts[0] ?? "",
       lastName: nameParts.slice(1).join(" ") ?? "",
       email,
-      source: "hero-ver-especialistas",
-      tags: ["hero-web", tipoApoyo].filter(Boolean),
+      source: "web",
+      tags: TIPO_APOYO_TAGS[tipoApoyo] ?? [],
     });
     const msg = encodeURIComponent(
       `Hola, soy ${nombre2}.\n` +

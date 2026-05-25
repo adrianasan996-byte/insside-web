@@ -64,8 +64,8 @@ function EspecialistaModal({ onClose }: { onClose: () => void }) {
       lastName: form.apellido,
       email: form.email,
       phone: `${form.paisCodigo} ${form.telefono}`,
-      source: "aplicacion-especialista",
-      tags: ["especialista-web", esp, form.modalidad].filter(Boolean),
+      source: "web",
+      tags: [],
     });
     const text = encodeURIComponent(
       `Hola, quiero aplicar como especialista en Insside.\n\n` +

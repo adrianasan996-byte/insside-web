@@ -94,8 +94,8 @@ export default function ContactPage() {
       lastName: nameParts.slice(1).join(" ") ?? "",
       email: correo,
       phone: `${paisCodigo} ${telefono}`,
-      source: "contacto",
-      tags: ["contacto-web", motivo].filter(Boolean),
+      source: "web",
+      tags: [],
     });
     const msg = encodeURIComponent(
       `Hola Insside, soy ${nombre}.\n` +

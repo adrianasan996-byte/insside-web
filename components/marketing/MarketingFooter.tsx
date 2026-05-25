@@ -20,8 +20,8 @@ export default function MarketingFooter() {
     if (!email) return;
     await sendToGHL({
       email,
-      source: "newsletter-footer",
-      tags: ["newsletter"],
+      source: "web",
+      tags: [],
     });
     setSent(true);
   }
