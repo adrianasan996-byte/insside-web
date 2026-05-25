@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sendToGHL } from "@/lib/ghl";
+import CountrySelector from "@/components/ui/CountrySelector";
 
 const WHATSAPP_BASE = "https://wa.me/17866356816?text=";
 
@@ -183,7 +184,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          La versión de ti que estabas buscando <span style={{ color: "#D9E5DB" }}>empieza aquí.</span>
+          Da el primer paso hacia <span style={{ color: "#D9E5DB" }}>una vida con más calma.</span>
         </motion.h1>
 
         {/* Typewriter subheadline */}
@@ -531,15 +532,7 @@ export default function HeroSection() {
                   <input type="text" placeholder="Nombre completo" value={nombre} onChange={(e) => setNombre(e.target.value)} required className="w-full border border-[#D9E5DB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#5A634F]/30" />
                   <input type="email" placeholder="Correo electrónico" value={correo} onChange={(e) => setCorreo(e.target.value)} required className="w-full border border-[#D9E5DB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#5A634F]/30" />
                   <div className="flex gap-2">
-                    <select
-                      value={paisCodigo}
-                      onChange={(e) => setPaisCodigo(e.target.value)}
-                      className="border border-[#D9E5DB] rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#5A634F]/30 bg-white shrink-0 w-28"
-                    >
-                      {PAISES.map((p) => (
-                        <option key={p.code} value={p.dial}>{p.flag} {p.dial}</option>
-                      ))}
-                    </select>
+                    <CountrySelector value={paisCodigo} onChange={setPaisCodigo} />
                     <input type="tel" placeholder="Teléfono" value={telefono} onChange={(e) => setTelefono(e.target.value)} required className="flex-1 border border-[#D9E5DB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#5A634F]/30 min-w-0" />
                   </div>
                   <motion.button type="submit" className="w-full bg-[#5A634F] text-white font-semibold py-3 rounded-xl" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>

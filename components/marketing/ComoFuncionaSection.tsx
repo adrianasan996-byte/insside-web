@@ -42,8 +42,8 @@ const MSGS = [
   { from: "insside", name: "insside",   text: "Encontramos al especialista ideal ✨" },
   { from: "user",    name: "María V.",  text: "Después de 3 meses soy yo misma otra vez" },
   { from: "insside", name: "insside",   text: "Te conectamos sin lista de espera ⚡" },
-  { from: "user",    name: "Ana P.",    text: "¿Primera sesión gratis de verdad? 🙌" },
-  { from: "insside", name: "insside",   text: "Sí, sin compromiso. Escríbenos 💬" },
+  { from: "user",    name: "Ana P.",    text: "¿Es todo online? ¿En español? 🌐" },
+  { from: "insside", name: "insside",   text: "Sí, desde donde estés 🌿" },
 ];
 
 const WHATSAPP = "https://wa.me/17866356816";
@@ -92,7 +92,7 @@ function ChatBubblesFloat({ active }: { active: boolean }) {
     schedRef.current = setTimeout(() => {
       spawn();
       scheduleNext();
-    }, rand(1400, 2000));
+    }, rand(700, 1000));
   }, [spawn]);
 
   useEffect(() => {

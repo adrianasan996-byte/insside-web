@@ -4,21 +4,9 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
 import { sendToGHL } from "@/lib/ghl";
+import CountrySelector from "@/components/ui/CountrySelector";
 
 const WHATSAPP = "https://wa.me/17866356816";
-
-const PAISES = [
-  { code: "US", dial: "+1" },
-  { code: "MX", dial: "+52" },
-  { code: "CO", dial: "+57" },
-  { code: "AR", dial: "+54" },
-  { code: "CL", dial: "+56" },
-  { code: "PE", dial: "+51" },
-  { code: "VE", dial: "+58" },
-  { code: "ES", dial: "+34" },
-  { code: "DO", dial: "+1 DO" },
-  { code: "GT", dial: "+502" },
-];
 
 const MOTIVOS = [
   "Quiero agendar una sesión",
@@ -38,7 +26,7 @@ const CONTACT_INFO = [
     label: "WhatsApp",
     value: "+1 (786) 635-6816",
     href: WHATSAPP,
-    desc: "Respuesta en menos de 24 horas",
+    desc: "24h de atención",
     color: "#5A634F",
   },
   {
@@ -49,8 +37,8 @@ const CONTACT_INFO = [
       </svg>
     ),
     label: "Correo",
-    value: "hola@insside.co",
-    href: "mailto:hola@insside.co",
+    value: "hello@insside.co",
+    href: "mailto:hello@insside.co",
     desc: "Para consultas formales",
     color: "#8B9970",
   },
@@ -86,6 +74,7 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+
 export default function ContactPage() {
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
@@ -112,8 +101,8 @@ export default function ContactPage() {
       `Hola Insside, soy ${nombre}.\n` +
       `Correo: ${correo}\n` +
       `Tel: ${paisCodigo} ${telefono}\n` +
-      `Motivo: ${motivo}\n\n` +
-      `${mensaje}`
+      (motivo ? `Motivo: ${motivo}\n\n` : "") +
+      mensaje
     );
     setTimeout(() => {
       window.open(WHATSAPP + "?text=" + msg, "_blank");
@@ -141,13 +130,12 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-[#B5BC8F] text-xs font-bold uppercase tracking-widest mb-3">Estamos aquí</p>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-4">
-              Escríbenos.<br />
-              <span className="text-[#B5BC8F]">Respondemos de verdad.</span>
+            <p className="text-[#B5BC8F] text-xs font-bold uppercase tracking-widest mb-3">Contacto</p>
+            <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
+              Cuéntanos qué necesitas.
             </h1>
             <p className="text-white/60 text-base max-w-md">
-              Cuéntanos qué necesitas. Estamos para orientarte, responder dudas o simplemente escucharte.
+              Estamos para orientarte y responder tus dudas.
             </p>
           </motion.div>
         </div>
@@ -201,21 +189,14 @@ export default function ContactPage() {
 
                       {/* Teléfono */}
                       <div>
-                        <label className="block text-xs font-semibold text-[#5A634F] uppercase tracking-wider mb-1.5">WhatsApp (opcional)</label>
+                        <label className="block text-xs font-semibold text-[#5A634F] uppercase tracking-wider mb-1.5">Teléfono</label>
                         <div className="flex gap-2">
-                          <select
-                            value={paisCodigo}
-                            onChange={(e) => setPaisCodigo(e.target.value)}
-                            className="border border-[#EDE7E1] rounded-xl px-3 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#5A634F]/20 shrink-0 w-24 cursor-pointer"
-                          >
-                            {PAISES.map((p) => (
-                              <option key={p.code} value={p.dial}>{p.dial}</option>
-                            ))}
-                          </select>
+                          <CountrySelector value={paisCodigo} onChange={setPaisCodigo} />
                           <input
                             type="tel"
                             value={telefono}
                             onChange={(e) => setTelefono(e.target.value)}
+                            required
                             placeholder="Número de teléfono"
                             className="flex-1 border border-[#EDE7E1] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#5A634F]/20 min-w-0"
                           />
@@ -224,25 +205,27 @@ export default function ContactPage() {
 
                       {/* Motivo */}
                       <div>
-                        <label className="block text-xs font-semibold text-[#5A634F] uppercase tracking-wider mb-1.5">Motivo de contacto</label>
+                        <label className="block text-xs font-semibold text-[#5A634F] uppercase tracking-wider mb-1.5">
+                          Motivo de contacto <span className="text-[#B5BC8F] normal-case font-normal">(opcional)</span>
+                        </label>
                         <select
                           value={motivo}
                           onChange={(e) => setMotivo(e.target.value)}
-                          required
                           className="w-full border border-[#EDE7E1] rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#5A634F]/20 cursor-pointer text-[#262525]"
                         >
-                          <option value="" disabled>Selecciona un motivo</option>
+                          <option value="">Selecciona un motivo</option>
                           {MOTIVOS.map((m) => <option key={m}>{m}</option>)}
                         </select>
                       </div>
 
                       {/* Mensaje */}
                       <div>
-                        <label className="block text-xs font-semibold text-[#5A634F] uppercase tracking-wider mb-1.5">Tu mensaje</label>
+                        <label className="block text-xs font-semibold text-[#5A634F] uppercase tracking-wider mb-1.5">
+                          Tu mensaje <span className="text-[#B5BC8F] normal-case font-normal">(opcional)</span>
+                        </label>
                         <textarea
                           value={mensaje}
                           onChange={(e) => setMensaje(e.target.value)}
-                          required
                           rows={4}
                           placeholder="Cuéntanos en tus palabras qué estás buscando o necesitando..."
                           className="w-full border border-[#EDE7E1] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#5A634F]/20 focus:border-[#5A634F]/40 transition-all resize-none"
@@ -272,7 +255,7 @@ export default function ContactPage() {
 
                       <p className="text-center text-xs text-[#9a9a9a]">
                         Al enviar aceptas nuestra{" "}
-                        <a href="#" className="underline hover:text-[#5A634F]">Política de Privacidad</a>.
+                        <a href="/privacidad" className="underline hover:text-[#5A634F]">Política de Privacidad</a>.
                         <br />Respondemos en menos de 24 horas.
                       </p>
                     </form>
@@ -343,7 +326,7 @@ export default function ContactPage() {
                   style={{ background: "radial-gradient(circle, rgba(181,188,143,0.2) 0%, transparent 70%)" }} />
                 <p className="text-[#B5BC8F] text-xs font-bold uppercase tracking-wider mb-2">La forma más rápida</p>
                 <p className="text-white font-bold text-lg mb-1">Escríbenos por WhatsApp</p>
-                <p className="text-white/60 text-sm mb-4">Lunes a viernes · 9am – 6pm (Miami)</p>
+                <p className="text-white/60 text-sm mb-4">24h de atención</p>
                 <motion.a
                   href={WHATSAPP}
                   target="_blank"
@@ -361,7 +344,7 @@ export default function ContactPage() {
             <FadeIn delay={0.4}>
               <div className="rounded-2xl p-5 border border-dashed border-[#D9E5DB]">
                 <p className="text-xs font-semibold text-[#5A634F] mb-1">¿Tienes una pregunta frecuente?</p>
-                <p className="text-[#9a9a9a] text-xs">Antes de escribirnos, revisa nuestras FAQs en la página principal. Puede que ya tengamos la respuesta.</p>
+                <p className="text-[#9a9a9a] text-xs">Antes de escribirnos, revisa nuestras FAQs. Puede que ya tengamos la respuesta.</p>
                 <a href="/#faq" className="text-xs text-[#5A634F] font-semibold underline underline-offset-2 mt-2 inline-block">Ver FAQs →</a>
               </div>
             </FadeIn>

@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { sendToGHL } from "@/lib/ghl";
 import { Menu, X, ChevronDown } from "lucide-react";
+import CountrySelector from "@/components/ui/CountrySelector";
 
 const WHATSAPP = "https://wa.me/17866356816";
 
@@ -197,14 +198,9 @@ function EspecialistaModal({ onClose }: { onClose: () => void }) {
 
                   {/* Teléfono */}
                   <div>
-                    <label className={labelCls}>WhatsApp / Teléfono</label>
+                    <label className={labelCls}>Teléfono</label>
                     <div className="flex gap-2">
-                      <select value={form.paisCodigo} onChange={e => set("paisCodigo", e.target.value)}
-                        className="border border-[#EDE7E1] rounded-xl px-3 py-3 text-sm bg-white focus:outline-none shrink-0 w-24 cursor-pointer">
-                        {["+1","+52","+57","+54","+56","+51","+58","+34"].map(d => (
-                          <option key={d} value={d}>{d}</option>
-                        ))}
-                      </select>
+                      <CountrySelector value={form.paisCodigo} onChange={v => set("paisCodigo", v)} />
                       <input type="tel" value={form.telefono} onChange={e => set("telefono", e.target.value)}
                         placeholder="Número de teléfono" className={inputCls + " flex-1"} />
                     </div>
@@ -290,7 +286,7 @@ function EspecialistaModal({ onClose }: { onClose: () => void }) {
                   </motion.button>
 
                   <p className="text-center text-xs text-[#9a9a9a]">
-                    Revisamos cada aplicación con cuidado. Te respondemos en 3–5 días hábiles.
+                    Revisamos cada aplicación con cuidado.
                   </p>
                 </motion.form>
               ) : (

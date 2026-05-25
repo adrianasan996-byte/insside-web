@@ -268,7 +268,7 @@ export default function ProfesionalesPage() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className="text-[#B5BC8F] text-xs font-bold uppercase tracking-widest mb-2">Directorio</p>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3">
+              <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-3">
                 Encuentra tu especialista
               </h1>
               <p className="text-white/60 text-base max-w-lg">

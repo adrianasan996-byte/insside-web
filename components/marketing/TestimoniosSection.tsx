@@ -92,9 +92,10 @@ export default function TestimoniosSection() {
         >
           <video
             src="/TESTIMONIOS/testimonio-video.mp4"
+            poster="/TESTIMONIOS/testimonio-poster.jpg"
             controls
             playsInline
-            preload="metadata"
+            preload="none"
             className="w-full h-auto block"
             style={{ aspectRatio: "4/5", objectFit: "cover" }}
           />

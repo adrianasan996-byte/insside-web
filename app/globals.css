@@ -61,6 +61,23 @@ h1, h2, h3, h4 { line-height: 1.1; }
 }
 .animate-marquee-left:hover { animation-play-state: paused; }
 
+@keyframes photo-scroll-up {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+@keyframes photo-scroll-down {
+  0%   { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+.photo-col-up {
+  animation: photo-scroll-up 34s linear infinite;
+  will-change: transform;
+}
+.photo-col-down {
+  animation: photo-scroll-down 34s linear infinite;
+  will-change: transform;
+}
+
 /* Brand gradient text — mint to teal */
 @layer utilities {
   .gradient-heading {
