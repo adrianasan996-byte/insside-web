@@ -53,7 +53,7 @@ const ROTATING_WORDS = ["psicología.", "coaching.", "nutrición.", "ti."];
 
 const SITUACION_TAGS: Record<string, string[]> = {
   "Ansiedad o estrés":       ["psicologia", "coaching"],
-  "Relaciones y vínculos":   ["pareja"],
+  "Relaciones y vínculos":   ["relaciones y vínculos"],
   "Propósito y dirección":   ["coaching"],
   "Cuerpo y alimentación":   ["nutricion"],
   "Hábitos y bienestar":     ["psicologia", "coaching", "nutricion"],
@@ -62,7 +62,7 @@ const SITUACION_TAGS: Record<string, string[]> = {
 
 const TIPO_APOYO_TAGS: Record<string, string[]> = {
   "Psicología individual":  ["psicologia"],
-  "Psicología de pareja":   ["pareja"],
+  "Psicología de pareja":   ["relaciones y vínculos"],
   "Life Coaching":          ["coaching"],
   "Health Coaching":        ["nutricion"],
   "Nutrición":              ["nutricion"],
