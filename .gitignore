@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude internal files
+.claude/
+
+# Large local assets (not for deployment)
+/public/ASSETS/
+/public/TESTIMONIOS/

@@ -68,12 +68,6 @@ function EspecialistaModal({ onClose }: { onClose: () => void }) {
       tags: ["especialista"],
     });
 
-    // Email notification to hello@insside.co
-    fetch("/api/specialist-notify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    }).catch(() => {});
     const text = encodeURIComponent(
       `Hola, quiero aplicar como especialista en Insside.\n\n` +
       `Nombre: ${form.nombre} ${form.apellido}\n` +
