@@ -280,19 +280,19 @@ export default function ConocenosPage() {
               <p className="text-[#B5BC8F] text-[11px] font-semibold uppercase tracking-widest mb-3">
                 ¿Cómo nació Insside?
               </p>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.1] mb-5">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-5">
                 Encontrar apoyo no debería{" "}
                 <span className="bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">
                   ser tan complicado.
                 </span>
               </h2>
-              <p className="text-[#6b6b6b] text-sm leading-relaxed mb-4">
+              <p className="text-[#262525] text-sm leading-relaxed mb-4">
                 Nos dimos cuenta de que pedir ayuda suele ser más complicado de lo que debería. Muchas personas saben que algo no está bien. Se sienten agotadas, confundidas, estancadas o desconectadas de sí mismas.
               </p>
-              <p className="text-[#6b6b6b] text-sm leading-relaxed mb-4">
+              <p className="text-[#262525] text-sm leading-relaxed mb-4">
                 Pero cuando deciden buscar ayuda aparece una nueva pregunta: ¿Por dónde empiezo? ¿Necesito terapia? ¿Coaching? ¿Nutrición? ¿Estoy exagerando? ¿Y si elijo mal?
               </p>
-              <p className="text-[#5A634F] text-sm leading-relaxed font-medium">
+              <p className="text-[#262525] text-sm leading-relaxed font-medium">
                 Ahí nació Insside. Creamos un espacio que hace más simple encontrar el acompañamiento adecuado para lo que estás viviendo, sin tener que resolverlo todo solo antes de empezar.
               </p>
             </FadeIn>
@@ -304,9 +304,6 @@ export default function ConocenosPage() {
       <section style={{ background: "#F5F0EB" }} className="overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 sm:px-12 pt-16 pb-6">
           <FadeIn className="text-center">
-            <p className="text-[#B5BC8F] text-[11px] font-semibold uppercase tracking-widest mb-2">
-              Nuestra comunidad
-            </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.1]">
               Nuestra{" "}
               <span className="bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">

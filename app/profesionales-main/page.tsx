@@ -269,10 +269,10 @@ export default function ProfesionalesPage() {
             >
               <p className="text-[#B5BC8F] text-xs font-bold uppercase tracking-widest mb-2">Directorio</p>
               <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-3">
-                Encuentra tu especialista
+                El acompañamiento correcto hace la diferencia.
               </h1>
               <p className="text-white/60 text-base max-w-lg">
-                Cada una fue seleccionada. Cada perfil, revisado. Tu bienestar, en manos de alguien que realmente sabe.
+                Cada especialista de Insside fue seleccionado para ayudarte a entender mejor lo que estás viviendo y avanzar con claridad.
               </p>
             </motion.div>
           </div>
