@@ -132,10 +132,10 @@ export default function ContactPage() {
           >
             <p className="text-[#B5BC8F] text-xs font-bold uppercase tracking-widest mb-3">Contacto</p>
             <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
-              Cuéntanos qué necesitas.
+              Empezar puede ser más simple de lo que imaginas.
             </h1>
             <p className="text-white/60 text-base max-w-md">
-              Estamos para orientarte y responder tus dudas.
+              Escríbenos, estamos aquí para escucharte y orientarte.
             </p>
           </motion.div>
         </div>
@@ -158,7 +158,7 @@ export default function ContactPage() {
                     style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
                   >
                     <h2 className="text-xl font-bold text-[#262525] mb-1">Cuéntanos qué necesitas</h2>
-                    <p className="text-[#9a9a9a] text-sm mb-6">Sin formularios eternos, sin bots. Te lee una persona real.</p>
+                    <p className="text-[#9a9a9a] text-sm mb-6">Sin bots ni respuestas automáticas. Del otro lado hay una persona dispuesta a ayudarte.</p>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                       {/* Nombre */}

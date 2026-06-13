@@ -22,11 +22,11 @@ const PILLARS = [
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
       </svg>
     ),
-    title: "Acompañamiento integral.",
-    desc: "No nos limitamos a una sola disciplina. Integramos psicología, coaching y nutrición para acompañarte como un todo.",
+    title: "Ayuda simplificada",
+    desc: "Cuando decides buscar apoyo, lo difícil no debería ser averiguar por dónde empezar. Te ayudamos a identificar qué tipo de acompañamiento puede ayudarte según lo que estás viviendo hoy.",
     accent: "#D9E5DB",
   },
   {
@@ -36,17 +36,17 @@ const PILLARS = [
       </svg>
     ),
     title: "Profesionales seleccionados.",
-    desc: "Seleccionamos a cada especialista con rigor profesional y humano. No cualquiera forma parte de Insside.",
+    desc: "Cada especialista de Insside fue seleccionado por su experiencia, trayectoria y forma de acompañar a las personas. Porque encontrar ayuda también implica poder confiar en quién te acompaña.",
     accent: "#EDE7E1",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
       </svg>
     ),
-    title: "Plataforma sencilla.",
-    desc: "Todo en un solo lugar: agenda, paga y recibe acompañamiento sin confusiones.",
+    title: "Menos confusión, más dirección.",
+    desc: "No creemos que debas pasar horas comparando perfiles o intentando adivinar qué necesitas. Estamos aquí para ayudarte a tomar una decisión con más claridad.",
     accent: "#F0F4EC",
   },
   {
@@ -55,41 +55,21 @@ const PILLARS = [
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
       </svg>
     ),
-    title: "Acompañamiento humano.",
-    desc: "La tecnología nos ordena, pero las decisiones siguen siendo humanas y personalizadas.",
+    title: "Pensamos en procesos sostenibles.",
+    desc: "No buscamos soluciones rápidas ni cambios que duren una semana. Buscamos ayudarte a construir bienestar que puedas sostener en tu vida real.",
     accent: "#D9E5DB",
-  },
-  {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
-      </svg>
-    ),
-    title: "Visión de bienestar sostenible.",
-    desc: "No buscamos solo resolver una urgencia, sino transformar tu relación con el bienestar de forma profunda y sostenible.",
-    accent: "#EDE7E1",
-  },
-  {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-      </svg>
-    ),
-    title: "Tecnología al servicio de tu bienestar.",
-    desc: "Nuestra tecnología simplifica tu camino: te guía, organiza tus citas y hace todo más fácil para ti.",
-    accent: "#F0F4EC",
   },
 ];
 
 const FOR_YOU_YES = [
-  "Quieres claridad para entender qué tipo de apoyo realmente necesitas.",
-  "Buscas un enfoque integral que conecte mente, cuerpo y hábitos.",
-  "Prefieres una experiencia guiada y simple, sin perder tiempo comparando especialistas.",
+  "Sabes que algo no se siente bien, aunque no puedas ponerlo en palabras.",
+  "Quieres entender mejor lo que te pasa, no solo aliviarlo momentáneamente.",
+  "Estás dispuesto a invertir tiempo y atención en tu bienestar.",
 ];
 const FOR_YOU_NO = [
-  "Buscas solo una sesión rápida sin intención de profundizar.",
-  "Necesitas atención de emergencia o psiquiátrica, fuera de nuestro alcance.",
-  "No estás listo/a para comprometerte contigo y tu bienestar.",
+  "Buscas una solución inmediata sin disposición a profundizar en el proceso.",
+  "Necesitas atención de emergencia o apoyo psiquiátrico especializado.",
+  "No estás dispuesto a involucrarte activamente en tu bienestar.",
 ];
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -212,7 +192,7 @@ export default function ConocenosPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Insside es un espacio donde mente, cuerpo y alma se trabajan de forma integrada, con acompañamiento profesional real.
+              Porque cuando algo no se siente bien, encontrar apoyo no debería convertirse en otro problema que resolver.
             </motion.p>
 
             <motion.div
@@ -298,22 +278,22 @@ export default function ConocenosPage() {
 
             <FadeIn delay={0.12}>
               <p className="text-[#B5BC8F] text-[11px] font-semibold uppercase tracking-widest mb-3">
-                ¿De dónde nació Insside?
+                ¿Cómo nació Insside?
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.1] mb-5">
-                Vimos que la salud no{" "}
+                Encontrar apoyo no debería{" "}
                 <span className="bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">
-                  funciona por partes.
+                  ser tan complicado.
                 </span>
               </h2>
               <p className="text-[#6b6b6b] text-sm leading-relaxed mb-4">
-                Nosotras, Adriana y Stephanie, vimos que la salud no funciona por partes. Desde la psicología y el coaching entendimos que las personas no llegan con un solo problema, sino con necesidades que atraviesan mente, cuerpo, emociones y hábitos.
+                Nos dimos cuenta de que pedir ayuda suele ser más complicado de lo que debería. Muchas personas saben que algo no está bien. Se sienten agotadas, confundidas, estancadas o desconectadas de sí mismas.
               </p>
               <p className="text-[#6b6b6b] text-sm leading-relaxed mb-4">
-                Ahí descubrimos algo esencial: el bienestar solo es real cuando se integra todo. Pero esa integración no existía. Muchos buscaban ayuda sin guía y no sabían qué tipo de apoyo necesitaban.
+                Pero cuando deciden buscar ayuda aparece una nueva pregunta: ¿Por dónde empiezo? ¿Necesito terapia? ¿Coaching? ¿Nutrición? ¿Estoy exagerando? ¿Y si elijo mal?
               </p>
               <p className="text-[#5A634F] text-sm leading-relaxed font-medium">
-                Insside nació para resolver eso: ofrecer un acompañamiento integral, simple y accesible, donde distintos profesionales trabajen con una misma visión: ver y sostener a la persona como un todo.
+                Ahí nació Insside. Creamos un espacio que hace más simple encontrar el acompañamiento adecuado para lo que estás viviendo, sin tener que resolverlo todo solo antes de empezar.
               </p>
             </FadeIn>
           </div>
@@ -328,9 +308,9 @@ export default function ConocenosPage() {
               Nuestra comunidad
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.1]">
-              Voces que{" "}
+              Nuestra{" "}
               <span className="bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">
-                nos inspiran.
+                Comunidad
               </span>
             </h2>
           </FadeIn>
@@ -447,9 +427,9 @@ export default function ConocenosPage() {
               Bienvenida
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.1]">
-              Un mensaje de{" "}
+              Adri y Steph tienen{" "}
               <span className="bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">
-                Adriana y Stephanie
+                un mensaje para ti…
               </span>
             </h2>
           </FadeIn>
@@ -568,13 +548,13 @@ export default function ConocenosPage() {
               <div className="relative z-10 px-8 py-12 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div>
                   <h2 className="text-[#262525] text-3xl sm:text-4xl font-bold tracking-tight leading-[1.15] mb-3">
-                    Lo que cuidas hoy,{" "}
+                    Lo que estás viviendo{" "}
                     <span className="bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">
-                      transforma tu mañana.
+                      merece atención.
                     </span>
                   </h2>
                   <p className="text-[#6b6b6b] text-sm max-w-lg leading-relaxed">
-                    Conecta con nuestras especialistas y da el primer paso hacia tu bienestar.
+                    Da el primer paso y encuentra a la persona adecuada para acompañarte.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 shrink-0">

@@ -150,10 +150,10 @@ export default function EspecialistasSection() {
           <div className="flex flex-col items-center text-center gap-4">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3 leading-tight text-center bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">
-                Especialistas elegidos para ti
+                El acompañamiento correcto hace la diferencia.
               </h2>
               <p className="text-[#6b6b6b] text-base max-w-lg">
-  Cada uno fue seleccionado por su experiencia, enfoque y capacidad de acompañar con intención y profesionalismo.
+                Cada especialista de Insside fue seleccionado para ayudarte a entender mejor lo que estás viviendo y avanzar con claridad.
               </p>
             </div>
             <motion.a

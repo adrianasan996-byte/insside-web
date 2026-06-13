@@ -232,7 +232,7 @@ export default function BlogPage() {
                 El Blog de Insside
               </h1>
               <p className="text-[#6b6b6b] text-sm max-w-sm">
-                Reflexiones, herramientas y perspectivas de nuestros especialistas para tu camino de bienestar.
+                Un espacio para entender mejor lo que estás viviendo.
               </p>
             </div>
           </motion.div>
