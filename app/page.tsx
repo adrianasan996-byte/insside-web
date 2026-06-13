@@ -27,19 +27,28 @@ export const metadata: Metadata = {
     "salud mental hispana",
   ],
   openGraph: {
-    title: "Insside — No estás en crisis. Pero tampoco estás bien.",
+    title: "Insside — Especialistas en Psicología, Coaching y Nutrición en Español",
     description:
-      "Conecta con especialistas en psicología, coaching y nutrición. En español, desde donde estés.",
+      "Conecta con especialistas seleccionados en psicología, coaching y nutrición. En español, desde donde estés.",
     url: "https://www.insside.co",
     siteName: "Insside",
     locale: "es_LA",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1920,
+        height: 1080,
+        alt: "Insside — Especialistas en psicología, nutrición, coaching y más",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Insside — Especialistas de bienestar en español",
+    title: "Insside — Especialistas en Psicología, Coaching y Nutrición en Español",
     description:
-      "Psicología, coaching, nutrición y salud integral. En español, desde donde estés.",
+      "Conecta con especialistas seleccionados en psicología, coaching y nutrición. En español, desde donde estés.",
+    images: ["/og-image.png"],
   },
   alternates: { canonical: "https://www.insside.co" },
   robots: { index: true, follow: true },
