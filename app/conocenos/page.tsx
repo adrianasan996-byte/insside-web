@@ -280,7 +280,7 @@ export default function ConocenosPage() {
               <p className="text-[#B5BC8F] text-[11px] font-semibold uppercase tracking-widest mb-3">
                 ¿Cómo nació Insside?
               </p>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-5">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight mb-5">
                 Encontrar apoyo no debería{" "}
                 <span className="bg-gradient-to-r from-[#8B9970] to-[#64C1C4] bg-clip-text text-transparent">
                   ser tan complicado.
