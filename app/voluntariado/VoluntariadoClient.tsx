@@ -106,7 +106,7 @@ export default function VoluntariadoClient() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.nombre || !form.email || !form.profesion || !cvFile) return;
+    if (!form.nombre || !form.email || !form.profesion) return;
     setStatus("loading");
     try {
       const res = await fetch("/api/voluntariado", {
@@ -254,7 +254,7 @@ export default function VoluntariadoClient() {
               </div>
               {/* CV / Resume */}
               <div>
-                <label className={labelClass} style={{ color: NEGRO }}>CV / Resume <span className="text-red-400">*</span> <span className="font-normal text-[#9a9a9a]">(PDF, máx. 5 MB)</span></label>
+                <label className={labelClass} style={{ color: NEGRO }}>CV / Resume <span className="font-normal text-[#9a9a9a]">(PDF, máx. 5 MB — opcional)</span></label>
                 <label
                   className="flex items-center gap-3 w-full px-4 py-3 rounded-xl border-2 border-dashed cursor-pointer transition-all text-sm"
                   style={cvFile
@@ -361,7 +361,7 @@ export default function VoluntariadoClient() {
 
             <motion.button
               type="submit"
-              disabled={status === "loading" || !form.nombre || !form.email || !form.profesion || !cvFile}
+              disabled={status === "loading" || !form.nombre || !form.email || !form.profesion}
               className="w-full py-4 rounded-xl font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ background: DARK_GREEN, color: "#fff" }}
               whileHover={{ scale: 1.02 }}
