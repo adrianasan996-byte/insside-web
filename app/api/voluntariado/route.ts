@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
               <tr><td style="padding:6px 0;color:#9a9a9a">Correo</td><td style="padding:6px 0"><a href="mailto:${email}" style="color:#8B9970">${email}</a></td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">Teléfono</td><td style="padding:6px 0">${telefono || "—"}</td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">Profesión</td><td style="padding:6px 0">${profesion}</td></tr>
-              <tr><td style="padding:6px 0;color:#9a9a9a">Experiencia en crisis</td><td style="padding:6px 0">${experienciaLabel[experienciaCrisis] ?? experienciaCrisis || "—"}</td></tr>
+              <tr><td style="padding:6px 0;color:#9a9a9a">Experiencia en crisis</td><td style="padding:6px 0">${(experienciaLabel[experienciaCrisis] ?? experienciaCrisis) || "—"}</td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">Colegiado / licencia</td><td style="padding:6px 0">${colegiado || "—"}</td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">LinkedIn / perfil</td><td style="padding:6px 0">${linkedin ? `<a href="${linkedin}" style="color:#8B9970">${linkedin}</a>` : "—"}</td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">Días disponibles</td><td style="padding:6px 0">${(dias as string[])?.join(", ") || "—"}</td></tr>
