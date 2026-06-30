@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
     // Send email notification to hello@insside.co
     if (resend) {
       await resend.emails.send({
-        from:    "Insside <onboarding@resend.dev>",
+        from:    "Insside <noreply@insside.co>",
         to:      ["hello@insside.co"],
         subject: `Nuevo registro — Apoyo Venezuela: ${nombre ?? email}`,
         html: `

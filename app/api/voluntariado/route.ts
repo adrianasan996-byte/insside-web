@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
 
     if (resend) {
       await resend.emails.send({
-        from:    "Insside <onboarding@resend.dev>",
+        from:    "Insside <noreply@insside.co>",
         to:      ["hello@insside.co"],
         subject: `Nuevo voluntario especialista: ${nombre} — ${profesion}`,
         html: `
