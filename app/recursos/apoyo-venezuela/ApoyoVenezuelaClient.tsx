@@ -378,6 +378,14 @@ export default function ApoyoVenezuelaClient() {
                   <p className="text-[#9a9a9a] text-xs">Especialistas en salud mental certificados</p>
                 </div>
               </div>
+              <div className="mt-6 pt-5 border-t" style={{ borderColor: "rgba(181,188,143,0.25)" }}>
+                <p className="text-xs text-[#9a9a9a] mb-3">¿Eres profesional de la salud mental?</p>
+                <Link href="/voluntariado"
+                  className="inline-flex items-center gap-2 font-semibold px-5 py-2.5 rounded-xl text-sm border-2 transition-all hover:opacity-80"
+                  style={{ borderColor: TE_VERDE, color: TE_VERDE, background: "transparent" }}>
+                  Soy especialista →
+                </Link>
+              </div>
             </div>
           </FadeIn>
         </div>
