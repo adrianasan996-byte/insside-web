@@ -161,11 +161,6 @@ export default function ApoyoVenezuelaClient() {
                 style={{ background: DARK_GREEN, color: "#fff" }}>
                 Registrarme →
               </a>
-              <Link href="/voluntariado"
-                className="inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-xl text-sm border-2 transition-all hover:bg-white/10"
-                style={{ borderColor: "rgba(255,255,255,0.35)", color: "#fff" }}>
-                Soy especialista
-              </Link>
             </div>
           </motion.div>
         </div>
