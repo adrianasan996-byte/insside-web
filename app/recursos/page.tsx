@@ -7,9 +7,22 @@ import MarketingFooter from "@/components/marketing/MarketingFooter";
 
 const WHATSAPP = "https://wa.me/17866356816";
 
-const CATEGORIES = ["Todo", "Sesión especial", "Guías", "Quiz", "Programas"];
+const CATEGORIES = ["Todo", "Sesión especial", "Guías", "Quiz", "Programas", "Emergencia"];
 
 const RECURSOS = [
+  {
+    id: "r0", type: "Emergencia", category: "Emergencia",
+    title: "Apoyo psicológico gratuito · Venezuela",
+    subtitle: "2 sesiones · Online · Gratuito",
+    description: "Nos hemos unido a diferentes especialistas para ofrecer 2 sesiones gratuitas de acompañamiento emocional para personas afectadas por los terremotos en Venezuela. Completa el formulario y te asignamos un especialista.",
+    instructor: "Equipo Insside", instructorRole: "Psicólogas y coaches certificadas",
+    price: 0, originalPrice: 0, currency: "USD", duration: "2 sesiones",
+    tag: "Gratuito · Emergencia", color: "#1E3A2F", accent: "#3D6B60",
+    image: "/venezuela-flag-silhouette.png",
+    features: ["2 sesiones de acompañamiento emocional", "Equipo de psicólogas certificadas", "100% online", "Completamente gratuito"],
+    available: true,
+    landingUrl: "/recursos/apoyo-venezuela",
+  },
   {
     id: "r1", type: "Sesión especial", category: "Sesión especial",
     title: "Human Design: Conoce tu diseño auténtico",
