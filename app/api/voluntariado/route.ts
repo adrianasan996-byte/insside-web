@@ -11,6 +11,7 @@ export async function POST(req: NextRequest) {
       experienciaCrisis, colegiado, linkedin,
       dias, franjas, zonaHoraria,
       trabajoDesastre, trabajoDesastreDetalle,
+      cvFile,
     } = body;
 
     if (!email || !nombre || !profesion) {
@@ -25,9 +26,13 @@ export async function POST(req: NextRequest) {
 
     if (resend) {
       await resend.emails.send({
-        from:    "Insside <noreply@insside.co>",
-        to:      ["hello@insside.co"],
-        subject: `Nuevo voluntario especialista: ${nombre} — ${profesion}`,
+        from:        "Insside <noreply@insside.co>",
+        to:          ["hello@insside.co"],
+        subject:     `Nuevo voluntario especialista: ${nombre} — ${profesion}`,
+        attachments: cvFile?.base64 ? [{
+          filename: cvFile.name,
+          content:  Buffer.from(cvFile.base64, "base64"),
+        }] : undefined,
         html: `
           <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#262525">
             <h2 style="color:#8B9970;margin-bottom:4px">Nuevo voluntario — Apoyo Venezuela</h2>

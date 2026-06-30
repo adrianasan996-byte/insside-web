@@ -67,7 +67,29 @@ export default function VoluntariadoClient() {
     trabajoDesastre: "",
     trabajoDesastreDetalle: "",
   });
+  const [cvFile, setCvFile] = useState<{ name: string; base64: string } | null>(null);
+  const [cvError, setCvError] = useState("");
   const [status, setStatus] = useState<FormState>("idle");
+
+  function handleCvChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.type !== "application/pdf") {
+      setCvError("Solo se aceptan archivos PDF.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setCvError("El archivo no puede superar 5 MB.");
+      return;
+    }
+    setCvError("");
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = (reader.result as string).split(",")[1];
+      setCvFile({ name: file.name, base64 });
+    };
+    reader.readAsDataURL(file);
+  }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -90,7 +112,7 @@ export default function VoluntariadoClient() {
       const res = await fetch("/api/voluntariado", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, cvFile }),
       });
       setStatus(res.ok ? "success" : "error");
     } catch {
@@ -308,6 +330,30 @@ export default function VoluntariadoClient() {
                 placeholder="Cuéntanos (opcional)..."
                 value={form.trabajoDesastreDetalle} onChange={handleChange}
                 className={inputClass} style={{ borderColor: "#EDE7E1", color: NEGRO, resize: "none" }} />
+            </div>
+
+            {/* CV / Resume */}
+            <div>
+              <label className={labelClass} style={{ color: NEGRO }}>CV / Résumé <span className="font-normal text-[#9a9a9a]">(PDF, máx. 5 MB)</span></label>
+              <label
+                className="flex items-center gap-3 w-full px-4 py-3 rounded-xl border-2 border-dashed cursor-pointer transition-all text-sm"
+                style={cvFile
+                  ? { borderColor: TE_VERDE, background: `rgba(139,153,112,0.06)`, color: NEGRO }
+                  : { borderColor: "#EDE7E1", background: "#fff", color: "#9a9a9a" }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={cvFile ? TE_VERDE : "#b0b0b0"} strokeWidth="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                </svg>
+                <span>{cvFile ? cvFile.name : "Seleccionar archivo PDF"}</span>
+                <input type="file" accept="application/pdf" onChange={handleCvChange} className="hidden" />
+              </label>
+              {cvError && <p className="text-red-500 text-xs mt-1">{cvError}</p>}
+              {cvFile && (
+                <button type="button" onClick={() => setCvFile(null)}
+                  className="text-xs text-[#9a9a9a] hover:text-red-400 mt-1 transition-colors">
+                  × Eliminar archivo
+                </button>
+              )}
             </div>
 
             {status === "error" && (
