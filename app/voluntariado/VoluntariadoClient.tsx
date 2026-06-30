@@ -242,7 +242,7 @@ export default function VoluntariadoClient() {
               </p>
               <div>
                 <label className={labelClass} style={{ color: NEGRO }}>Número de colegiado / licencia</label>
-                <input type="text" name="colegiado" placeholder="Ej: PSI-12345"
+                <input type="text" name="colegiado" placeholder="Ej: FPV-123"
                   value={form.colegiado} onChange={handleChange}
                   className={inputClass} style={{ borderColor: "#d8d0c8", color: NEGRO }} />
               </div>
