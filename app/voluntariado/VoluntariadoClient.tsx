@@ -254,7 +254,7 @@ export default function VoluntariadoClient() {
               </div>
               {/* CV / Resume */}
               <div>
-                <label className={labelClass} style={{ color: NEGRO }}>CV / Résumé <span className="text-red-400">*</span> <span className="font-normal text-[#9a9a9a]">(PDF, máx. 5 MB)</span></label>
+                <label className={labelClass} style={{ color: NEGRO }}>CV / Resume <span className="text-red-400">*</span> <span className="font-normal text-[#9a9a9a]">(PDF, máx. 5 MB)</span></label>
                 <label
                   className="flex items-center gap-3 w-full px-4 py-3 rounded-xl border-2 border-dashed cursor-pointer transition-all text-sm"
                   style={cvFile
