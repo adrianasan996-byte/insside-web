@@ -146,7 +146,7 @@ export default function ApoyoVenezuelaClient() {
             </div>
 
             <h1 className="text-5xl sm:text-7xl font-bold leading-tight mb-5 text-white">
-              Venezuela te necesita fuerte.
+              Venezuela, estamos contigo.
             </h1>
             <p className="text-white/70 text-base sm:text-lg max-w-lg leading-relaxed mb-3">
               Sabemos que los últimos días han sido difíciles para muchas personas y familias en Venezuela.
