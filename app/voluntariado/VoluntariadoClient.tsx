@@ -198,8 +198,6 @@ export default function VoluntariadoClient() {
                 className={inputClass} style={{ borderColor: "#EDE7E1", color: NEGRO }} />
             </div>
 
-            {/* Fields hidden temporarily */}
-            <div className="hidden">
             <div>
               <label className={labelClass} style={{ color: NEGRO }}>
                 Profesión / especialidad <span className="text-red-400">*</span>
@@ -359,8 +357,6 @@ export default function VoluntariadoClient() {
             {status === "error" && (
               <p className="text-red-500 text-sm">Hubo un error al enviar. Por favor intenta de nuevo.</p>
             )}
-            </div>{/* end hidden */}
-
             <motion.button
               type="submit"
               disabled={status === "loading" || !form.nombre || !form.email || !form.profesion || !form.telefono}
