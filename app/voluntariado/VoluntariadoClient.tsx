@@ -106,7 +106,7 @@ export default function VoluntariadoClient() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.nombre || !form.email || !form.profesion) return;
+    if (!form.nombre || !form.email || !form.profesion || !form.telefono) return;
     setStatus("loading");
     try {
       const res = await fetch("/api/voluntariado", {
@@ -192,8 +192,8 @@ export default function VoluntariadoClient() {
 
             {/* Teléfono */}
             <div>
-              <label className={labelClass} style={{ color: NEGRO }}>Teléfono</label>
-              <input type="tel" name="telefono" placeholder="+1 (000) 000-0000"
+              <label className={labelClass} style={{ color: NEGRO }}>Teléfono <span className="text-red-400">*</span></label>
+              <input type="tel" name="telefono" required placeholder="+1 (000) 000-0000"
                 value={form.telefono} onChange={handleChange}
                 className={inputClass} style={{ borderColor: "#EDE7E1", color: NEGRO }} />
             </div>
@@ -361,7 +361,7 @@ export default function VoluntariadoClient() {
 
             <motion.button
               type="submit"
-              disabled={status === "loading" || !form.nombre || !form.email || !form.profesion}
+              disabled={status === "loading" || !form.nombre || !form.email || !form.profesion || !form.telefono}
               className="w-full py-4 rounded-xl font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ background: DARK_GREEN, color: "#fff" }}
               whileHover={{ scale: 1.02 }}

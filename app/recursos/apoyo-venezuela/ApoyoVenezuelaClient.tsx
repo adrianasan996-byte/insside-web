@@ -100,7 +100,7 @@ export default function ApoyoVenezuelaClient() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.nombre || !form.email || !form.edad) return;
+    if (!form.nombre || !form.email || !form.edad || !form.telefono) return;
     setStatus("loading");
     try {
       const res = await fetch("/api/apoyo-venezuela", {
@@ -253,8 +253,8 @@ export default function ApoyoVenezuelaClient() {
                 </div>
 
                 <div>
-                  <label className={labelClass}>Teléfono</label>
-                  <input type="tel" name="telefono" placeholder="+1 (000) 000-0000"
+                  <label className={labelClass}>Teléfono <span className="text-red-300">*</span></label>
+                  <input type="tel" name="telefono" required placeholder="+1 (000) 000-0000"
                     value={form.telefono} onChange={handleChange} className={inputClass} />
                 </div>
 
@@ -317,7 +317,7 @@ export default function ApoyoVenezuelaClient() {
 
                 <motion.button
                   type="submit"
-                  disabled={status === "loading" || !form.nombre || !form.email || !form.edad}
+                  disabled={status === "loading" || !form.nombre || !form.email || !form.edad || !form.telefono}
                   className="w-full py-4 rounded-xl font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ background: SALVIA, color: NEGRO }}
                   whileHover={{ scale: 1.02 }}
