@@ -97,10 +97,14 @@ export async function POST(req: NextRequest) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          tipo:     "Venezuela",
-          nombre:   nombre ?? "",
-          email:    email ?? "",
-          telefono: telefono ?? "",
+          tipo:        "Clientes",
+          nombre:      nombre    ?? "",
+          email:       email     ?? "",
+          telefono:    telefono  ?? "",
+          edad:        edad      ?? "",
+          ciudadPais:  ciudad    ?? "",
+          sesionOnline: online   ?? "",
+          relato:      mensaje   ?? "",
         }),
       }).catch(() => {});
     }
