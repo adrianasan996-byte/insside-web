@@ -1,30 +1,81 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-const SALVIA    = "#B5BC8F";
-const TE_VERDE  = "#8B9970";
-const NATURAL   = "#EDE7E1";
-const NEGRO     = "#262525";
+const NEGRO      = "#262525";
 const DARK_GREEN = "#4D5840";
+const SALVIA     = "#B5BC8F";
 
 const SESSION_KEY = "pap_auth";
-const PASSWORD    = "VENEZUELA";
+
+const USERS: Record<string, { pass: string; name: string }> = {
+  'valentina@insside.co':              { pass: 'pap2026',   name: 'Valentina'  },
+  'barbara@insside.co':                { pass: 'pap2026',   name: 'Bárbara'    },
+  'malena@insside.co':                 { pass: 'pap2026',   name: 'Malena'     },
+  'blanca@insside.co':                 { pass: 'pap2026',   name: 'Blanca'     },
+  'daniela@insside.co':                { pass: 'VENEZUELA', name: 'Daniela'    },
+  'hello@insside.co':                  { pass: 'VENEZUELA', name: 'Insside'    },
+  'cesaraugusto.lifecoach@gmail.com':  { pass: 'VENEZUELA', name: 'Cesar'      },
+  'alex2409d@hotmail.com':             { pass: 'VENEZUELA', name: 'Alexis'     },
+  'lapsicologaviral@gmail.com':        { pass: 'VENEZUELA', name: 'Marisela'   },
+  'andrearamgoolie@gmail.com':         { pass: 'VENEZUELA', name: 'Andrea'     },
+  'yessimesa@hotmail.com':             { pass: 'VENEZUELA', name: 'Yessica'    },
+  'mayreanillestrada@gmail.com':       { pass: 'VENEZUELA', name: 'Mayreanill' },
+  'psicologaorianatorres@gmail.com':   { pass: 'VENEZUELA', name: 'Oriana'     },
+  'darwinramirez47@gmail.com':         { pass: 'VENEZUELA', name: 'Darwin'     },
+  'urianaperalta@hotmail.com':         { pass: 'VENEZUELA', name: 'Uriana'     },
+  'mariangeldearmas4@gmail.com':       { pass: 'VENEZUELA', name: 'Mariangel'  },
+  'laurapedraz1@outlook.com':          { pass: 'VENEZUELA', name: 'Laura'      },
+  'bertha06m@gmail.com':               { pass: 'VENEZUELA', name: 'Bertha'     },
+  'karenestrella.info@gmail.com':      { pass: 'VENEZUELA', name: 'Karen'      },
+  'fvgg1207@gmail.com':                { pass: 'VENEZUELA', name: 'Fabiana'    },
+  'klarissagarciao@gmail.com':         { pass: 'VENEZUELA', name: 'Klarissa'   },
+  'vnsssiso@gmail.com':                { pass: 'VENEZUELA', name: 'Vanessa'    },
+  'anavictoriarg13@gmail.com':         { pass: 'VENEZUELA', name: 'Ana'        },
+  'ps.orianafd@gmail.com':             { pass: 'VENEZUELA', name: 'Oriana'     },
+  'wilmagrau1993@gmail.com':           { pass: 'VENEZUELA', name: 'Wilma'      },
+  'victoria.bonnet2402@gmail.com':     { pass: 'VENEZUELA', name: 'Victoria'   },
+  'carelizfer@gmail.com':              { pass: 'VENEZUELA', name: 'Careliz'    },
+  'mirianabellor@gmail.com':           { pass: 'VENEZUELA', name: 'Miriana'    },
+  'consultas@sexologiayparejas.com':   { pass: 'VENEZUELA', name: 'Eliet'      },
+  'psic.coric@gmail.com':              { pass: 'VENEZUELA', name: 'Corina'     },
+  'bethaniaprince.30@gmail.com':       { pass: 'VENEZUELA', name: 'Maria'      },
+  'hcpsicologia5@gmail.com':           { pass: 'VENEZUELA', name: 'Heidy'      },
+  'williamsantosforero@icloud.com':    { pass: 'VENEZUELA', name: 'William'    },
+  'karollglez@gmail.com':              { pass: 'VENEZUELA', name: 'Karoll'     },
+  'fercalvaygutierrez@gmail.com':      { pass: 'VENEZUELA', name: 'Fernando'   },
+  'taicuzkaren@gmail.com':             { pass: 'VENEZUELA', name: 'Karen'      },
+  'karla.2412@hotmail.com':            { pass: 'VENEZUELA', name: 'Karla'      },
+};
 
 export default function CapacitacionPapClient() {
-  const [authed, setAuthed]   = useState(false);
-  const [input, setInput]     = useState("");
-  const [error, setError]     = useState(false);
+  const [authed, setAuthed]     = useState(false);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail]       = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError]       = useState(false);
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    if (sessionStorage.getItem(SESSION_KEY) === "1") setAuthed(true);
+    const stored = sessionStorage.getItem(SESSION_KEY);
+    if (stored) {
+      try {
+        const { name } = JSON.parse(stored);
+        setUserName(name);
+        setAuthed(true);
+      } catch {
+        sessionStorage.removeItem(SESSION_KEY);
+      }
+    }
     setChecking(false);
   }, []);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (input.trim().toUpperCase() === PASSWORD) {
-      sessionStorage.setItem(SESSION_KEY, "1");
+    const key   = email.trim().toLowerCase();
+    const user  = USERS[key];
+    if (user && user.pass === password.trim()) {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ name: user.name }));
+      setUserName(user.name);
       setAuthed(true);
       setError(false);
     } else {
@@ -39,24 +90,40 @@ export default function CapacitacionPapClient() {
       <div className="min-h-screen flex items-center justify-center px-6" style={{ background: "#FDFBF8" }}>
         <div className="w-full max-w-sm">
           <div className="text-center mb-8">
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5"
-              style={{ background: DARK_GREEN }}>
+            <div
+              className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5"
+              style={{ background: DARK_GREEN }}
+            >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
             </div>
             <h1 className="text-2xl font-bold mb-1" style={{ color: NEGRO }}>Área de especialistas</h1>
-            <p className="text-sm" style={{ color: "#9a9a9a" }}>Ingresa la clave de acceso para continuar</p>
+            <p className="text-sm" style={{ color: "#9a9a9a" }}>Ingresa tu correo y clave de acceso para continuar</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={e => { setEmail(e.target.value); setError(false); }}
+              autoFocus
+              autoComplete="email"
+              className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 transition-all"
+              style={{
+                borderColor: error ? "#f87171" : "#EDE7E1",
+                color: NEGRO,
+                background: "#fff",
+              }}
+            />
             <input
               type="password"
               placeholder="Clave de acceso"
-              value={input}
-              onChange={e => { setInput(e.target.value); setError(false); }}
-              autoFocus
+              value={password}
+              onChange={e => { setPassword(e.target.value); setError(false); }}
+              autoComplete="current-password"
               className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 transition-all"
               style={{
                 borderColor: error ? "#f87171" : "#EDE7E1",
@@ -66,7 +133,7 @@ export default function CapacitacionPapClient() {
               }}
             />
             {error && (
-              <p className="text-red-400 text-xs text-center">Clave incorrecta. Intenta de nuevo.</p>
+              <p className="text-red-400 text-xs text-center">Correo o clave incorrectos. Intenta de nuevo.</p>
             )}
             <button
               type="submit"
@@ -93,14 +160,17 @@ export default function CapacitacionPapClient() {
             Capacitación PAP
           </h1>
           <p className="text-white/65 text-base max-w-xl leading-relaxed">
-            Material de apoyo para los especialistas voluntarios del programa de Primeros Auxilios Psicológicos.
+            {userName ? `Bienvenida, ${userName}. ` : ""}Material de apoyo para los especialistas voluntarios del programa de Primeros Auxilios Psicológicos.
           </p>
         </div>
       </div>
 
       {/* Content placeholder */}
       <div className="max-w-4xl mx-auto px-6 sm:px-12 py-16">
-        <div className="rounded-3xl p-12 text-center border border-dashed" style={{ borderColor: "rgba(181,188,143,0.4)", background: "rgba(181,188,143,0.05)" }}>
+        <div
+          className="rounded-3xl p-12 text-center border border-dashed"
+          style={{ borderColor: "rgba(181,188,143,0.4)", background: "rgba(181,188,143,0.05)" }}
+        >
           <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: SALVIA }}>Próximamente</p>
           <p className="text-base" style={{ color: "#9a9a9a" }}>El material estará disponible aquí muy pronto.</p>
         </div>
