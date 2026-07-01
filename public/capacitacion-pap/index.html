@@ -451,7 +451,7 @@
 
   .bottom-nav-inner {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 
   .bnav-item {
@@ -528,6 +528,54 @@
     .def-item { padding: 10px 12px; }
   }
 
+  /* ── MATERIAL CARDS ── */
+  .material-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+
+  .material-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: white;
+    border: 1.5px solid var(--natural);
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.18s;
+  }
+
+  .material-card:hover {
+    border-color: var(--te-verde);
+    box-shadow: 0 2px 12px rgba(139,153,112,0.15);
+    transform: translateY(-1px);
+  }
+
+  .material-icon {
+    background: var(--calma);
+    color: var(--te-verde);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 6px 10px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .material-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--negro);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .material-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
   /* ── UTILS ── */
   h3 { font-size: 15px; font-weight: 700; color: var(--negro); margin: 22px 0 8px; }
   h4 { font-size: 11px; font-weight: 700; color: var(--te-verde); margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -599,6 +647,10 @@
         <div class="bnav-dot">05</div>
         <div class="bnav-label">Poblaciones</div>
       </div>
+      <div class="bnav-item" onclick="showSection('material', this)">
+        <div class="bnav-dot">06</div>
+        <div class="bnav-label">Material</div>
+      </div>
     </div>
   </nav>
 
@@ -614,6 +666,9 @@
 
       <div class="sidebar-section-label">Contexto clínico</div>
       <div class="sidebar-item" onclick="showSection('poblaciones', this)">Poblaciones específicas</div>
+
+      <div class="sidebar-section-label">Recursos</div>
+      <div class="sidebar-item" onclick="showSection('material', this)">Material de apoyo</div>
     </nav>
 
     <main class="main">
@@ -1274,6 +1329,51 @@
               <p>Más allá de 4 semanas con <strong>intensidad sostenida</strong> de cualquiera de las reacciones anteriores.</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 6: MATERIAL DE APOYO -->
+      <div class="section" id="section-material">
+        <div class="section-header">
+          <div class="section-tag">06 · Recursos</div>
+          <div class="section-title">Material de apoyo</div>
+          <div class="section-intro">Guías y lecturas del curso de PAP de la UAB para profundizar antes de las sesiones.</div>
+        </div>
+
+        <div class="material-grid">
+
+          <a class="material-card" href="/capacitacion-pap/material/intro-definiciones.pdf" target="_blank">
+            <div class="material-icon">PDF</div>
+            <div class="material-info">
+              <div class="material-title">Introducción y definiciones</div>
+              <div class="material-desc">Conceptos base: crisis, emergencia, catástrofe, fases del duelo. Lectura introductoria del módulo 1.</div>
+            </div>
+          </a>
+
+          <a class="material-card" href="/capacitacion-pap/material/primera-ayuda-psicologica.pdf" target="_blank">
+            <div class="material-icon">PDF</div>
+            <div class="material-info">
+              <div class="material-title">Primera ayuda psicológica</div>
+              <div class="material-desc">Guía de campo OMS / War Trauma Foundation. Referencia central del protocolo PAP.</div>
+            </div>
+          </a>
+
+          <a class="material-card" href="/capacitacion-pap/material/manual-capacitacion.pdf" target="_blank">
+            <div class="material-icon">PDF</div>
+            <div class="material-info">
+              <div class="material-title">Manual de capacitación</div>
+              <div class="material-desc">Manual completo del curso UAB. Incluye todas las fases, principios y criterios de aplicación.</div>
+            </div>
+          </a>
+
+          <a class="material-card" href="/capacitacion-pap/material/role-playing-buenas-malas-practicas.pdf" target="_blank">
+            <div class="material-icon">PDF</div>
+            <div class="material-info">
+              <div class="material-title">Role-playing: buenas y malas prácticas</div>
+              <div class="material-desc">Ejercicio práctico del módulo 6. Errores reales observados en entrenamiento y sus contrastes correctos.</div>
+            </div>
+          </a>
+
         </div>
       </div>
 
