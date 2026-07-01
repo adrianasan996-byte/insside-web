@@ -16,7 +16,7 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { nombre, email, edad, ciudad, online, mensaje } = body;
+    const { nombre, email, telefono, edad, ciudad, online, mensaje } = body;
 
     if (!email) {
       return NextResponse.json({ error: "Email requerido" }, { status: 400 });
@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
       firstName:  firstName ?? "",
       lastName:   lastName  ?? "",
       email,
+      phone:      telefono ?? "",
       source:     "apoyo-venezuela",
       tags:       ["apoyo-venezuela", "sesion-gratuita", "terremoto-venezuela"],
     };
@@ -103,6 +104,7 @@ export async function POST(req: NextRequest) {
             <table style="width:100%;border-collapse:collapse;font-size:14px">
               <tr><td style="padding:6px 0;color:#9a9a9a;width:160px">Nombre</td><td style="padding:6px 0;font-weight:600">${nombre ?? "—"}</td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">Correo</td><td style="padding:6px 0"><a href="mailto:${email}" style="color:#8B9970">${email}</a></td></tr>
+              <tr><td style="padding:6px 0;color:#9a9a9a">Teléfono</td><td style="padding:6px 0">${telefono || "—"}</td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">Edad</td><td style="padding:6px 0">${edad ?? "—"}</td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">Ciudad/País</td><td style="padding:6px 0">${ciudad ?? "—"}</td></tr>
               <tr><td style="padding:6px 0;color:#9a9a9a">Sesión online</td><td style="padding:6px 0">${online ?? "—"}</td></tr>

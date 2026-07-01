@@ -86,6 +86,7 @@ export default function ApoyoVenezuelaClient() {
   const [form, setForm] = useState({
     nombre: "",
     email: "",
+    telefono: "",
     edad: "",
     ciudad: "",
     online: "" as "" | "Sí" | "No",
@@ -244,6 +245,12 @@ export default function ApoyoVenezuelaClient() {
                   </label>
                   <input type="email" name="email" required placeholder="tu@correo.com"
                     value={form.email} onChange={handleChange} className={inputClass} />
+                </div>
+
+                <div>
+                  <label className={labelClass}>Teléfono</label>
+                  <input type="tel" name="telefono" placeholder="+1 (000) 000-0000"
+                    value={form.telefono} onChange={handleChange} className={inputClass} />
                 </div>
 
                 <div>
