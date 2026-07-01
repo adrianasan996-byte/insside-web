@@ -435,43 +435,97 @@
   .step-title { font-size: 13px; font-weight: 700; color: var(--negro); margin-bottom: 3px; }
   .step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
-  /* ── MOBILE TABS ── */
-  .mobile-tabs {
+  /* ── BOTTOM NAV (mobile) ── */
+  .bottom-nav {
     display: none;
-    overflow-x: auto;
-    background: var(--natural);
-    border-bottom: 1px solid #d8d0c8;
-    padding: 0 16px;
-    scrollbar-width: none;
-    position: sticky;
-    top: 54px;
-    z-index: 99;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--natural);
+    z-index: 200;
+    padding: 0;
+    box-shadow: 0 -4px 20px rgba(95,113,72,0.10);
   }
-  .mobile-tabs::-webkit-scrollbar { display: none; }
-  .mobile-tab {
-    padding: 12px 16px;
-    font-size: 12px;
+
+  .bottom-nav-inner {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .bnav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 4px 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-top: 2px solid transparent;
+    gap: 4px;
+  }
+
+  .bnav-item.active {
+    border-top-color: var(--te-verde);
+    background: rgba(139,153,112,0.06);
+  }
+
+  .bnav-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--natural);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    transition: all 0.15s;
+  }
+
+  .bnav-item.active .bnav-dot {
+    background: var(--calma);
+    color: var(--te-verde);
+  }
+
+  .bnav-label {
+    font-size: 9.5px;
     font-weight: 600;
     color: var(--muted);
-    cursor: pointer;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all 0.15s;
-    flex-shrink: 0;
-    display: inline-block;
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1.2;
   }
-  .mobile-tab.active { color: var(--te-verde); border-bottom-color: var(--te-verde); }
+
+  .bnav-item.active .bnav-label { color: var(--te-verde); }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .sidebar { display: none; }
-    .mobile-tabs { display: block; white-space: nowrap; }
-    .main { padding: 24px 16px; }
+    .bottom-nav { display: block; }
+    .main {
+      padding: 20px 16px 90px;
+    }
     .do-dont { grid-template-columns: 1fr; }
     .si-no { grid-template-columns: 1fr; }
     .def-grid { grid-template-columns: 1fr; }
-    .login-card { padding: 32px 24px; }
-    .section-title { font-size: 22px; }
+    .login-card { padding: 32px 20px; }
+    .section-title { font-size: 21px; }
+    .section-header { margin-bottom: 20px; padding-bottom: 16px; }
+    .accordion-trigger { font-size: 13px; padding: 13px 14px; }
+    .accordion-body { padding: 16px 14px; }
+    .callout { padding: 14px 14px; font-size: 13px; }
+    .topbar { height: 48px; padding: 0 16px; }
+    .topbar-logo img { height: 24px; }
+    .chips { gap: 6px; }
+    .chip { font-size: 11px; padding: 4px 10px; }
+    .session-label { font-size: 10px; padding: 4px 12px; }
+    .roleplay-box, .contrast-box { padding: 14px 14px; }
+    .step-item { padding: 12px 14px; }
+    .def-item { padding: 10px 12px; }
   }
 
   /* ── UTILS ── */
@@ -523,13 +577,30 @@
     </div>
   </div>
 
-  <div class="mobile-tabs" id="mobile-tabs">
-    <span class="mobile-tab active" onclick="showSection('contexto', this)">Contexto</span>
-    <span class="mobile-tab" onclick="showSection('pap', this)">Los PAP</span>
-    <span class="mobile-tab" onclick="showSection('reacciones', this)">Reacciones</span>
-    <span class="mobile-tab" onclick="showSection('fases', this)">Las 8 Fases</span>
-    <span class="mobile-tab" onclick="showSection('poblaciones', this)">Poblaciones</span>
-  </div>
+  <nav class="bottom-nav" id="bottom-nav">
+    <div class="bottom-nav-inner">
+      <div class="bnav-item active" onclick="showSection('contexto', this)">
+        <div class="bnav-dot">01</div>
+        <div class="bnav-label">Contexto</div>
+      </div>
+      <div class="bnav-item" onclick="showSection('pap', this)">
+        <div class="bnav-dot">02</div>
+        <div class="bnav-label">Los PAP</div>
+      </div>
+      <div class="bnav-item" onclick="showSection('reacciones', this)">
+        <div class="bnav-dot">03</div>
+        <div class="bnav-label">Reacciones</div>
+      </div>
+      <div class="bnav-item" onclick="showSection('fases', this)">
+        <div class="bnav-dot">04</div>
+        <div class="bnav-label">8 Fases</div>
+      </div>
+      <div class="bnav-item" onclick="showSection('poblaciones', this)">
+        <div class="bnav-dot">05</div>
+        <div class="bnav-label">Poblaciones</div>
+      </div>
+    </div>
+  </nav>
 
   <div class="layout">
     <nav class="sidebar">
@@ -1274,8 +1345,9 @@
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.getElementById('section-' + id).classList.add('active');
     document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.mobile-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.bnav-item').forEach(t => t.classList.remove('active'));
     if (el) el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function toggleAcc(trigger) {
