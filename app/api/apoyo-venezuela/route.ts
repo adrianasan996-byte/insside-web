@@ -91,6 +91,20 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    // Fire-and-forget: log to Google Sheets via Apps Script webhook
+    if (process.env.APPS_SCRIPT_WEBHOOK_URL) {
+      fetch(process.env.APPS_SCRIPT_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tipo:     "Venezuela",
+          nombre:   nombre ?? "",
+          email:    email ?? "",
+          telefono: telefono ?? "",
+        }),
+      }).catch(() => {});
+    }
+
     // Send email notification to hello@insside.co
     if (resend) {
       await resend.emails.send({

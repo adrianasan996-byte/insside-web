@@ -24,6 +24,23 @@ export async function POST(req: NextRequest) {
       no: "No — mi trabajo es acompañamiento, no clínico",
     };
 
+    // Fire-and-forget: log to Google Sheets via Apps Script webhook
+    if (process.env.APPS_SCRIPT_WEBHOOK_URL) {
+      fetch(process.env.APPS_SCRIPT_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tipo:         "Voluntario",
+          nombre:       nombre ?? "",
+          email:        email ?? "",
+          telefono:     telefono ?? "",
+          especialidad: profesion ?? "",
+          cvName:       cvFile?.name ?? "",
+          cvBase64:     cvFile?.base64 ?? "",
+        }),
+      }).catch(() => {});
+    }
+
     if (resend) {
       await resend.emails.send({
         from:        "Insside <noreply@insside.co>",
