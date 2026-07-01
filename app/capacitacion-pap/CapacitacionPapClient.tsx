@@ -56,9 +56,9 @@ export default function CapacitacionPapClient() {
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    const hasCookie = document.cookie.includes('pap_auth=1');
-    if (hasCookie) {
-      window.location.href = '/capacitacion-pap/portal';
+    const stored = sessionStorage.getItem(SESSION_KEY);
+    if (stored) {
+      window.location.href = '/capacitacion-pap/index.html';
       return;
     }
     setChecking(false);
@@ -69,9 +69,8 @@ export default function CapacitacionPapClient() {
     const key   = email.trim().toLowerCase();
     const user  = USERS[key];
     if (user && user.pass === password.trim()) {
-      document.cookie = `pap_auth=1; path=/; max-age=${60 * 60 * 24 * 7}`;
       sessionStorage.setItem(SESSION_KEY, JSON.stringify({ name: user.name }));
-      window.location.href = '/capacitacion-pap/portal';
+      window.location.href = '/capacitacion-pap/index.html';
       setError(false);
     } else {
       setError(true);
