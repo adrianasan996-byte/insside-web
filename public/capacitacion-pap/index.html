@@ -591,32 +591,8 @@
 <body>
 
 <!-- LOGIN -->
-<div id="login-screen">
-  <div class="login-card">
-    <div class="login-logo">
-      <img src="/logos/logo-salvia-wordmark.png" alt="insside"
-           onerror="this.style.display='none'; document.querySelector('.login-logo-fallback').style.display='block'">
-      <span class="login-logo-fallback">insside</span>
-    </div>
-    <div class="login-subtitle">Capacitación PAP</div>
-
-    <div class="login-field">
-      <label for="login-email">Correo</label>
-      <input type="email" id="login-email" placeholder="tu@correo.com" autocomplete="username">
-    </div>
-    <div class="login-field">
-      <label for="login-password">Contraseña</label>
-      <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password"
-             onkeydown="if(event.key==='Enter') enterPortal()">
-    </div>
-
-    <div class="login-error" id="login-error">Correo o contraseña incorrectos.</div>
-    <button class="login-btn" onclick="enterPortal()">Entrar</button>
-  </div>
-</div>
-
 <!-- APP -->
-<div id="app">
+<div id="app" style="display:block !important">
   <div class="topbar">
     <a href="/" class="topbar-logo" style="text-decoration:none;">
       <img src="/logos/logo-blanco-wordmark.png" alt="insside"
@@ -1676,6 +1652,8 @@
       document.getElementById('valentina-note').style.display = 'block';
     }
   }
+
+  renderDatoOperativo();
 
   function showSection(id, el) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
