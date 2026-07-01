@@ -496,7 +496,7 @@
            onerror="this.style.display='none'; document.querySelector('.login-logo-fallback').style.display='block'">
       <span class="login-logo-fallback">insside</span>
     </div>
-    <div class="login-subtitle">Capacitación</div>
+    <div class="login-subtitle">Capacitación PAP</div>
 
     <div class="login-field">
       <label for="login-email">Correo</label>
@@ -1212,11 +1212,15 @@
 
 <script>
   const USERS = {
-    'valentina@insside.co': { pass: 'pap2026',   name: 'Valentina', valentina: true },
-    'barbara@insside.co':   { pass: 'pap2026',   name: 'Bárbara',   valentina: false },
-    'malena@insside.co':    { pass: 'pap2026',   name: 'Malena',    valentina: false },
-    'blanca@insside.co':    { pass: 'pap2026',   name: 'Blanca',    valentina: false },
-    'hello@insside.co':     { pass: 'VENEZUELA', name: 'Insside',   valentina: false },
+    'hello@insside.co':                 { pass: 'VENEZUELA', name: 'Insside' },
+    'psic.coric@gmail.com':             { pass: 'VENEZUELA', name: 'Corina' },
+    'bertha06m@gmail.com':              { pass: 'VENEZUELA', name: 'Bertha' },
+    'psicologaorianatorres@gmail.com':  { pass: 'VENEZUELA', name: 'Oriana' },
+    'anavictoriarg13@gmail.com':        { pass: 'VENEZUELA', name: 'Ana Victoria' },
+    'bethaniaprince.30@gmail.com':      { pass: 'VENEZUELA', name: 'Bethania' },
+    'carelizfer@gmail.com':             { pass: 'VENEZUELA', name: 'Careliz' },
+    'raugusto.lifecoach@gmail.com':     { pass: 'VENEZUELA', name: 'Cesar' },
+    'ucreraquel838@gmail.com':          { pass: 'VENEZUELA', name: 'Genesis' },
   };
 
   function renderDatoOperativo() {
@@ -1261,7 +1265,7 @@
     document.getElementById('app').style.display = 'block';
     renderDatoOperativo();
 
-    if (user.valentina) {
+    if (email === 'psic.coric@gmail.com') {
       document.getElementById('valentina-note').style.display = 'block';
     }
   }
