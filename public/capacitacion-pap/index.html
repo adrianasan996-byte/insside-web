@@ -451,7 +451,7 @@
 
   .bottom-nav-inner {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
   }
 
   .bnav-item {
@@ -651,6 +651,10 @@
         <div class="bnav-dot">06</div>
         <div class="bnav-label">Material</div>
       </div>
+      <div class="bnav-item" onclick="showSection('estrategias', this)">
+        <div class="bnav-dot">07</div>
+        <div class="bnav-label">Estrategias</div>
+      </div>
     </div>
   </nav>
 
@@ -669,6 +673,7 @@
 
       <div class="sidebar-section-label">Recursos</div>
       <div class="sidebar-item" onclick="showSection('material', this)">Material de apoyo</div>
+      <div class="sidebar-item" onclick="showSection('estrategias', this)">Estrategias en sesión</div>
     </nav>
 
     <main class="main">
@@ -1375,6 +1380,181 @@
           </a>
 
         </div>
+      </div>
+
+      <!-- SECCIÓN 7: ESTRATEGIAS EN SESIÓN -->
+      <div class="section" id="section-estrategias">
+        <div class="section-header">
+          <div class="section-tag">07 · Qué hacer</div>
+          <div class="section-title">Estrategias en sesión</div>
+          <div class="section-intro">Técnicas accionables y guiones de qué decir / qué no decir. Para contexto teórico, ver el documento consolidado.</div>
+        </div>
+
+        <!-- PARTE A -->
+        <div class="callout callout-note" style="margin-bottom: 24px;">
+          <strong>A. Técnicas de regulación</strong> — aptas para las 4 especialistas. No requieren entrenamiento clínico.
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <span>1. Suspiro fisiológico</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong>Para:</strong> picos agudos de ansiedad, pánico, hiperactivación. Efecto medible en ~30 segundos.</p>
+            <ol style="padding-left: 20px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <li>Inhala corto por la nariz.</li>
+              <li>Sin exhalar todavía, toma una segunda inhalación corta más, también por la nariz.</li>
+              <li>Exhala largo y lento por la boca.</li>
+              <li>Repite 1 a 3 veces. Puedes guiarlo por voz en la llamada, contando en voz alta.</li>
+            </ol>
+            <p style="font-style: italic; color: var(--muted); font-size: 13px;">Respaldo: ensayo aleatorizado de Stanford (Balban et al., 2023) — superó a la meditación y a otras rutinas de respiración en bajar activación y mejorar el ánimo.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <span>2. Anclaje sensorial 5-4-3-2-1</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong>Para:</strong> pánico y disociación. <strong>No</strong> es la mejor opción si la persona está en rumiación — ahí es mejor validar y pasar a lo práctico.</p>
+            <ol style="padding-left: 20px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <li>Pídele que nombre 5 cosas que puede ver.</li>
+              <li>4 cosas que puede tocar.</li>
+              <li>3 cosas que puede oír.</li>
+              <li>2 cosas que puede oler.</li>
+              <li>1 cosa que puede saborear.</li>
+            </ol>
+            <p><strong>Alternativa rápida</strong> si está muy activada: agua fría en cara o manos (si puede hacerlo en el momento) — enlentece el ritmo cardíaco en segundos.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <span>3. Higiene del sueño — versión breve</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;">Psicoeducación de bajo riesgo. Dar como sugerencias, no como exigencias.</p>
+            <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
+              <li>Horario de <strong>despertar</strong> consistente (importa más que la hora de acostarse).</li>
+              <li>Reducir cafeína y alcohol en la tarde-noche.</li>
+              <li>Evitar pantallas justo antes de dormir, cuando sea realista.</li>
+              <li>Usar la cama solo para dormir, si es posible.</li>
+              <li><strong>Lo más importante:</strong> normalizar. El insomnio y las pesadillas en las primeras semanas son esperables, no una señal de que algo anda mal.</li>
+            </ul>
+            <div class="callout callout-valentina">
+              Si el trabajo empieza a tocar contenido de trauma en profundidad, o la persona necesitaría TCC estructurada para el insomnio — eso es derivar a Valentina.
+            </div>
+          </div>
+        </div>
+
+        <!-- PARTE B -->
+        <div class="callout callout-note" style="margin-top: 32px; margin-bottom: 24px;">
+          <strong>B. Guiones de sesión</strong> — qué decir / qué no decir. Basado en el protocolo UAB de 8 fases y un ejercicio de role-play real.
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <span>Al iniciar — Fase 1-2</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="accordion-body" style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="dont-block">
+              <div class="def-term">Nunca</div>
+              <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+                <li>Comentarios insustanciales sobre la emergencia.</li>
+                <li>Avasallar con preguntas apenas empieza la llamada.</li>
+              </ul>
+            </div>
+            <div class="do-block">
+              <div class="def-term">Sí</div>
+              <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+                <li>Presentarte por tu nombre, explicar brevemente por qué estás ahí.</li>
+                <li>Tono de voz tranquilo — tu propio tono funciona como termómetro para la persona: si tú transmites calma, ella lo interpreta como que la situación está controlada.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <span>Al recoger información — Fase 4</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="accordion-body" style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="dont-block">
+              <div class="def-term">Nunca</div>
+              <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+                <li>Trivializar sus necesidades ('eso no es tan grave').</li>
+                <li>Dar consejos no pedidos.</li>
+                <li>Menospreciar su opinión.</li>
+              </ul>
+            </div>
+            <div class="do-block">
+              <div class="def-term">Sí</div>
+              <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+                <li>Dejar que sea la propia persona quien proponga soluciones cuando pueda — no imponer las tuyas.</li>
+                <li>'No lo sé, pero lo averiguo' es siempre mejor que inventar una respuesta.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <span>Al dar pautas de afrontamiento — Fase 7</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="accordion-body" style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="dont-block">
+              <div class="def-term">Nunca digas</div>
+              <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+                <li>'No pasa nada.'</li>
+                <li>'Ahora tienes que ser fuerte / valiente.'</li>
+                <li>Nada que trivialice la emergencia.</li>
+                <li>Nada que amenace con enfermedad o patología si la persona 'no mejora rápido' (ej. 'te vamos a tener que ingresar').</li>
+              </ul>
+            </div>
+            <div class="do-block">
+              <div class="def-term">Sí</div>
+              <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+                <li>Normalizar y despatologizar: 'lo que sientes es una reacción esperable, no algo que esté mal en ti.'</li>
+                <li>Dar marco temporal realista: la recuperación toma semanas o meses, no días.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <span>Al cerrar — Fase 8</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="accordion-body" style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="dont-block">
+              <div class="def-term">Nunca</div>
+              <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+                <li>Acuciar a la persona o cortar de forma abrupta.</li>
+                <li>Dar sensación de que es una carga.</li>
+                <li>Dejarla sola sin verificar que tiene a alguien cerca o un plan claro.</li>
+              </ul>
+            </div>
+            <div class="do-block">
+              <div class="def-term">Sí</div>
+              <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 4px;">
+                <li>Dejar un contacto claro y decir cuándo pedir ayuda especializada.</li>
+                <li>Despedirte de forma explícita, no simplemente desaparecer.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Errores que se repiten -->
+        <div class="callout callout-alarm" style="margin-top: 28px;">
+          <div class="def-term" style="margin-bottom: 8px;">De un role-play real: 4 errores que se repiten</div>
+          <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+            <li>Minimizar una necesidad espiritual/religiosa ('¿rezar ahora? no sé de qué te va a servir').</li>
+            <li>Mencionar la presión de tiempo delante de la persona ('tengo 300 personas más, vamos rápido').</li>
+            <li>Amenazar con 'te voy a tener que ingresar' ante una reacción emocional normal.</li>
+            <li>Cerrar la llamada sin verificar que la persona queda acompañada.</li>
+          </ul>
+        </div>
+
       </div>
 
     </main>
