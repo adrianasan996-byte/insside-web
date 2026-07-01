@@ -45,6 +45,8 @@ const USERS: Record<string, { pass: string; name: string }> = {
   'fercalvaygutierrez@gmail.com':      { pass: 'VENEZUELA', name: 'Fernando'   },
   'taicuzkaren@gmail.com':             { pass: 'VENEZUELA', name: 'Karen'      },
   'karla.2412@hotmail.com':            { pass: 'VENEZUELA', name: 'Karla'      },
+  'yeselifecoach@gmail.com':           { pass: 'VENEZUELA', name: 'Yesenia'    },
+  'anairapsico@gmail.com':             { pass: 'VENEZUELA', name: 'Anaira'     },
 };
 
 export default function CapacitacionPapClient() {
