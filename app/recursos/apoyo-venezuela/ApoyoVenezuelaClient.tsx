@@ -207,13 +207,21 @@ export default function ApoyoVenezuelaClient() {
       <section id="formulario" style={{ background: DARK_GREEN }}>
         <div className="max-w-2xl mx-auto px-6 sm:px-12 py-20">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-white">Regístrate Aquí</h2>
-            <p className="text-white/65 text-base leading-relaxed mb-10">
-              Si sientes que este espacio puede ayudarte, completa el formulario y nos pondremos en contacto contigo lo antes posible.
-            </p>
+            <div className="rounded-3xl p-10 text-center border border-white/15" style={{ background: "rgba(255,255,255,0.06)" }}>
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+                style={{ background: "rgba(181,188,143,0.2)" }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={SALVIA} strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <h2 className="text-white text-2xl sm:text-3xl font-bold mb-3">Cupos temporalmente cerrados</h2>
+              <p className="text-white/65 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
+                Estamos coordinando la próxima ronda de sesiones. Abriremos nuevos cupos en los próximos días — vuelve pronto.
+              </p>
+            </div>
           </FadeIn>
 
-          {status === "success" ? (
+          {false && status === "success" ? (
             <FadeIn>
               <div className="rounded-3xl p-10 text-center bg-white/10 border border-white/20">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
