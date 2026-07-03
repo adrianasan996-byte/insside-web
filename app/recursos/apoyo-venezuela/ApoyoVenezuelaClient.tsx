@@ -171,7 +171,7 @@ export default function ApoyoVenezuelaClient() {
               </div>
               <h2 className="text-white text-2xl sm:text-3xl font-bold mb-3">Cupos temporalmente cerrados</h2>
               <p className="text-white/65 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
-                Estamos coordinando la próxima ronda de sesiones. Abriremos nuevos cupos en los próximos días — vuelve pronto.
+                Por el momento no estamos recibiendo nuevas solicitudes de sesiones.
               </p>
             </div>
           </FadeIn>
