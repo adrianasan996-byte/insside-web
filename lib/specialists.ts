@@ -283,7 +283,7 @@ export const SPECIALISTS: SpecialistProfile[] = [
     languages: ["Español"],
     rating: 5.0,
     reviewCount: 143,
-    sessionPrice: 57,
+    sessionPrice: 111,
     image: "/especialistas/steph-de-gregorio.png",
     available: true,
     city: "Miami",
