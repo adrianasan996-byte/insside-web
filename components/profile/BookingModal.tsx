@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
-type CalendarType = "exploratory" | "individual" | "package4" | "couple";
+export type CalendarType = "exploratory" | "individual" | "package4" | "couple";
 
 interface Calendars {
   exploratory?: string;
@@ -17,6 +17,7 @@ interface BookingModalProps {
   onClose: () => void;
   specialistName: string;
   calendars: Calendars;
+  initialTab?: CalendarType;
 }
 
 const TABS: { key: CalendarType; label: string; description: string }[] = [
@@ -47,6 +48,7 @@ export default function BookingModal({
   onClose,
   specialistName,
   calendars,
+  initialTab,
 }: BookingModalProps) {
   const [activeTab, setActiveTab] = useState<CalendarType>("individual");
 
@@ -72,17 +74,19 @@ export default function BookingModal({
     };
   }, [isOpen]);
 
-  // Default to individual; fallback to first available tab
+  // Default to requested tab, then individual, then first available tab
   useEffect(() => {
     if (isOpen) {
-      if (calendars.individual) {
+      if (initialTab && calendars[initialTab]) {
+        setActiveTab(initialTab);
+      } else if (calendars.individual) {
         setActiveTab("individual");
       } else {
         const first = TABS.find((t) => calendars[t.key]);
         if (first) setActiveTab(first.key);
       }
     }
-  }, [isOpen, calendars]);
+  }, [isOpen, calendars, initialTab]);
 
   const calendarUrl = calendars[activeTab];
   const availableTabs = TABS.filter((t) => Boolean(calendars[t.key]));

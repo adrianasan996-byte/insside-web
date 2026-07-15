@@ -1,6 +1,6 @@
 "use client";
-import { notFound } from "next/navigation";
-import { useState, use } from "react";
+import { notFound, useSearchParams } from "next/navigation";
+import { useState, useEffect, use, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,10 +9,26 @@ import { getSpecialistBySlug } from "@/lib/specialists";
 import MarketingNav from "@/components/marketing/MarketingNav";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
 import TestimonialsCarousel from "@/components/profile/TestimonialsCarousel";
-import BookingModal from "@/components/profile/BookingModal";
+import BookingModal, { CalendarType } from "@/components/profile/BookingModal";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+const CALENDAR_TABS: CalendarType[] = ["exploratory", "individual", "couple", "package4"];
+
+// Reads ?agendar=<tab> from the URL so a booking link can deep-link straight into the modal.
+function AgendarQueryHandler({ onOpen }: { onOpen: (tab?: CalendarType) => void }) {
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const param = searchParams.get("agendar");
+    if (param !== null) {
+      const tab = CALENDAR_TABS.includes(param as CalendarType) ? (param as CalendarType) : undefined;
+      onOpen(tab);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+  return null;
 }
 
 function AccordionItem({
@@ -61,6 +77,7 @@ export default function SpecialistProfilePage({ params }: PageProps) {
   if (!specialist) notFound();
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [initialTab, setInitialTab] = useState<CalendarType | undefined>(undefined);
 
   const hasYoutube = Boolean(specialist.youtubeId);
   const hasTestimonials =
@@ -68,6 +85,15 @@ export default function SpecialistProfilePage({ params }: PageProps) {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <AgendarQueryHandler
+          onOpen={(tab) => {
+            setInitialTab(tab);
+            setModalOpen(true);
+          }}
+        />
+      </Suspense>
+
       <MarketingNav />
 
       <main
@@ -406,6 +432,7 @@ export default function SpecialistProfilePage({ params }: PageProps) {
         onClose={() => setModalOpen(false)}
         specialistName={specialist.name}
         calendars={specialist.calendars}
+        initialTab={initialTab}
       />
     </>
   );
