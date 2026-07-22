@@ -1,8 +1,22 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { sendToGHL } from "@/lib/ghl";
 import CountrySelector from "@/components/ui/CountrySelector";
+
+async function notifyLead(payload: {
+  firstName?: string; lastName?: string; email?: string; phone?: string;
+  source: string; tags?: string[]; formLabel: string; fields?: Record<string, string>;
+}) {
+  try {
+    await fetch("/api/hero-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.error("notifyLead error:", err);
+  }
+}
 
 const WHATSAPP_BASE = "https://wa.me/17866356816?text=";
 
@@ -134,13 +148,18 @@ export default function HeroSection() {
   async function handleContacto(e: React.FormEvent) {
     e.preventDefault();
     const nameParts = nombre.trim().split(" ");
-    await sendToGHL({
+    await notifyLead({
       firstName: nameParts[0] ?? "",
       lastName: nameParts.slice(1).join(" ") ?? "",
       email: correo,
       phone: `${paisCodigo} ${telefono}`,
       source: "web",
       tags: SITUACION_TAGS[situacion1] ?? [],
+      formLabel: "Hero — Necesito dirección",
+      fields: {
+        "Situación": situacion1 || "No especificada",
+        "Cuándo necesita ayuda": urgencia1 || "No especificado",
+      },
     });
     const msg = encodeURIComponent(
       `Hola, soy ${nombre}.\n` +
@@ -157,12 +176,18 @@ export default function HeroSection() {
   async function handleVerEspecialistas(e: React.FormEvent) {
     e.preventDefault();
     const nameParts = nombre2.trim().split(" ");
-    await sendToGHL({
+    await notifyLead({
       firstName: nameParts[0] ?? "",
       lastName: nameParts.slice(1).join(" ") ?? "",
       email,
       source: "web",
       tags: TIPO_APOYO_TAGS[tipoApoyo] ?? [],
+      formLabel: "Hero — Ya sé lo que busco",
+      fields: {
+        "Tipo de apoyo": tipoApoyo || "No especificado",
+        "Situación": situacion2 || "No especificada",
+        "Cuándo empezar": urgencia2 || "No especificado",
+      },
     });
     const msg = encodeURIComponent(
       `Hola, soy ${nombre2}.\n` +
