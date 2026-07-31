@@ -8,6 +8,7 @@ import EspecialistasSection from "@/components/marketing/EspecialistasSection";
 import TestimoniosSection from "@/components/marketing/TestimoniosSection";
 import CTAFinalSection from "@/components/marketing/CTAFinalSection";
 import FAQSection from "@/components/marketing/FAQSection";
+import { FAQS } from "@/lib/faqs";
 import MarketingFooter from "@/components/marketing/MarketingFooter";
 
 export const metadata: Metadata = {
@@ -71,12 +72,29 @@ const JSON_LD = {
     "Plataforma de bienestar integral que conecta personas con especialistas en psicología, coaching, nutrición y salud integral. En español.",
 };
 
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
 export default function HomePage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
       />
       <div className="min-h-screen overflow-x-hidden" style={{ background: "#FDFBF8" }}>
         <MarketingNav />

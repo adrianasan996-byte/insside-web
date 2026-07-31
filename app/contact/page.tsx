@@ -205,10 +205,11 @@ export default function ContactPage() {
 
                       {/* Motivo */}
                       <div>
-                        <label className="block text-xs font-semibold text-[#5A634F] uppercase tracking-wider mb-1.5">
+                        <label htmlFor="motivo-select" className="block text-xs font-semibold text-[#5A634F] uppercase tracking-wider mb-1.5">
                           Motivo de contacto <span className="text-[#B5BC8F] normal-case font-normal">(opcional)</span>
                         </label>
                         <select
+                          id="motivo-select"
                           value={motivo}
                           onChange={(e) => setMotivo(e.target.value)}
                           className="w-full border border-[#EDE7E1] rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#5A634F]/20 cursor-pointer text-[#262525]"

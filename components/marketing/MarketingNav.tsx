@@ -209,8 +209,8 @@ function EspecialistaModal({ onClose }: { onClose: () => void }) {
 
                   {/* Especialidad */}
                   <div>
-                    <label className={labelCls}>Tipo de especialidad</label>
-                    <select required value={form.especialidad} onChange={e => set("especialidad", e.target.value)}
+                    <label className={labelCls} htmlFor="especialidad-select">Tipo de especialidad</label>
+                    <select id="especialidad-select" required value={form.especialidad} onChange={e => set("especialidad", e.target.value)}
                       className={inputCls + " cursor-pointer"}>
                       <option value="" disabled>Selecciona tu especialidad</option>
                       {ESPECIALIDADES.map(e => <option key={e}>{e}</option>)}
@@ -228,16 +228,16 @@ function EspecialistaModal({ onClose }: { onClose: () => void }) {
                   {/* Modalidad + Años */}
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className={labelCls}>Modalidad</label>
-                      <select required value={form.modalidad} onChange={e => set("modalidad", e.target.value)}
+                      <label className={labelCls} htmlFor="modalidad-select">Modalidad</label>
+                      <select id="modalidad-select" required value={form.modalidad} onChange={e => set("modalidad", e.target.value)}
                         className={inputCls + " cursor-pointer"}>
                         <option value="" disabled>Selecciona</option>
                         {MODALIDADES.map(m => <option key={m}>{m}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label className={labelCls}>Años de experiencia</label>
-                      <select required value={form.anios} onChange={e => set("anios", e.target.value)}
+                      <label className={labelCls} htmlFor="anios-select">Años de experiencia</label>
+                      <select id="anios-select" required value={form.anios} onChange={e => set("anios", e.target.value)}
                         className={inputCls + " cursor-pointer"}>
                         <option value="" disabled>Selecciona</option>
                         {["Menos de 1 año","1–2 años","3–5 años","6–10 años","Más de 10 años"].map(a => (

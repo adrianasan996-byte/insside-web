@@ -1,6 +1,7 @@
 "use client";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 
 const PASOS = [
   {
@@ -275,11 +276,13 @@ export default function ComoFuncionaSection() {
                 initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>
                 <div className="relative rounded-2xl overflow-hidden w-full shadow-2xl aspect-[4/3] sm:aspect-auto sm:min-h-[390px]">
-                  <img
+                  <Image
                     src="/equipo/DSC01121.jpg"
                     alt="Equipo Insside"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                     style={{ objectPosition: "center 30%", transform: "scale(1.1)" }}
+                    sizes="(min-width: 640px) 50vw, 100vw"
                   />
                   <ChatBubblesFloat active={inView} />
                 </div>

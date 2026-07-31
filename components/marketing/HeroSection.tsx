@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import CountrySelector from "@/components/ui/CountrySelector";
 
 async function notifyLead(payload: {
@@ -205,11 +206,13 @@ export default function HeroSection() {
 
       {/* Background photo with brand treatment */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/hero-photo-brand.jpg"
           alt=""
-          className="w-full h-full object-cover object-center"
-          style={{ display: "block" }}
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
         />
         {/* Gradient overlay: dark top for text + subtle vignette */}
         <div className="absolute inset-0" style={{
@@ -322,6 +325,7 @@ export default function HeroSection() {
                     value={situacion1}
                     onChange={(e) => setSituacion1(e.target.value)}
                     className={selectBase}
+                    aria-label="¿Cómo te sientes hoy?"
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center" }}
                   >
                     <option value="" disabled>¿Cómo te sientes hoy?</option>
@@ -333,6 +337,7 @@ export default function HeroSection() {
                     value={urgencia1}
                     onChange={(e) => setUrgencia1(e.target.value)}
                     className={selectBase}
+                    aria-label="¿Cuándo empezar?"
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center" }}
                   >
                     <option value="" disabled>¿Cuándo empezar?</option>
@@ -382,6 +387,7 @@ export default function HeroSection() {
                     value={tipoApoyo}
                     onChange={(e) => setTipoApoyo(e.target.value)}
                     className={selectBase}
+                    aria-label="Tipo de apoyo"
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}
                   >
                     <option value="" disabled>Tipo de apoyo</option>
@@ -393,6 +399,7 @@ export default function HeroSection() {
                     value={situacion2}
                     onChange={(e) => setSituacion2(e.target.value)}
                     className={selectBase}
+                    aria-label="¿Cómo te sientes hoy?"
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}
                   >
                     <option value="" disabled>¿Cómo te sientes hoy?</option>
@@ -404,6 +411,7 @@ export default function HeroSection() {
                     value={urgencia2}
                     onChange={(e) => setUrgencia2(e.target.value)}
                     className={selectBase}
+                    aria-label="¿Cuándo empezar?"
                     style={{ backgroundImage: chevronSvg, backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}
                   >
                     <option value="" disabled>¿Cuándo empezar?</option>
