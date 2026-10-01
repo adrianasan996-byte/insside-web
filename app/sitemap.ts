@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SPECIALISTS } from "@/lib/specialists";
+import { POSTS } from "@/lib/blog";
 
 const BASE_URL = "https://www.insside.co";
 
@@ -8,7 +9,6 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/profesionales-main", priority: 0.9, changeFrequency: "weekly" },
   { path: "/blog", priority: 0.6, changeFrequency: "weekly" },
   { path: "/recursos", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/recursos/apoyo-venezuela", priority: 0.5, changeFrequency: "monthly" },
   { path: "/conocenos", priority: 0.5, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.5, changeFrequency: "monthly" },
   { path: "/voluntariado", priority: 0.4, changeFrequency: "monthly" },
@@ -33,5 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticEntries, ...specialistEntries];
+  const blogEntries: MetadataRoute.Sitemap = POSTS.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.datePublished),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...specialistEntries, ...blogEntries];
 }

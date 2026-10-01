@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Insside | Especialistas que te entienden de verdad",
     description: "Una plataforma para conectar con especialistas que te entienden de verdad. En español y desde cualquier lugar.",
-    url: "https://insside.co",
+    url: "https://www.insside.co",
     siteName: "Insside",
     images: [
       {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         alt: "Insside — Especialistas en psicología, nutrición, coaching y más",
       },
     ],
-    locale: "es_ES",
+    locale: "es_LA",
     type: "website",
   },
   twitter: {

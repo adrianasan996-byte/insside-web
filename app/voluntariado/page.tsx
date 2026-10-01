@@ -4,6 +4,7 @@ import VoluntariadoClient from "./VoluntariadoClient";
 export const metadata: Metadata = {
   title: "Voluntariado de Especialistas · Venezuela | Insside",
   description: "Súmate como especialista para acompañar emocionalmente a personas afectadas por el terremoto en Venezuela. Regístrate aquí.",
+  alternates: { canonical: "https://www.insside.co/voluntariado" },
 };
 
 export default function VoluntariadoPage() {

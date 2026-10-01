@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,6 +37,21 @@ const CALENDAR_LABELS: Record<CalendarType, { title: string; description: string
     description: "Compromiso de 4 sesiones con precio especial",
   },
 };
+
+// Páginas de reserva: útiles para el usuario pero contenido escaso; no se indexan
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug, calendario } = await params;
+  const specialist = getSpecialistBySlug(slug);
+  const calendarType = CALENDAR_SLUG_MAP[calendario];
+  if (!specialist || !calendarType) return {};
+
+  return {
+    title: `Agenda tu ${CALENDAR_LABELS[calendarType].title} con ${specialist.name} | Insside`,
+    description: `Reserva tu ${CALENDAR_LABELS[calendarType].title.toLowerCase()} online con ${specialist.name}, ${specialist.title}.`,
+    alternates: { canonical: `https://www.insside.co/profesionales/${specialist.slug}` },
+    robots: { index: false, follow: true },
+  };
+}
 
 export default async function SpecialistCalendarPage({ params }: PageProps) {
   const { slug, calendario } = await params;

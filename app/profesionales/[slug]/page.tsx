@@ -74,6 +74,8 @@ export default async function SpecialistProfilePage({ params }: PageProps) {
           },
         }
       : {}),
+    worksFor: { "@type": "Organization", name: "Insside", url: "https://www.insside.co" },
+    knowsLanguage: specialist.languages,
     makesOffer: {
       "@type": "Offer",
       priceCurrency: "USD",
@@ -82,11 +84,25 @@ export default async function SpecialistProfilePage({ params }: PageProps) {
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.insside.co" },
+      { "@type": "ListItem", position: 2, name: "Especialistas", item: "https://www.insside.co/profesionales-main" },
+      { "@type": "ListItem", position: 3, name: specialist.name, item: url },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       <SpecialistDetailClient specialist={specialist} />
     </>

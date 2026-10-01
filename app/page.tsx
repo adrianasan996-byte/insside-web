@@ -68,8 +68,28 @@ const JSON_LD = {
     availableLanguage: "Spanish",
   },
   sameAs: ["https://www.instagram.com/byinsside/"],
+  areaServed: "Worldwide",
+  knowsLanguage: "es",
+  knowsAbout: [
+    "Psicología online",
+    "Life coaching",
+    "Health coaching",
+    "Nutrición",
+    "Ansiedad",
+    "Bienestar emocional",
+    "Mindfulness",
+  ],
   description:
     "Plataforma de bienestar integral que conecta personas con especialistas en psicología, coaching, nutrición y salud integral. En español.",
+};
+
+const WEBSITE_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Insside",
+  url: "https://www.insside.co",
+  inLanguage: "es",
+  publisher: { "@type": "Organization", name: "Insside", url: "https://www.insside.co" },
 };
 
 const FAQ_JSON_LD = {
@@ -91,6 +111,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSON_LD) }}
       />
       <script
         type="application/ld+json"

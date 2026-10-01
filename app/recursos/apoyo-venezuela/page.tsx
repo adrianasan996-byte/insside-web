@@ -3,6 +3,7 @@ import ApoyoVenezuelaClient from "./ApoyoVenezuelaClient";
 
 export const metadata: Metadata = {
   title: "Apoyo Psicológico Gratuito · Venezuela | Insside",
+  robots: { index: false, follow: true },
   description: "Sesiones gratuitas de apoyo psicológico para personas emocionalmente afectadas por la crisis en Venezuela. Completa el formulario y un especialista se pondrá en contacto contigo.",
   openGraph: {
     title: "Apoyo Psicológico Gratuito · Venezuela | Insside",
